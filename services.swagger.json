@@ -1,0 +1,119 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "playground-apps/services.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v0/apps/list": {
+      "get": {
+        "summary": "List returns a subset of applications found in the user cluster.",
+        "operationId": "Apps_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_appsAppListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Apps"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "playground_appsAppListResponse": {
+      "type": "object",
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_appsApplication"
+          },
+          "description": "Entries in the returned page."
+        },
+        "from": {
+          "type": "integer",
+          "format": "int32",
+          "description": "From indicates the index of the first entry returned."
+        },
+        "to": {
+          "type": "integer",
+          "format": "int32",
+          "description": "To indicates the index of the second entry returned."
+        }
+      },
+      "description": "AppListResponse with a subset of applications."
+    },
+    "playground_appsApplication": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "AppId with the application identifier."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the app."
+        },
+        "visual_id": {
+          "type": "string",
+          "description": "VisualId contains a hash unique to the instance for representation purposes."
+        },
+        "status_name": {
+          "type": "string",
+          "description": "StatusName with the name of the overall status of the application."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the application."
+        }
+      },
+      "description": "Application top level entity."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

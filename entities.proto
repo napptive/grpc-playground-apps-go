@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package playground_apps;
+option go_package = "github.com/napptive/grpc-playground-apps-go;grpc_playground_apps_go";
+
+// Application top level entity.
+message Application{
+    // AppId with the application identifier.
+    string app_id = 1;
+    // Name of the app.
+    string name = 2;
+    // VisualId contains a hash unique to the instance for representation purposes.
+    string visual_id = 3;
+    // StatusName with the name of the overall status of the application.
+    string status_name = 4;
+    // Description of the application.
+    string description = 5;
+}
+
+// AppListResponse with a subset of applications.
+message AppListResponse{
+    // Entries in the returned page.
+    repeated Application entries = 1;
+    // From indicates the index of the first entry returned.
+    int32 from = 2;
+    // To indicates the index of the second entry returned.
+    int32 to = 3;
+}
