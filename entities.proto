@@ -3,6 +3,34 @@ syntax = "proto3";
 package playground_apps;
 option go_package = "github.com/napptive/grpc-playground-apps-go;grpc_playground_apps_go";
 
+import "playground-oam/entities.proto";
+
+//
+// Apps
+//
+
+// ComponentStatus defines the status of a component associated with an application configuration.
+enum ComponentStatus{
+    // OK signals that all the replicas of the component are running. Notice that the number of replicas may be
+    // specified in a trait.
+    OK = 0;
+    // WARNING signals that some of the replicas of the component are running but some remain. This could mean that either
+    // the replicas are being launched, or an error prevents the creation of the required replicas.
+    WARNING = 1;
+    // ERROR signals that there has been an error on a component.
+    ERROR = 2;
+}
+
+// AppStatus defines the status of an application.
+enum AppStatus{
+    // AppOk signals that are elements of a given application are running.
+    APP_OK = 0;
+    // AppWarning signals that some of the elements of an application are not running.
+    APP_WARNING = 1;
+    // AppError signals that the application is on an error state.
+    APP_ERROR = 2;
+}
+
 // Application top level entity.
 message Application{
     // AppId with the application identifier.
@@ -11,10 +39,14 @@ message Application{
     string name = 2;
     // VisualId contains a hash unique to the instance for representation purposes.
     string visual_id = 3;
-    // StatusName with the name of the overall status of the application.
-    string status_name = 4;
+    // Status with the name of the overall status of the application.
+    AppStatus status = 4;
     // Description of the application.
     string description = 5;
+    // ComponentStatus with a map of the associated component status.
+    map<string, ComponentStatus> component_status = 6;
+    // Instance of the linked application configuration.
+    playground_oam.ApplicationConfiguration instance = 7;
 }
 
 // AppListResponse with a subset of applications.

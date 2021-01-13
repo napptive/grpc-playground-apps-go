@@ -59,6 +59,16 @@
       },
       "description": "AppListResponse with a subset of applications."
     },
+    "playground_appsAppStatus": {
+      "type": "string",
+      "enum": [
+        "APP_OK",
+        "APP_WARNING",
+        "APP_ERROR"
+      ],
+      "default": "APP_OK",
+      "description": "AppStatus defines the status of an application.\n\n - APP_OK: AppOk signals that are elements of a given application are running.\n - APP_WARNING: AppWarning signals that some of the elements of an application are not running.\n - APP_ERROR: AppError signals that the application is on an error state."
+    },
     "playground_appsApplication": {
       "type": "object",
       "properties": {
@@ -74,16 +84,374 @@
           "type": "string",
           "description": "VisualId contains a hash unique to the instance for representation purposes."
         },
-        "status_name": {
-          "type": "string",
-          "description": "StatusName with the name of the overall status of the application."
+        "status": {
+          "$ref": "#/definitions/playground_appsAppStatus",
+          "description": "Status with the name of the overall status of the application."
         },
         "description": {
           "type": "string",
           "description": "Description of the application."
+        },
+        "component_status": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/playground_appsComponentStatus"
+          },
+          "description": "ComponentStatus with a map of the associated component status."
+        },
+        "instance": {
+          "$ref": "#/definitions/playground_oamApplicationConfiguration",
+          "description": "Instance of the linked application configuration."
         }
       },
       "description": "Application top level entity."
+    },
+    "playground_appsComponentStatus": {
+      "type": "string",
+      "enum": [
+        "OK",
+        "WARNING",
+        "ERROR"
+      ],
+      "default": "OK",
+      "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - ERROR: ERROR signals that there has been an error on a component."
+    },
+    "playground_oamApplicationComponent": {
+      "type": "object",
+      "properties": {
+        "component_name": {
+          "type": "string",
+          "description": "ComponentName specifies a component whose latest revision will be bind with ApplicationConfiguration. When the spec of the referenced component changes, ApplicationConfiguration will automatically migrate all trait affect from the prior revision to the new one. This is mutually exclusive with RevisionName."
+        },
+        "parameter_values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oamComponentParameterValue"
+          },
+          "description": "ParameterValues specify values for the the specified component's parameters. Any parameter required by the component must be specified."
+        },
+        "instance": {
+          "$ref": "#/definitions/playground_oamComponent",
+          "title": "Instance of the linked component"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oamApplicationScope"
+          },
+          "description": "Scopes in which the specified component should exist."
+        },
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oamApplicationTrait"
+          },
+          "description": "Traits of the specified component."
+        }
+      },
+      "description": "ApplicationComponent defines a component associated with an application configuration."
+    },
+    "playground_oamApplicationConfiguration": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "description": "ApiVersion of the given application configuration."
+        },
+        "kind": {
+          "type": "string",
+          "description": "Kind of the application configuration."
+        },
+        "metadata": {
+          "$ref": "#/definitions/playground_oamMetadata",
+          "description": "Metadata associated with the application configuration."
+        },
+        "spec": {
+          "$ref": "#/definitions/playground_oamApplicationConfigurationSpec",
+          "description": "Spec of the application configuration."
+        }
+      },
+      "description": "ApplicationConfiguration entity describing the components that form an application."
+    },
+    "playground_oamApplicationConfigurationSpec": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oamApplicationComponent"
+          },
+          "description": "Components associated with the application."
+        }
+      },
+      "description": "ApplicationConfigurationSpec with the specification of the application configuration."
+    },
+    "playground_oamApplicationScope": {
+      "type": "object",
+      "properties": {
+        "scope_ref": {
+          "$ref": "#/definitions/playground_oamApplicationScopeReference",
+          "description": "ScopeRef must refer to an OAM scope resource."
+        }
+      },
+      "description": "ApplicationScope specifies a scope in which a component should exist."
+    },
+    "playground_oamApplicationScopeReference": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "description": "ApiVersion of the given scope. This field is mandatory."
+        },
+        "kind": {
+          "type": "string",
+          "description": "Kind of the scope. This field is mandatory."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the scope. This field is mandatory."
+        },
+        "uid": {
+          "type": "string",
+          "description": "Uid of the scope. This field is optional."
+        }
+      },
+      "description": "ApplicationScopeReference to reference a given scope."
+    },
+    "playground_oamApplicationTrait": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of trait definition. This is used to reference to the definition/schema of the Trait. For one type of trait, there could be only one config/deploy in one component."
+        },
+        "properties": {
+          "type": "object",
+          "description": "Properties that can be configured and are exposed by this trait."
+        },
+        "trait": {
+          "type": "object",
+          "description": "Trait with the full specification of trait that should be passed to the runtime. This field is mutually exclusive with name and properties. [Legacy]."
+        }
+      },
+      "description": "ApplicationTrait specifies a trait that should be applied to a component."
+    },
+    "playground_oamComponent": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "description": "ApiVersion of the component."
+        },
+        "kind": {
+          "type": "string",
+          "description": "Kind of component."
+        },
+        "metadata": {
+          "$ref": "#/definitions/playground_oamMetadata",
+          "description": "Metadata associated with the component."
+        },
+        "spec": {
+          "$ref": "#/definitions/playground_oamComponentSpec",
+          "description": "Spec associated with the component."
+        }
+      },
+      "description": "Component with the information of a component in the OAM spec."
+    },
+    "playground_oamComponentParameterValue": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of parameter to be set. This field is mandatory."
+        },
+        "value": {
+          "type": "string",
+          "description": "Value to be applied. This field is mandatory."
+        }
+      },
+      "description": "ComponentParameterValue specifies a value for a named parameter. The associated component must publish a parameter with this name."
+    },
+    "playground_oamComponentSpec": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Type of component"
+        },
+        "workload": {
+          "$ref": "#/definitions/playground_oamWorkload",
+          "description": "Workload of the component. This field is mutually exclusive with type and settings."
+        },
+        "settings": {
+          "$ref": "#/definitions/playground_oamWorkloadSpec",
+          "title": "Settings of the workload"
+        },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oamParameter"
+          },
+          "title": "Parameters with the component parameters"
+        }
+      },
+      "description": "ComponentSpec with the spec of an OAM component."
+    },
+    "playground_oamContainer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "name of the container"
+        },
+        "image": {
+          "type": "string",
+          "title": "Image of the container"
+        },
+        "image_pull_policy": {
+          "type": "string",
+          "title": "ImagePullPolicy"
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oamPort"
+          },
+          "title": "ports with the ports"
+        },
+        "cmd": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "cmd with the command to execute the container"
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oamEnvironmentVariable"
+          },
+          "title": "env with a list of environment variables"
+        }
+      },
+      "title": "Container with the container information"
+    },
+    "playground_oamEnvironmentVariable": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name with the name of the variable"
+        },
+        "required": {
+          "type": "boolean",
+          "title": "Required indicates if the variable must to be filled"
+        },
+        "value": {
+          "type": "string",
+          "title": "Value of the variable"
+        }
+      },
+      "title": "EnvironmentVariable message with the environment variable information"
+    },
+    "playground_oamMetadata": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name of the resource"
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Annotations of the resource."
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels related to the resource."
+        },
+        "uid": {
+          "type": "string",
+          "title": "UID is the unique in time and space value for this object. More info: http://kubernetes.io/docs/user-guide/identifiers#uids"
+        }
+      },
+      "description": "Metadata associated with a kubernetes entity."
+    },
+    "playground_oamParameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name of the parameter"
+        },
+        "required": {
+          "type": "boolean",
+          "title": "Required with a flag to indicate if the parameter is required or not"
+        },
+        "field_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "FieldPaths with the paths where the parameter is applied"
+        }
+      },
+      "title": "Parameter message with the parameter definition"
+    },
+    "playground_oamPort": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "Port message with the port specification"
+    },
+    "playground_oamWorkload": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "description": "ApiVersion of the Workload."
+        },
+        "kind": {
+          "type": "string",
+          "description": "Kind of component."
+        },
+        "metadata": {
+          "$ref": "#/definitions/playground_oamMetadata",
+          "description": "Metadata associated with the workload."
+        },
+        "spec": {
+          "$ref": "#/definitions/playground_oamWorkloadSpec",
+          "title": "Spec with the workload specification"
+        }
+      },
+      "description": "Workload with the information of a workload."
+    },
+    "playground_oamWorkloadSpec": {
+      "type": "object",
+      "properties": {
+        "os_type": {
+          "type": "string"
+        },
+        "containers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oamContainer"
+          }
+        }
+      },
+      "title": "WorkloadSpec with the workloadSpec"
     },
     "protobufAny": {
       "type": "object",
@@ -96,6 +464,14 @@
           "format": "byte"
         }
       }
+    },
+    "protobufNullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
     },
     "rpcStatus": {
       "type": "object",

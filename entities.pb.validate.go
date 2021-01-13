@@ -50,9 +50,21 @@ func (m *Application) Validate() error {
 
 	// no validation rules for VisualId
 
-	// no validation rules for StatusName
+	// no validation rules for Status
 
 	// no validation rules for Description
+
+	// no validation rules for ComponentStatus
+
+	if v, ok := interface{}(m.GetInstance()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ApplicationValidationError{
+				field:  "Instance",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
 
 	return nil
 }
