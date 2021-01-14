@@ -66,6 +66,10 @@ func (m *Application) Validate() error {
 		}
 	}
 
+	// no validation rules for StatusName
+
+	// no validation rules for ComponentStatusName
+
 	return nil
 }
 

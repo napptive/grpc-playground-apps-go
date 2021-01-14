@@ -102,6 +102,17 @@
         "instance": {
           "$ref": "#/definitions/playground_oamApplicationConfiguration",
           "description": "Instance of the linked application configuration."
+        },
+        "status_name": {
+          "type": "string",
+          "description": "StatusName with the string representation of the status enum."
+        },
+        "component_status_name": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "ComponentStatusName with the string representation of the component status."
         }
       },
       "description": "Application top level entity."

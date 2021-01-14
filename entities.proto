@@ -47,6 +47,10 @@ message Application{
     map<string, ComponentStatus> component_status = 6;
     // Instance of the linked application configuration.
     playground_oam.ApplicationConfiguration instance = 7;
+    // StatusName with the string representation of the status enum.
+    string status_name = 8;
+    // ComponentStatusName with the string representation of the component status.
+    map<string, string> component_status_name = 9;
 }
 
 // AppListResponse with a subset of applications.
