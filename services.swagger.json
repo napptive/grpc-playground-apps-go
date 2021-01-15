@@ -92,6 +92,10 @@
           "type": "string",
           "description": "Description of the application."
         },
+        "version": {
+          "type": "string",
+          "title": "Version of the application"
+        },
         "component_status": {
           "type": "object",
           "additionalProperties": {
@@ -361,9 +365,41 @@
         "value": {
           "type": "string",
           "title": "Value of the variable"
+        },
+        "from_secret": {
+          "$ref": "#/definitions/playground_oamFromValueEnv",
+          "title": "FromSecret indicates the env takes from a secret"
+        },
+        "value_from": {
+          "$ref": "#/definitions/playground_oamFromConfigEnv",
+          "title": "valueFrom indicates where is the env information"
         }
       },
-      "title": "EnvironmentVariable message with the environment variable information"
+      "title": "EnvironmentVariable message with the environment variable information\nThere are different ways to define environment variable.\nValue, secret or configmap"
+    },
+    "playground_oamFromConfigEnv": {
+      "type": "object",
+      "properties": {
+        "config_map_key_ref": {
+          "$ref": "#/definitions/playground_oamFromValueEnv",
+          "title": "ConfigMapKeyRef indicates the configmap used to get the env variable"
+        }
+      },
+      "description": "FromSecretEnv message to select a ConfigMap to populate the environment variables with."
+    },
+    "playground_oamFromValueEnv": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "name with the secret name"
+        },
+        "key": {
+          "type": "string",
+          "title": "key with the key in the secret"
+        }
+      },
+      "description": "FromValueEnv message to select a Secret or a configmap to populate the environment variables with."
     },
     "playground_oamMetadata": {
       "type": "object",
@@ -418,11 +454,22 @@
       "type": "object",
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "Name of the port"
         },
         "value": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32",
+          "title": "Value with the port number"
+        },
+        "container_port": {
+          "type": "integer",
+          "format": "int32",
+          "title": "ContainerPort with the port in the container"
+        },
+        "type": {
+          "type": "string",
+          "title": "Type port"
         }
       },
       "title": "Port message with the port specification"

@@ -54,6 +54,8 @@ func (m *Application) Validate() error {
 
 	// no validation rules for Description
 
+	// no validation rules for Version
+
 	// no validation rules for ComponentStatus
 
 	if v, ok := interface{}(m.GetInstance()).(interface{ Validate() error }); ok {

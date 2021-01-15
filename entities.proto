@@ -43,14 +43,16 @@ message Application{
     AppStatus status = 4;
     // Description of the application.
     string description = 5;
+    // Version of the application
+    string version = 6;
     // ComponentStatus with a map of the associated component status.
-    map<string, ComponentStatus> component_status = 6;
+    map<string, ComponentStatus> component_status = 7;
     // Instance of the linked application configuration.
-    playground_oam.ApplicationConfiguration instance = 7;
+    playground_oam.ApplicationConfiguration instance = 8;
     // StatusName with the string representation of the status enum.
-    string status_name = 8;
+    string status_name = 9;
     // ComponentStatusName with the string representation of the component status.
-    map<string, string> component_status_name = 9;
+    map<string, string> component_status_name = 10;
 }
 
 // AppListResponse with a subset of applications.
