@@ -117,6 +117,13 @@
             "type": "string"
           },
           "description": "ComponentStatusName with the string representation of the component status."
+        },
+        "component_ingresses": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/playground_appsIngressList"
+          },
+          "description": "ComponentIngresses with a map associating component name with the list of associated ingresses."
         }
       },
       "description": "Application top level entity."
@@ -131,6 +138,33 @@
       "default": "OK",
       "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - ERROR: ERROR signals that there has been an error on a component."
     },
+    "playground_appsIngressInfo": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "URL where the application is accessible."
+        }
+      },
+      "description": "IngressInfo with the relevant information about an ingress."
+    },
+    "playground_appsIngressList": {
+      "type": "object",
+      "properties": {
+        "parent_component_name": {
+          "type": "string",
+          "description": "ParentComponentName with the name of the component the ingress is attached to."
+        },
+        "ingresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_appsIngressInfo"
+          },
+          "description": "Ingresses with the list of ingresses."
+        }
+      },
+      "description": "IngressList with a list of ingresses."
+    },
     "playground_oamApplicationComponent": {
       "type": "object",
       "properties": {
@@ -141,13 +175,13 @@
         "parameter_values": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/playground_oamComponentParameterValue"
+            "type": "object"
           },
           "description": "ParameterValues specify values for the the specified component's parameters. Any parameter required by the component must be specified."
         },
-        "instance": {
-          "$ref": "#/definitions/playground_oamComponent",
-          "title": "Instance of the linked component"
+        "component_summary": {
+          "$ref": "#/definitions/playground_oamComponentSummary",
+          "title": "ComponentSummary with the summary of the components"
         },
         "scopes": {
           "type": "array",
@@ -251,155 +285,18 @@
       },
       "description": "ApplicationTrait specifies a trait that should be applied to a component."
     },
-    "playground_oamComponent": {
+    "playground_oamComponentSummary": {
       "type": "object",
       "properties": {
-        "api_version": {
-          "type": "string",
-          "description": "ApiVersion of the component."
-        },
-        "kind": {
-          "type": "string",
-          "description": "Kind of component."
-        },
-        "metadata": {
-          "$ref": "#/definitions/playground_oamMetadata",
-          "description": "Metadata associated with the component."
-        },
-        "spec": {
-          "$ref": "#/definitions/playground_oamComponentSpec",
-          "description": "Spec associated with the component."
-        }
-      },
-      "description": "Component with the information of a component in the OAM spec."
-    },
-    "playground_oamComponentParameterValue": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of parameter to be set. This field is mandatory."
-        },
-        "value": {
-          "type": "string",
-          "description": "Value to be applied. This field is mandatory."
-        }
-      },
-      "description": "ComponentParameterValue specifies a value for a named parameter. The associated component must publish a parameter with this name."
-    },
-    "playground_oamComponentSpec": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "title": "Type of component"
-        },
-        "workload": {
-          "$ref": "#/definitions/playground_oamWorkload",
-          "description": "Workload of the component. This field is mutually exclusive with type and settings."
-        },
-        "settings": {
-          "$ref": "#/definitions/playground_oamWorkloadSpec",
-          "title": "Settings of the workload"
-        },
-        "parameters": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/playground_oamParameter"
-          },
-          "title": "Parameters with the component parameters"
-        }
-      },
-      "description": "ComponentSpec with the spec of an OAM component."
-    },
-    "playground_oamContainer": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "name of the container"
-        },
-        "image": {
-          "type": "string",
-          "title": "Image of the container"
-        },
-        "image_pull_policy": {
-          "type": "string",
-          "title": "ImagePullPolicy"
-        },
-        "ports": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/playground_oamPort"
-          },
-          "title": "ports with the ports"
-        },
-        "cmd": {
+        "images": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "title": "cmd with the command to execute the container"
-        },
-        "env": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/playground_oamEnvironmentVariable"
-          },
-          "title": "env with a list of environment variables"
+          "title": "images with the images of all associated containers"
         }
       },
-      "title": "Container with the container information"
-    },
-    "playground_oamEnvironmentVariable": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name with the name of the variable"
-        },
-        "required": {
-          "type": "boolean",
-          "title": "Required indicates if the variable must to be filled"
-        },
-        "value": {
-          "type": "string",
-          "title": "Value of the variable"
-        },
-        "from_secret": {
-          "$ref": "#/definitions/playground_oamFromValueEnv",
-          "title": "FromSecret indicates the env takes from a secret"
-        },
-        "value_from": {
-          "$ref": "#/definitions/playground_oamFromConfigEnv",
-          "title": "valueFrom indicates where is the env information"
-        }
-      },
-      "title": "EnvironmentVariable message with the environment variable information\nThere are different ways to define environment variable.\nValue, secret or configmap"
-    },
-    "playground_oamFromConfigEnv": {
-      "type": "object",
-      "properties": {
-        "config_map_key_ref": {
-          "$ref": "#/definitions/playground_oamFromValueEnv",
-          "title": "ConfigMapKeyRef indicates the configmap used to get the env variable"
-        }
-      },
-      "description": "FromSecretEnv message to select a ConfigMap to populate the environment variables with."
-    },
-    "playground_oamFromValueEnv": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "name with the secret name"
-        },
-        "key": {
-          "type": "string",
-          "title": "key with the key in the secret"
-        }
-      },
-      "description": "FromValueEnv message to select a Secret or a configmap to populate the environment variables with."
+      "description": "ComponentSummary defines a summary of the component."
     },
     "playground_oamMetadata": {
       "type": "object",
@@ -425,91 +322,13 @@
         "uid": {
           "type": "string",
           "title": "UID is the unique in time and space value for this object. More info: http://kubernetes.io/docs/user-guide/identifiers#uids"
+        },
+        "creation_timestamp": {
+          "type": "string",
+          "description": "CreationTimestamp with the server time when the object was created.\nIt is represented in RFC3339 form and is in UTC."
         }
       },
       "description": "Metadata associated with a kubernetes entity."
-    },
-    "playground_oamParameter": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name of the parameter"
-        },
-        "required": {
-          "type": "boolean",
-          "title": "Required with a flag to indicate if the parameter is required or not"
-        },
-        "field_paths": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "FieldPaths with the paths where the parameter is applied"
-        }
-      },
-      "title": "Parameter message with the parameter definition"
-    },
-    "playground_oamPort": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "Name of the port"
-        },
-        "value": {
-          "type": "integer",
-          "format": "int32",
-          "title": "Value with the port number"
-        },
-        "container_port": {
-          "type": "integer",
-          "format": "int32",
-          "title": "ContainerPort with the port in the container"
-        },
-        "type": {
-          "type": "string",
-          "title": "Type port"
-        }
-      },
-      "title": "Port message with the port specification"
-    },
-    "playground_oamWorkload": {
-      "type": "object",
-      "properties": {
-        "api_version": {
-          "type": "string",
-          "description": "ApiVersion of the Workload."
-        },
-        "kind": {
-          "type": "string",
-          "description": "Kind of component."
-        },
-        "metadata": {
-          "$ref": "#/definitions/playground_oamMetadata",
-          "description": "Metadata associated with the workload."
-        },
-        "spec": {
-          "$ref": "#/definitions/playground_oamWorkloadSpec",
-          "title": "Spec with the workload specification"
-        }
-      },
-      "description": "Workload with the information of a workload."
-    },
-    "playground_oamWorkloadSpec": {
-      "type": "object",
-      "properties": {
-        "os_type": {
-          "type": "string"
-        },
-        "containers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/playground_oamContainer"
-          }
-        }
-      },
-      "title": "WorkloadSpec with the workloadSpec"
     },
     "protobufAny": {
       "type": "object",

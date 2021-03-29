@@ -72,6 +72,23 @@ func (m *Application) Validate() error {
 
 	// no validation rules for ComponentStatusName
 
+	for key, val := range m.GetComponentIngresses() {
+		_ = val
+
+		// no validation rules for ComponentIngresses[key]
+
+		if v, ok := interface{}(val).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ApplicationValidationError{
+					field:  fmt.Sprintf("ComponentIngresses[%v]", key),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -128,6 +145,155 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ApplicationValidationError{}
+
+// Validate checks the field values on IngressInfo with the rules defined in
+// the proto definition for this message. If any rules are violated, an error
+// is returned.
+func (m *IngressInfo) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Url
+
+	return nil
+}
+
+// IngressInfoValidationError is the validation error returned by
+// IngressInfo.Validate if the designated constraints aren't met.
+type IngressInfoValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e IngressInfoValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e IngressInfoValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e IngressInfoValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e IngressInfoValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e IngressInfoValidationError) ErrorName() string { return "IngressInfoValidationError" }
+
+// Error satisfies the builtin error interface
+func (e IngressInfoValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sIngressInfo.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = IngressInfoValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = IngressInfoValidationError{}
+
+// Validate checks the field values on IngressList with the rules defined in
+// the proto definition for this message. If any rules are violated, an error
+// is returned.
+func (m *IngressList) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for ParentComponentName
+
+	for idx, item := range m.GetIngresses() {
+		_, _ = idx, item
+
+		if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return IngressListValidationError{
+					field:  fmt.Sprintf("Ingresses[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// IngressListValidationError is the validation error returned by
+// IngressList.Validate if the designated constraints aren't met.
+type IngressListValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e IngressListValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e IngressListValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e IngressListValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e IngressListValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e IngressListValidationError) ErrorName() string { return "IngressListValidationError" }
+
+// Error satisfies the builtin error interface
+func (e IngressListValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sIngressList.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = IngressListValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = IngressListValidationError{}
 
 // Validate checks the field values on AppListResponse with the rules defined
 // in the proto definition for this message. If any rules are violated, an

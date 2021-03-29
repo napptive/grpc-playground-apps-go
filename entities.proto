@@ -53,6 +53,22 @@ message Application{
     string status_name = 9;
     // ComponentStatusName with the string representation of the component status.
     map<string, string> component_status_name = 10;
+    // ComponentIngresses with a map associating component name with the list of associated ingresses.
+    map<string, IngressList> component_ingresses = 11;
+}
+
+// IngressInfo with the relevant information about an ingress.
+message IngressInfo{
+    // URL where the application is accessible.
+    string url = 1;
+}
+
+// IngressList with a list of ingresses.
+message IngressList{
+    // ParentComponentName with the name of the component the ingress is attached to.
+    string parent_component_name = 1;
+    // Ingresses with the list of ingresses.
+    repeated IngressInfo ingresses = 2;
 }
 
 // AppListResponse with a subset of applications.
