@@ -124,6 +124,13 @@
             "$ref": "#/definitions/playground_appsIngressList"
           },
           "description": "ComponentIngresses with a map associating component name with the list of associated ingresses."
+        },
+        "error_messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "ErrorMessages with all the error messages in case of application status is error"
         }
       },
       "description": "Application top level entity."

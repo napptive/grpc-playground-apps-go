@@ -55,6 +55,8 @@ message Application{
     map<string, string> component_status_name = 10;
     // ComponentIngresses with a map associating component name with the list of associated ingresses.
     map<string, IngressList> component_ingresses = 11;
+    // ErrorMessages with all the error messages in case of application status is error
+    repeated string error_messages = 12;
 }
 
 // IngressInfo with the relevant information about an ingress.
