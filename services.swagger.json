@@ -29,6 +29,29 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "environment_qualified_name",
+            "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "account_id",
+            "description": "AccountId with the account identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "environment_id",
+            "description": "EnvironmentId with the environment identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "Apps"
         ]

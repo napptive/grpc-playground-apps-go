@@ -5,12 +5,13 @@ option go_package = "github.com/napptive/grpc-playground-apps-go;grpc_playground
 
 import "playground-apps/entities.proto";
 import "playground-common/entities.proto";
+import "playground-environments/entities.proto";
 import "google/api/annotations.proto";
 
 // Apps service providing methods to interact with the deployed applications.
 service Apps{
     // List returns a subset of applications found in the user cluster.
-    rpc List(playground_common.EmptyRequest) returns (AppListResponse){
+    rpc List(playground_environments.EnvironmentSelector) returns (AppListResponse){
         option (google.api.http) = {
             get : "/v0/apps/list"
         };
