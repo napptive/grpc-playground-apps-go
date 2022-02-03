@@ -82,3 +82,16 @@ message AppListResponse{
     // To indicates the index of the second entry returned.
     int32 to = 3;
 }
+
+// AppInfoRequest with the information required to ask for an application
+message AppInfoRequest {
+    // EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as
+    // <account_name>/<env_name>.
+    string environment_qualified_name = 1;
+    // AccountId with the account identifier.
+    string account_id = 2;
+    // EnvironmentId with the environment identifier
+    string environment_id = 3;
+    // ApplicationName with the name of the application
+    string application_name = 4;
+}

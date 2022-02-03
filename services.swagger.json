@@ -11,6 +11,29 @@
     "application/json"
   ],
   "paths": {
+    "/v0/apps/get": {
+      "post": {
+        "summary": "Get returns an application",
+        "operationId": "Apps_Info",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_appsApplication"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
     "/v0/apps/list": {
       "get": {
         "summary": "List returns a subset of applications found in the user cluster.",

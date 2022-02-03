@@ -16,4 +16,11 @@ service Apps{
             get : "/v0/apps/list"
         };
     }
+
+    // Get returns an application
+    rpc Info(AppInfoRequest) returns (Application) {
+        option (google.api.http) = {
+            post: "/v0/apps/get"
+        };
+    }
 }
