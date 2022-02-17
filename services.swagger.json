@@ -29,6 +29,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsAppInfoRequest"
+            }
+          }
+        ],
         "tags": [
           "Apps"
         ]
@@ -82,6 +92,28 @@
     }
   },
   "definitions": {
+    "playground_appsAppInfoRequest": {
+      "type": "object",
+      "properties": {
+        "environment_qualified_name": {
+          "type": "string",
+          "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application"
+        }
+      },
+      "title": "AppInfoRequest with the information required to ask for an application"
+    },
     "playground_appsAppListResponse": {
       "type": "object",
       "properties": {

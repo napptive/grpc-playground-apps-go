@@ -21,6 +21,7 @@ service Apps{
     rpc Info(AppInfoRequest) returns (Application) {
         option (google.api.http) = {
             post: "/v0/apps/get"
+            body : "*"
         };
     }
 }
