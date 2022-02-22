@@ -691,3 +691,254 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = AppInfoRequestValidationError{}
+
+// Validate checks the field values on AppSummaryListResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AppSummaryListResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AppSummaryListResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AppSummaryListResponseMultiError, or nil if none found.
+func (m *AppSummaryListResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AppSummaryListResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetEntries() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, AppSummaryListResponseValidationError{
+						field:  fmt.Sprintf("Entries[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, AppSummaryListResponseValidationError{
+						field:  fmt.Sprintf("Entries[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return AppSummaryListResponseValidationError{
+					field:  fmt.Sprintf("Entries[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	// no validation rules for From
+
+	// no validation rules for To
+
+	if len(errors) > 0 {
+		return AppSummaryListResponseMultiError(errors)
+	}
+	return nil
+}
+
+// AppSummaryListResponseMultiError is an error wrapping multiple validation
+// errors returned by AppSummaryListResponse.ValidateAll() if the designated
+// constraints aren't met.
+type AppSummaryListResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AppSummaryListResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AppSummaryListResponseMultiError) AllErrors() []error { return m }
+
+// AppSummaryListResponseValidationError is the validation error returned by
+// AppSummaryListResponse.Validate if the designated constraints aren't met.
+type AppSummaryListResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AppSummaryListResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AppSummaryListResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AppSummaryListResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AppSummaryListResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AppSummaryListResponseValidationError) ErrorName() string {
+	return "AppSummaryListResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AppSummaryListResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAppSummaryListResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AppSummaryListResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AppSummaryListResponseValidationError{}
+
+// Validate checks the field values on AppSummary with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *AppSummary) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AppSummary with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in AppSummaryMultiError, or
+// nil if none found.
+func (m *AppSummary) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AppSummary) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for AppId
+
+	// no validation rules for Name
+
+	// no validation rules for VisualId
+
+	// no validation rules for Status
+
+	// no validation rules for StatusName
+
+	// no validation rules for ComponentStatus
+
+	// no validation rules for ComponentStatusName
+
+	if len(errors) > 0 {
+		return AppSummaryMultiError(errors)
+	}
+	return nil
+}
+
+// AppSummaryMultiError is an error wrapping multiple validation errors
+// returned by AppSummary.ValidateAll() if the designated constraints aren't met.
+type AppSummaryMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AppSummaryMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AppSummaryMultiError) AllErrors() []error { return m }
+
+// AppSummaryValidationError is the validation error returned by
+// AppSummary.Validate if the designated constraints aren't met.
+type AppSummaryValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AppSummaryValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AppSummaryValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AppSummaryValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AppSummaryValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AppSummaryValidationError) ErrorName() string { return "AppSummaryValidationError" }
+
+// Error satisfies the builtin error interface
+func (e AppSummaryValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAppSummary.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AppSummaryValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AppSummaryValidationError{}

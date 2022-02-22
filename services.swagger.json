@@ -89,6 +89,52 @@
           "Apps"
         ]
       }
+    },
+    "/v0/apps/summary/list": {
+      "get": {
+        "summary": "SummaryList returns a subset of application summaries found in the user cluster.",
+        "operationId": "Apps_SummaryList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_appsAppSummaryListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "environment_qualified_name",
+            "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "account_id",
+            "description": "AccountId with the account identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "environment_id",
+            "description": "EnvironmentId with the environment identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
     }
   },
   "definitions": {
@@ -146,6 +192,68 @@
       ],
       "default": "APP_OK",
       "description": "AppStatus defines the status of an application.\n\n - APP_OK: AppOk signals that are elements of a given application are running.\n - APP_WARNING: AppWarning signals that some of the elements of an application are not running.\n - APP_ERROR: AppError signals that the application is on an error state."
+    },
+    "playground_appsAppSummary": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string",
+          "description": "AppId with the application identifier."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the app."
+        },
+        "visual_id": {
+          "type": "string",
+          "description": "VisualId contains a hash unique to the instance for representation purposes."
+        },
+        "status": {
+          "$ref": "#/definitions/playground_appsAppStatus",
+          "description": "Status with the name of the overall status of the application."
+        },
+        "status_name": {
+          "type": "string",
+          "title": "Wiht the status as string"
+        },
+        "component_status": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/playground_appsComponentStatus"
+          }
+        },
+        "component_status_name": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "ComponentStatusName with the string representation of the component status."
+        }
+      },
+      "description": "AppSummary with a summary of an application."
+    },
+    "playground_appsAppSummaryListResponse": {
+      "type": "object",
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_appsAppSummary"
+          },
+          "description": "Entries in the returned page."
+        },
+        "from": {
+          "type": "integer",
+          "format": "int32",
+          "description": "From indicates the index of the first entry returned."
+        },
+        "to": {
+          "type": "integer",
+          "format": "int32",
+          "description": "To indicates the index of the second entry returned."
+        }
+      },
+      "description": "AppSummaryListResponse with a subset of applications."
     },
     "playground_appsApplication": {
       "type": "object",

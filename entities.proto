@@ -95,3 +95,30 @@ message AppInfoRequest {
     // ApplicationName with the name of the application
     string application_name = 4;
 }
+
+// AppSummaryListResponse with a subset of applications.
+message AppSummaryListResponse{
+    // Entries in the returned page.
+    repeated AppSummary entries = 1;
+    // From indicates the index of the first entry returned.
+    int32 from = 2;
+    // To indicates the index of the second entry returned.
+    int32 to = 3;
+}
+
+// AppSummary with a summary of an application.
+message AppSummary{
+    // AppId with the application identifier.
+    string app_id = 1;
+    // Name of the app.
+    string name = 2;    
+    // VisualId contains a hash unique to the instance for representation purposes.
+    string visual_id = 3;
+    // Status with the name of the overall status of the application.
+    AppStatus status = 4;
+    // Wiht the status as string
+    string status_name = 5;
+    map<string, ComponentStatus> component_status = 6;
+    // ComponentStatusName with the string representation of the component status.
+    map<string, string> component_status_name = 7;
+}
