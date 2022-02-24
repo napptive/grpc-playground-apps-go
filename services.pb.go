@@ -8,7 +8,7 @@ package grpc_playground_apps_go
 
 import (
 	context "context"
-	_ "github.com/napptive/grpc-playground-common-go"
+	grpc_playground_common_go "github.com/napptive/grpc-playground-common-go"
 	grpc_playground_environments_go "github.com/napptive/grpc-playground-environments-go"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	grpc "google.golang.org/grpc"
@@ -40,8 +40,22 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x65, 0x6e, 0x74,
 	0x69, 0x74, 0x69, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xde, 0x02, 0x0a, 0x04, 0x41, 0x70,
-	0x70, 0x73, 0x12, 0x70, 0x0a, 0x04, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x2c, 0x2e, 0x70, 0x6c, 0x61,
+	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xbe, 0x04, 0x0a, 0x04, 0x41, 0x70,
+	0x70, 0x73, 0x12, 0x6e, 0x0a, 0x06, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x12, 0x29, 0x2e, 0x70,
+	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x44,
+	0x65, 0x70, 0x6c, 0x6f, 0x79, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72,
+	0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4f, 0x70, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14, 0x22, 0x0f,
+	0x2f, 0x76, 0x30, 0x2f, 0x61, 0x70, 0x70, 0x73, 0x2f, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x3a,
+	0x01, 0x2a, 0x12, 0x6e, 0x0a, 0x06, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x12, 0x29, 0x2e, 0x70,
+	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x52,
+	0x65, 0x6d, 0x6f, 0x76, 0x65, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72,
+	0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4f, 0x70, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14, 0x22, 0x0f,
+	0x2f, 0x76, 0x30, 0x2f, 0x61, 0x70, 0x70, 0x73, 0x2f, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x3a,
+	0x01, 0x2a, 0x12, 0x70, 0x0a, 0x04, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x2c, 0x2e, 0x70, 0x6c, 0x61,
 	0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d,
 	0x65, 0x6e, 0x74, 0x73, 0x2e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74,
 	0x53, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x1a, 0x20, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67,
@@ -71,21 +85,28 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 }
 
 var file_playground_apps_services_proto_goTypes = []interface{}{
-	(*grpc_playground_environments_go.EnvironmentSelector)(nil), // 0: playground_environments.EnvironmentSelector
-	(*AppInfoRequest)(nil),         // 1: playground_apps.AppInfoRequest
-	(*AppListResponse)(nil),        // 2: playground_apps.AppListResponse
-	(*AppSummaryListResponse)(nil), // 3: playground_apps.AppSummaryListResponse
-	(*Application)(nil),            // 4: playground_apps.Application
+	(*DeployApplicationRequest)(nil),                            // 0: playground_apps.DeployApplicationRequest
+	(*RemoveApplicationRequest)(nil),                            // 1: playground_apps.RemoveApplicationRequest
+	(*grpc_playground_environments_go.EnvironmentSelector)(nil), // 2: playground_environments.EnvironmentSelector
+	(*AppInfoRequest)(nil),                                      // 3: playground_apps.AppInfoRequest
+	(*grpc_playground_common_go.OpResponse)(nil),                // 4: playground_common.OpResponse
+	(*AppListResponse)(nil),                                     // 5: playground_apps.AppListResponse
+	(*AppSummaryListResponse)(nil),                              // 6: playground_apps.AppSummaryListResponse
+	(*Application)(nil),                                         // 7: playground_apps.Application
 }
 var file_playground_apps_services_proto_depIdxs = []int32{
-	0, // 0: playground_apps.Apps.List:input_type -> playground_environments.EnvironmentSelector
-	0, // 1: playground_apps.Apps.SummaryList:input_type -> playground_environments.EnvironmentSelector
-	1, // 2: playground_apps.Apps.Info:input_type -> playground_apps.AppInfoRequest
-	2, // 3: playground_apps.Apps.List:output_type -> playground_apps.AppListResponse
-	3, // 4: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
-	4, // 5: playground_apps.Apps.Info:output_type -> playground_apps.Application
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	0, // 0: playground_apps.Apps.Deploy:input_type -> playground_apps.DeployApplicationRequest
+	1, // 1: playground_apps.Apps.Remove:input_type -> playground_apps.RemoveApplicationRequest
+	2, // 2: playground_apps.Apps.List:input_type -> playground_environments.EnvironmentSelector
+	2, // 3: playground_apps.Apps.SummaryList:input_type -> playground_environments.EnvironmentSelector
+	3, // 4: playground_apps.Apps.Info:input_type -> playground_apps.AppInfoRequest
+	4, // 5: playground_apps.Apps.Deploy:output_type -> playground_common.OpResponse
+	4, // 6: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
+	5, // 7: playground_apps.Apps.List:output_type -> playground_apps.AppListResponse
+	6, // 8: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
+	7, // 9: playground_apps.Apps.Info:output_type -> playground_apps.Application
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -128,6 +149,10 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AppsClient interface {
+	// Deploy an application.
+	Deploy(ctx context.Context, in *DeployApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
+	// Remove an application instance.
+	Remove(ctx context.Context, in *RemoveApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 	// Deprecated: Do not use.
 	// List returns a subset of applications found in the user cluster.
 	List(ctx context.Context, in *grpc_playground_environments_go.EnvironmentSelector, opts ...grpc.CallOption) (*AppListResponse, error)
@@ -143,6 +168,24 @@ type appsClient struct {
 
 func NewAppsClient(cc grpc.ClientConnInterface) AppsClient {
 	return &appsClient{cc}
+}
+
+func (c *appsClient) Deploy(ctx context.Context, in *DeployApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
+	out := new(grpc_playground_common_go.OpResponse)
+	err := c.cc.Invoke(ctx, "/playground_apps.Apps/Deploy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appsClient) Remove(ctx context.Context, in *RemoveApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
+	out := new(grpc_playground_common_go.OpResponse)
+	err := c.cc.Invoke(ctx, "/playground_apps.Apps/Remove", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 // Deprecated: Do not use.
@@ -175,6 +218,10 @@ func (c *appsClient) Info(ctx context.Context, in *AppInfoRequest, opts ...grpc.
 
 // AppsServer is the server API for Apps service.
 type AppsServer interface {
+	// Deploy an application.
+	Deploy(context.Context, *DeployApplicationRequest) (*grpc_playground_common_go.OpResponse, error)
+	// Remove an application instance.
+	Remove(context.Context, *RemoveApplicationRequest) (*grpc_playground_common_go.OpResponse, error)
 	// Deprecated: Do not use.
 	// List returns a subset of applications found in the user cluster.
 	List(context.Context, *grpc_playground_environments_go.EnvironmentSelector) (*AppListResponse, error)
@@ -188,6 +235,12 @@ type AppsServer interface {
 type UnimplementedAppsServer struct {
 }
 
+func (*UnimplementedAppsServer) Deploy(context.Context, *DeployApplicationRequest) (*grpc_playground_common_go.OpResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Deploy not implemented")
+}
+func (*UnimplementedAppsServer) Remove(context.Context, *RemoveApplicationRequest) (*grpc_playground_common_go.OpResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Remove not implemented")
+}
 func (*UnimplementedAppsServer) List(context.Context, *grpc_playground_environments_go.EnvironmentSelector) (*AppListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
@@ -200,6 +253,42 @@ func (*UnimplementedAppsServer) Info(context.Context, *AppInfoRequest) (*Applica
 
 func RegisterAppsServer(s *grpc.Server, srv AppsServer) {
 	s.RegisterService(&_Apps_serviceDesc, srv)
+}
+
+func _Apps_Deploy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeployApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppsServer).Deploy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/playground_apps.Apps/Deploy",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppsServer).Deploy(ctx, req.(*DeployApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Apps_Remove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppsServer).Remove(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/playground_apps.Apps/Remove",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppsServer).Remove(ctx, req.(*RemoveApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Apps_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -260,6 +349,14 @@ var _Apps_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "playground_apps.Apps",
 	HandlerType: (*AppsServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Deploy",
+			Handler:    _Apps_Deploy_Handler,
+		},
+		{
+			MethodName: "Remove",
+			Handler:    _Apps_Remove_Handler,
+		},
 		{
 			MethodName: "List",
 			Handler:    _Apps_List_Handler,

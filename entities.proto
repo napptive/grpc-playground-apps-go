@@ -3,6 +3,7 @@ syntax = "proto3";
 package playground_apps;
 option go_package = "github.com/napptive/grpc-playground-apps-go;grpc_playground_apps_go";
 
+import "validate/validate.proto";
 import "playground-oam/entities.proto";
 
 //
@@ -121,4 +122,28 @@ message AppSummary{
     map<string, ComponentStatus> component_status = 6;
     // ComponentStatusName with the string representation of the component status.
     map<string, string> component_status_name = 7;
+}
+
+//
+// Applications
+//
+
+// DeployApplicationRequest with the information required to send a
+// deploy request.
+message DeployApplicationRequest{
+    // ApplicationData with the compressed application descriptors. The data must
+    // be compressed as tgz.
+    bytes application_data = 1 [(validate.rules).bytes.min_len = 1];
+    // TargetEnvironmentQualifiedName specifying the target environment in the user
+    // account as account_name/env_name.
+    string target_environment_qualified_name = 2 [(validate.rules).string.min_len = 1];
+}
+
+// RemoveApplicationRequest to remove an application instance.
+message RemoveApplicationRequest {
+    // TargetEnvironmentQualifiedName specifying the target environment in the user
+    // account as account_name/env_name.
+    string target_environment_qualified_name = 1 [(validate.rules).string.min_len = 1];
+    // ApplicationName to be removed.
+    string application_name = 2 [(validate.rules).string.min_len = 1];
 }

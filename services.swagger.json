@@ -11,6 +11,39 @@
     "application/json"
   ],
   "paths": {
+    "/v0/apps/deploy": {
+      "post": {
+        "summary": "Deploy an application.",
+        "operationId": "Apps_Deploy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsDeployApplicationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
     "/v0/apps/get": {
       "post": {
         "summary": "Get returns an application",
@@ -83,6 +116,39 @@
             "in": "query",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
+    "/v0/apps/remove": {
+      "post": {
+        "summary": "Remove an application instance.",
+        "operationId": "Apps_Remove",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsRemoveApplicationRequest"
+            }
           }
         ],
         "tags": [
@@ -331,6 +397,21 @@
       "default": "OK",
       "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - ERROR: ERROR signals that there has been an error on a component."
     },
+    "playground_appsDeployApplicationRequest": {
+      "type": "object",
+      "properties": {
+        "application_data": {
+          "type": "string",
+          "format": "byte",
+          "description": "ApplicationData with the compressed application descriptors. The data must\nbe compressed as tgz."
+        },
+        "target_environment_qualified_name": {
+          "type": "string",
+          "description": "TargetEnvironmentQualifiedName specifying the target environment in the user\naccount as account_name/env_name."
+        }
+      },
+      "description": "DeployApplicationRequest with the information required to send a\ndeploy request."
+    },
     "playground_appsIngressInfo": {
       "type": "object",
       "properties": {
@@ -357,6 +438,47 @@
         }
       },
       "description": "IngressList with a list of ingresses."
+    },
+    "playground_appsRemoveApplicationRequest": {
+      "type": "object",
+      "properties": {
+        "target_environment_qualified_name": {
+          "type": "string",
+          "description": "TargetEnvironmentQualifiedName specifying the target environment in the user\naccount as account_name/env_name."
+        },
+        "application_name": {
+          "type": "string",
+          "description": "ApplicationName to be removed."
+        }
+      },
+      "description": "RemoveApplicationRequest to remove an application instance."
+    },
+    "playground_commonOpResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/playground_commonOpStatus",
+          "description": "Status of the operation."
+        },
+        "status_name": {
+          "type": "string",
+          "description": "StatusName with the string representation of the status."
+        },
+        "user_info": {
+          "type": "string",
+          "description": "UserInfo with additional information to show to the user."
+        }
+      },
+      "description": "OpResponse with a common definition for the result of executing an operation through gRPC. Notice that\nin case of an error, the call must fail unless the operation is executed asynchronously and this\nmessage contains the result of a past operation."
+    },
+    "playground_commonOpStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "SUCCESS"
+      ],
+      "default": "UNKNOWN",
+      "description": "OpStatus enumeration defining the possible status of an operation.\n\n - UNKNOWN: Unknown operation status indicates an error in the processing of the request as all operations should\nhave a determined status.\n - SUCCESS: Success indicates that the operation was completed successfully."
     },
     "playground_oamApplicationComponent": {
       "type": "object",

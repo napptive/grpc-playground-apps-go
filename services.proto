@@ -10,6 +10,23 @@ import "google/api/annotations.proto";
 
 // Apps service providing methods to interact with the deployed applications.
 service Apps{
+
+    // Deploy an application.
+    rpc Deploy(DeployApplicationRequest) returns (playground_common.OpResponse){
+        option (google.api.http) = {
+            post : "/v0/apps/deploy"
+            body : "*"
+        };
+    }
+
+    // Remove an application instance.
+    rpc Remove(RemoveApplicationRequest) returns (playground_common.OpResponse){
+        option (google.api.http) = {
+            post : "/v0/apps/remove"
+            body : "*"
+        };
+    }
+
     // List returns a subset of applications found in the user cluster.
     rpc List(playground_environments.EnvironmentSelector) returns (AppListResponse){
         option deprecated = true;
