@@ -1099,6 +1099,10 @@ func (m *RemoveApplicationRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
+	// no validation rules for AccountId
+
+	// no validation rules for EnvironmentId
+
 	if utf8.RuneCountInString(m.GetApplicationName()) < 1 {
 		err := RemoveApplicationRequestValidationError{
 			field:  "ApplicationName",

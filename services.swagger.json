@@ -446,6 +446,14 @@
           "type": "string",
           "description": "TargetEnvironmentQualifiedName specifying the target environment in the user\naccount as account_name/env_name."
         },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
         "application_name": {
           "type": "string",
           "description": "ApplicationName to be removed."
