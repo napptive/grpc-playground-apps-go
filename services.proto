@@ -27,14 +27,6 @@ service Apps{
         };
     }
 
-    // List returns a subset of applications found in the user cluster.
-    rpc List(playground_environments.EnvironmentSelector) returns (AppListResponse){
-        option deprecated = true;
-        option (google.api.http) = {
-            get : "/v0/apps/list"
-        };
-    }
-
     // SummaryList returns a subset of application summaries found in the user cluster.
     rpc SummaryList(playground_environments.EnvironmentSelector) returns (AppSummaryListResponse){
         option (google.api.http) = {

@@ -74,16 +74,6 @@ message IngressList{
     repeated IngressInfo ingresses = 2;
 }
 
-// AppListResponse with a subset of applications.
-message AppListResponse{
-    // Entries in the returned page.
-    repeated Application entries = 1;
-    // From indicates the index of the first entry returned.
-    int32 from = 2;
-    // To indicates the index of the second entry returned.
-    int32 to = 3;
-}
-
 // AppInfoRequest with the information required to ask for an application
 message AppInfoRequest {
     // EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as

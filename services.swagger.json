@@ -77,52 +77,6 @@
         ]
       }
     },
-    "/v0/apps/list": {
-      "get": {
-        "summary": "List returns a subset of applications found in the user cluster.",
-        "operationId": "Apps_List",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/playground_appsAppListResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "environment_qualified_name",
-            "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "account_id",
-            "description": "AccountId with the account identifier.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "environment_id",
-            "description": "EnvironmentId with the environment identifier.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Apps"
-        ]
-      }
-    },
     "/v0/apps/remove": {
       "post": {
         "summary": "Remove an application instance.",
@@ -225,29 +179,6 @@
         }
       },
       "title": "AppInfoRequest with the information required to ask for an application"
-    },
-    "playground_appsAppListResponse": {
-      "type": "object",
-      "properties": {
-        "entries": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/playground_appsApplication"
-          },
-          "description": "Entries in the returned page."
-        },
-        "from": {
-          "type": "integer",
-          "format": "int32",
-          "description": "From indicates the index of the first entry returned."
-        },
-        "to": {
-          "type": "integer",
-          "format": "int32",
-          "description": "To indicates the index of the second entry returned."
-        }
-      },
-      "description": "AppListResponse with a subset of applications."
     },
     "playground_appsAppStatus": {
       "type": "string",
