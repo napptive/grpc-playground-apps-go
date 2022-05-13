@@ -286,9 +286,8 @@
           },
           "description": "ComponentStatus with a map of the associated component status."
         },
-        "instance": {
-          "$ref": "#/definitions/playground_oamApplicationConfiguration",
-          "description": "Instance of the linked application configuration."
+        "v2": {
+          "$ref": "#/definitions/playground_oamApplicationConfiguration"
         },
         "status_name": {
           "type": "string",

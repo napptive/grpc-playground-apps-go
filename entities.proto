@@ -49,7 +49,9 @@ message Application{
     // ComponentStatus with a map of the associated component status.
     map<string, ComponentStatus> component_status = 7;
     // Instance of the linked application configuration.
-    playground_oam.ApplicationConfiguration instance = 8;
+    oneof instance {
+        playground_oam.ApplicationConfiguration v2 = 8;
+    }
     // StatusName with the string representation of the status enum.
     string status_name = 9;
     // ComponentStatusName with the string representation of the component status.

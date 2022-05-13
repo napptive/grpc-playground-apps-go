@@ -69,35 +69,6 @@ func (m *Application) validate(all bool) error {
 
 	// no validation rules for ComponentStatus
 
-	if all {
-		switch v := interface{}(m.GetInstance()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ApplicationValidationError{
-					field:  "Instance",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, ApplicationValidationError{
-					field:  "Instance",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetInstance()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ApplicationValidationError{
-				field:  "Instance",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
 	// no validation rules for StatusName
 
 	// no validation rules for ComponentStatusName
@@ -130,6 +101,41 @@ func (m *Application) validate(all bool) error {
 			if err := v.Validate(); err != nil {
 				return ApplicationValidationError{
 					field:  fmt.Sprintf("ComponentIngresses[%v]", key),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	switch m.Instance.(type) {
+
+	case *Application_V2:
+
+		if all {
+			switch v := interface{}(m.GetV2()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ApplicationValidationError{
+						field:  "V2",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ApplicationValidationError{
+						field:  "V2",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetV2()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ApplicationValidationError{
+					field:  "V2",
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
