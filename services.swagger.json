@@ -25,7 +25,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -58,7 +58,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -91,7 +91,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -124,7 +124,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -158,6 +158,24 @@
     }
   },
   "definitions": {
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
     "playground_appsAppInfoRequest": {
       "type": "object",
       "properties": {
@@ -183,12 +201,17 @@
     "playground_appsAppStatus": {
       "type": "string",
       "enum": [
+        "APP_UNKNOWN",
         "APP_OK",
         "APP_WARNING",
+        "APP_RUNNING",
+        "APP_TERMINATED",
+        "APP_SUSPENDED",
+        "APP_SCHEDULED",
         "APP_ERROR"
       ],
-      "default": "APP_OK",
-      "description": "AppStatus defines the status of an application.\n\n - APP_OK: AppOk signals that are elements of a given application are running.\n - APP_WARNING: AppWarning signals that some of the elements of an application are not running.\n - APP_ERROR: AppError signals that the application is on an error state."
+      "default": "APP_UNKNOWN",
+      "description": "AppStatus defines the status of an application.\n\n - APP_UNKNOWN: Unknown with an undeterminate status\n - APP_OK: AppOk signals that are elements of a given application are running.\nWe need OK status to be compatible with OAM2\n - APP_WARNING: AppWarning signals that some of the elements of an application are not running.\n - APP_RUNNING: AppRunning signals that are elements of a given application are running.\n - APP_TERMINATED: Appterminated when an application without deployments neither statefulsets, only workflow and/or jobs terminated\n - APP_SUSPENDED: AppSuspended when the workflow is suspended waiting for a manual relaunch\n - APP_SCHEDULED: AppSheduled when an application with cronJobs are waiting to execute the jobs\n - APP_ERROR: AppError signals that the application is on an error state."
     },
     "playground_appsAppSummary": {
       "type": "object",
@@ -287,7 +310,12 @@
           "description": "ComponentStatus with a map of the associated component status."
         },
         "v2": {
-          "$ref": "#/definitions/playground_oamApplicationConfiguration"
+          "$ref": "#/definitions/playground_oamApplicationConfiguration",
+          "title": "V2 with an OAM2 application"
+        },
+        "v3": {
+          "$ref": "#/definitions/playground_oam3Application",
+          "title": "V3 with an OAM3 application"
         },
         "status_name": {
           "type": "string",
@@ -320,12 +348,16 @@
     "playground_appsComponentStatus": {
       "type": "string",
       "enum": [
+        "UNKNOWN",
         "OK",
         "WARNING",
+        "RUNNING",
+        "TERMINATED",
+        "SCHEDULED",
         "ERROR"
       ],
-      "default": "OK",
-      "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - ERROR: ERROR signals that there has been an error on a component."
+      "default": "UNKNOWN",
+      "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - UNKNOWN: Unknown with an undeterminate status\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - RUNNING: RUNNING signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - TERMINATED: TERMINATED All the task in a job are terminated\n - SCHEDULED: SCHEDULED a cronJob component is waiting to execute the jobs\n - ERROR: ERROR signals that there has been an error on a component."
     },
     "playground_appsDeployApplicationRequest": {
       "type": "object",
@@ -417,6 +449,443 @@
       ],
       "default": "UNKNOWN",
       "description": "OpStatus enumeration defining the possible status of an operation.\n\n - UNKNOWN: Unknown operation status indicates an error in the processing of the request as all operations should\nhave a determined status.\n - SUCCESS: Success indicates that the operation was completed successfully."
+    },
+    "playground_oam3Application": {
+      "type": "object",
+      "properties": {
+        "api_version": {
+          "type": "string",
+          "description": "ApiVersion of the given application."
+        },
+        "kind": {
+          "type": "string",
+          "description": "Kind of the application."
+        },
+        "metadata": {
+          "$ref": "#/definitions/playground_oam3Metadata",
+          "description": "Metadata associated with the application."
+        },
+        "spec": {
+          "$ref": "#/definitions/playground_oam3ApplicationSpec",
+          "description": "Spec of the application."
+        },
+        "status": {
+          "$ref": "#/definitions/playground_oam3ApplicationStatus",
+          "description": "Status of the application."
+        }
+      },
+      "description": "Application entity describing the components that form an application."
+    },
+    "playground_oam3ApplicationComponent": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the component."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the component associated with the ComponentDefinition."
+        },
+        "external_revision": {
+          "type": "string",
+          "description": "ExternalRevision of the component."
+        },
+        "properties": {
+          "type": "object",
+          "description": "Properties of the component. This field sets the values to the parameters exposed from the component schematic."
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "DependsOn indicates component dependencies."
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3InputItem"
+          },
+          "description": "Inputs that are used in the component."
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3OutputItem"
+          },
+          "description": "Outputs produced by the component."
+        },
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3ApplicationTrait"
+          },
+          "description": "Traits applied in the component."
+        },
+        "scopes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Scopes being applied to the component in the form of scope-type:scope-instance-name."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Images used by the component definition"
+        }
+      },
+      "description": "ApplicationComponent describes how to instantiate a component that is part of an application."
+    },
+    "playground_oam3ApplicationComponentStatus": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name with the name of the application component"
+        },
+        "env": {
+          "type": "string"
+        },
+        "healthy": {
+          "type": "boolean",
+          "title": "Healty with a bool to indicate if the application component is healthy or not"
+        },
+        "message": {
+          "type": "string",
+          "title": "Message with information about health status of App component"
+        },
+        "traits": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3ApplicationTraitStatus"
+          },
+          "title": "Traits with the traits health status"
+        }
+      },
+      "description": "ApplicationComponentStatus defines the status of a component."
+    },
+    "playground_oam3ApplicationPolicy": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the policy."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of policy."
+        },
+        "properties": {
+          "type": "object",
+          "description": "Properties of the policy."
+        }
+      },
+      "description": "ApplicationPolicy defines a global policy for the all components in the application."
+    },
+    "playground_oam3ApplicationSpec": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3ApplicationComponent"
+          },
+          "description": "Components associated with the application."
+        },
+        "policies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3ApplicationPolicy"
+          },
+          "description": "Policies defines global characteristics for all components in the application. The evaluation of policies occurrs\nafter the components are rendered, and before the workflow steps are triggered."
+        },
+        "workflow": {
+          "$ref": "#/definitions/playground_oam3ApplicationWorkflow",
+          "description": "Workflow associated with the application. If present, the workflow defines a series of steps that are executed in order\nwith the AppRevision as source. Notice that the runtime does not applies resources if a workflow is present, as this is\ndelegated to the workflow processing stage."
+        }
+      },
+      "description": "ApplicationSpec with the specification of the application including components, policies and workflows."
+    },
+    "playground_oam3ApplicationStatus": {
+      "type": "object",
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3Condition"
+          },
+          "description": "Conditions of the application."
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the application."
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3ApplicationComponentStatus"
+          },
+          "description": "Services record the status of the application components."
+        },
+        "workflow": {
+          "$ref": "#/definitions/playground_oam3WorkflowStatus",
+          "description": "Workflow status."
+        }
+      },
+      "description": "ApplicationStatus with the overall application status including components, traits, and workflow."
+    },
+    "playground_oam3ApplicationTrait": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of the trait."
+        },
+        "properties": {
+          "type": "object",
+          "title": "Properties of the trait"
+        }
+      },
+      "description": "ApplicationTrait with the properties of a traits that is being applied to a component."
+    },
+    "playground_oam3ApplicationTraitStatus": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Type with the trait name"
+        },
+        "healthy": {
+          "type": "boolean",
+          "title": "Healthy with a bool to indicate if the trait is healthy or no"
+        },
+        "message": {
+          "type": "string",
+          "title": "Message with information about health status of trait"
+        }
+      },
+      "description": "ApplicationTraitStatus defines the status of a trait linked to a component."
+    },
+    "playground_oam3ApplicationWorkflow": {
+      "type": "object",
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3WorkflowStep"
+          },
+          "title": "steps with an array of steps"
+        }
+      },
+      "description": "ApplicationWorkflow defines a workflow that is executed at an application level."
+    },
+    "playground_oam3Condition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Type of this condition. At most one of each condition type may apply to\na resource at any point in time."
+        },
+        "status": {
+          "type": "string",
+          "title": "Status of this condition"
+        },
+        "last_transition_time": {
+          "type": "string",
+          "description": "LastTransitionTime is the last time this condition transitioned from one\nstatus to another.\nIt is represented in RFC3339 form and is in UTC."
+        },
+        "reason": {
+          "type": "string",
+          "description": "Reason for this condition's last transition from one status to another."
+        },
+        "message": {
+          "type": "string",
+          "description": "Message containing details about this condition's last transition from\none status to another, if any."
+        }
+      },
+      "description": "Condition in which a resource can be."
+    },
+    "playground_oam3InputItem": {
+      "type": "object",
+      "properties": {
+        "parameter_key": {
+          "type": "string",
+          "description": "ParameterKey poiting to where the value will be applied."
+        },
+        "from": {
+          "type": "string",
+          "description": "From indicating the source of the value."
+        }
+      },
+      "description": "InputItem defines values that are taken from other components or workflow steps and can be used as parameters."
+    },
+    "playground_oam3Metadata": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name of the resource"
+        },
+        "annotations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Annotations of the resource."
+        },
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels related to the resource."
+        },
+        "uid": {
+          "type": "string",
+          "title": "UID is the unique in time and space value for this object. More info: http://kubernetes.io/docs/user-guide/identifiers#uids"
+        },
+        "creation_timestamp": {
+          "type": "string",
+          "description": "CreationTimestamp with the server time when the object was created.\nIt is represented in RFC3339 form and is in UTC."
+        }
+      },
+      "description": "Metadata associated with a kubernetes entity."
+    },
+    "playground_oam3OutputItem": {
+      "type": "object",
+      "properties": {
+        "value_from": {
+          "type": "string",
+          "description": "ValueFrom indicates the source of the value."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the value for future referencing."
+        }
+      },
+      "description": "OutputItem defines values that are exposed by this component or workflow step."
+    },
+    "playground_oam3WorkflowStatus": {
+      "type": "object",
+      "properties": {
+        "app_revision": {
+          "type": "string",
+          "title": "AppRevision with the application revision"
+        },
+        "mode": {
+          "type": "string",
+          "title": "Mode with the mode of the workflw (DAG od StepByStep)"
+        },
+        "message": {
+          "type": "string",
+          "title": "Message with information about health status of workflow"
+        },
+        "suspend": {
+          "type": "boolean",
+          "title": "Suspend to indicate if the workflow is suspend"
+        },
+        "terminated": {
+          "type": "boolean",
+          "title": "Terminated to indicate if the workflow is terminated"
+        },
+        "finished": {
+          "type": "boolean",
+          "description": "Finished indicates that the workflow was completely executed with success."
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3WorkflowStepStatus"
+          },
+          "title": "steps wit information about the steps in the workflow"
+        },
+        "start_time": {
+          "type": "string",
+          "title": "StartTime with the time when the workflow started"
+        }
+      },
+      "title": "WorkflowStatus defines the overall status of an application workflow"
+    },
+    "playground_oam3WorkflowStep": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the step."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of step."
+        },
+        "properties": {
+          "type": "object",
+          "description": "Properties of the step type."
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "DependsOn indicates step dependencies."
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3InputItem"
+          },
+          "description": "Inputs that are used in the workflow step."
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_oam3OutputItem"
+          },
+          "description": "Outputs produced by the workflow step."
+        }
+      },
+      "description": "WorkflowStep defining a stage in the workflow process."
+    },
+    "playground_oam3WorkflowStepStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID with the step identifier"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name with the step name"
+        },
+        "type": {
+          "type": "string",
+          "title": "Type with the workflowstep type"
+        },
+        "phase": {
+          "type": "string",
+          "title": "Phase with the phase of the workflowstep (succeeded, failed, stopped or running)"
+        },
+        "message": {
+          "type": "string",
+          "title": "Message with information about health status of the workflow step"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Reason with a  brief CamelCase message indicating details about why the workflowStep is in this state."
+        },
+        "first_execute_time": {
+          "type": "string",
+          "description": "FirstExecuteTime is the first time this step execution."
+        },
+        "last_execute_time": {
+          "type": "string",
+          "description": "LastExecuteTime is the last time this step execution."
+        }
+      },
+      "description": "WorkflowStepStatus defines the status of a single step in an application workflow."
     },
     "playground_oamApplicationComponent": {
       "type": "object",
@@ -602,24 +1071,6 @@
       ],
       "default": "NULL_VALUE",
       "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     }
   }
 }

@@ -5,6 +5,7 @@ option go_package = "github.com/napptive/grpc-playground-apps-go;grpc_playground
 
 import "validate/validate.proto";
 import "playground-oam/entities.proto";
+import "playground-oam3/entities.proto";
 
 //
 // Apps
@@ -12,24 +13,44 @@ import "playground-oam/entities.proto";
 
 // ComponentStatus defines the status of a component associated with an application configuration.
 enum ComponentStatus{
+    // Unknown with an undeterminate status
+    UNKNOWN = 0;
     // OK signals that all the replicas of the component are running. Notice that the number of replicas may be
     // specified in a trait.
-    OK = 0;
+    OK = 1; 
     // WARNING signals that some of the replicas of the component are running but some remain. This could mean that either
     // the replicas are being launched, or an error prevents the creation of the required replicas.
-    WARNING = 1;
+    WARNING = 2;
+    // RUNNING signals that all the replicas of the component are running. Notice that the number of replicas may be
+    // specified in a trait.
+    RUNNING = 3;
+    // TERMINATED All the task in a job are terminated
+    TERMINATED = 4;
+    // SCHEDULED a cronJob component is waiting to execute the jobs
+    SCHEDULED = 5;
     // ERROR signals that there has been an error on a component.
-    ERROR = 2;
+    ERROR = 6;
 }
 
 // AppStatus defines the status of an application.
 enum AppStatus{
+    // Unknown with an undeterminate status
+    APP_UNKNOWN = 0;
     // AppOk signals that are elements of a given application are running.
-    APP_OK = 0;
+    // We need OK status to be compatible with OAM2
+    APP_OK= 1; 
     // AppWarning signals that some of the elements of an application are not running.
-    APP_WARNING = 1;
+    APP_WARNING = 2;
+    // AppRunning signals that are elements of a given application are running.
+    APP_RUNNING = 3;
+    // Appterminated when an application without deployments neither statefulsets, only workflow and/or jobs terminated
+    APP_TERMINATED = 4;
+    // AppSuspended when the workflow is suspended waiting for a manual relaunch
+    APP_SUSPENDED = 5; 
+    // AppSheduled when an application with cronJobs are waiting to execute the jobs
+    APP_SCHEDULED = 6;
     // AppError signals that the application is on an error state.
-    APP_ERROR = 2;
+    APP_ERROR = 7;
 }
 
 // Application top level entity.
@@ -48,18 +69,21 @@ message Application{
     string version = 6;
     // ComponentStatus with a map of the associated component status.
     map<string, ComponentStatus> component_status = 7;
-    // Instance of the linked application configuration.
+    // Instance of the linked application configuration (v2 or v3 instance)
     oneof instance {
+        // V2 with an OAM2 application
         playground_oam.ApplicationConfiguration v2 = 8;
+        // V3 with an OAM3 application
+        playground_oam3.Application v3 = 9;
     }
     // StatusName with the string representation of the status enum.
-    string status_name = 9;
+    string status_name = 10;
     // ComponentStatusName with the string representation of the component status.
-    map<string, string> component_status_name = 10;
+    map<string, string> component_status_name = 11;
     // ComponentIngresses with a map associating component name with the list of associated ingresses.
-    map<string, IngressList> component_ingresses = 11;
+    map<string, IngressList> component_ingresses = 12;
     // ErrorMessages with all the error messages in case of application status is error
-    repeated string error_messages = 12;
+    repeated string error_messages = 13;
 }
 
 // IngressInfo with the relevant information about an ingress.

@@ -142,6 +142,37 @@ func (m *Application) validate(all bool) error {
 			}
 		}
 
+	case *Application_V3:
+
+		if all {
+			switch v := interface{}(m.GetV3()).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ApplicationValidationError{
+						field:  "V3",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ApplicationValidationError{
+						field:  "V3",
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(m.GetV3()).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ApplicationValidationError{
+					field:  "V3",
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
 	}
 
 	if len(errors) > 0 {
