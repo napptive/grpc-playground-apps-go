@@ -109,6 +109,10 @@ func (m *Application) validate(all bool) error {
 
 	}
 
+	// no validation rules for InstanceYaml
+
+	// no validation rules for InstanceJson
+
 	switch m.Instance.(type) {
 
 	case *Application_V2:
@@ -514,6 +518,10 @@ func (m *AppInfoRequest) validate(all bool) error {
 	// no validation rules for EnvironmentId
 
 	// no validation rules for ApplicationName
+
+	// no validation rules for IncludeYamlConversion
+
+	// no validation rules for IncludeJsonConversion
 
 	if len(errors) > 0 {
 		return AppInfoRequestMultiError(errors)

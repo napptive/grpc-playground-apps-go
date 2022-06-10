@@ -194,6 +194,14 @@
         "application_name": {
           "type": "string",
           "title": "ApplicationName with the name of the application"
+        },
+        "include_yaml_conversion": {
+          "type": "boolean",
+          "description": "IncludeYAMLConversion determines if the raw YAML representation is also included."
+        },
+        "include_json_conversion": {
+          "type": "boolean",
+          "description": "IncludeJSONConversion determines if the raw JSON representation is also included."
         }
       },
       "title": "AppInfoRequest with the information required to ask for an application"
@@ -341,6 +349,14 @@
             "type": "string"
           },
           "title": "ErrorMessages with all the error messages in case of application status is error"
+        },
+        "instance_yaml": {
+          "type": "string",
+          "description": "InstanceYAML with the YAML representation of the referenced instance."
+        },
+        "instance_json": {
+          "type": "string",
+          "description": "InstanceJSON with the JSON representation of the referenced instance."
         }
       },
       "description": "Application top level entity."
@@ -546,9 +562,6 @@
         "name": {
           "type": "string",
           "title": "Name with the name of the application component"
-        },
-        "env": {
-          "type": "string"
         },
         "healthy": {
           "type": "boolean",

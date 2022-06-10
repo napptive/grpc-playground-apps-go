@@ -84,6 +84,10 @@ message Application{
     map<string, IngressList> component_ingresses = 12;
     // ErrorMessages with all the error messages in case of application status is error
     repeated string error_messages = 13;
+    // InstanceYAML with the YAML representation of the referenced instance.
+    string instance_yaml = 14;
+    // InstanceJSON with the JSON representation of the referenced instance.
+    string instance_json = 15;
 }
 
 // IngressInfo with the relevant information about an ingress.
@@ -111,6 +115,10 @@ message AppInfoRequest {
     string environment_id = 3;
     // ApplicationName with the name of the application
     string application_name = 4;
+    // IncludeYAMLConversion determines if the raw YAML representation is also included.
+    bool include_yaml_conversion = 5;
+    // IncludeJSONConversion determines if the raw JSON representation is also included.
+    bool include_json_conversion = 6;
 }
 
 // AppSummaryListResponse with a subset of applications.
