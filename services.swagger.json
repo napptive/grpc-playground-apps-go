@@ -111,7 +111,7 @@
       }
     },
     "/v0/apps/summary/list": {
-      "get": {
+      "post": {
         "summary": "SummaryList returns a subset of application summaries found in the user cluster.",
         "operationId": "Apps_SummaryList",
         "responses": {
@@ -130,25 +130,12 @@
         },
         "parameters": [
           {
-            "name": "environment_qualified_name",
-            "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "account_id",
-            "description": "AccountId with the account identifier.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "environment_id",
-            "description": "EnvironmentId with the environment identifier.",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_environmentsEnvironmentSelector"
+            }
           }
         ],
         "tags": [
@@ -465,6 +452,24 @@
       ],
       "default": "UNKNOWN",
       "description": "OpStatus enumeration defining the possible status of an operation.\n\n - UNKNOWN: Unknown operation status indicates an error in the processing of the request as all operations should\nhave a determined status.\n - SUCCESS: Success indicates that the operation was completed successfully."
+    },
+    "playground_environmentsEnvironmentSelector": {
+      "type": "object",
+      "properties": {
+        "environment_qualified_name": {
+          "type": "string",
+          "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        }
+      },
+      "title": "EnvironmentSelector with information to determine the target environment. The current selected\nenvironment as specified in the JWT will be used otherwise.\nKeep in mind that we can select an environment through EnvironmentQualifiedName or\nthrough the combination of AccountId and EnvironmentId, being incompatible the use of the two selectors at\nthe same time"
     },
     "playground_oam3Application": {
       "type": "object",
