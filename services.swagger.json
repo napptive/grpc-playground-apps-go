@@ -134,7 +134,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/playground_appsRemoveApplicationRequest"
+              "$ref": "#/definitions/playground_appsResumeApplicationRequest"
             }
           }
         ],
@@ -458,6 +458,28 @@
         }
       },
       "description": "RemoveApplicationRequest to remove an application instance."
+    },
+    "playground_appsResumeApplicationRequest": {
+      "type": "object",
+      "properties": {
+        "target_environment_qualified_name": {
+          "type": "string",
+          "description": "TargetEnvironmentQualifiedName specifying the target environment in the user\naccount as account_name/env_name."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
+        "application_name": {
+          "type": "string",
+          "description": "ApplicationName to be removed."
+        }
+      },
+      "description": "ResumeApplicationRequest to resume a worklow application."
     },
     "playground_commonOpResponse": {
       "type": "object",

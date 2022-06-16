@@ -71,7 +71,7 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x6f, 0x6e, 0x22, 0x17, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x11, 0x22, 0x0c, 0x2f, 0x76, 0x30, 0x2f,
 	0x61, 0x70, 0x70, 0x73, 0x2f, 0x67, 0x65, 0x74, 0x3a, 0x01, 0x2a, 0x12, 0x6e, 0x0a, 0x06, 0x52,
 	0x65, 0x73, 0x75, 0x6d, 0x65, 0x12, 0x29, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75,
-	0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x41, 0x70,
+	0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6d, 0x65, 0x41, 0x70,
 	0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x1d, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f,
 	0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
@@ -89,21 +89,22 @@ var file_playground_apps_services_proto_goTypes = []interface{}{
 	(*RemoveApplicationRequest)(nil),                            // 1: playground_apps.RemoveApplicationRequest
 	(*grpc_playground_environments_go.EnvironmentSelector)(nil), // 2: playground_environments.EnvironmentSelector
 	(*AppInfoRequest)(nil),                                      // 3: playground_apps.AppInfoRequest
-	(*grpc_playground_common_go.OpResponse)(nil),                // 4: playground_common.OpResponse
-	(*AppSummaryListResponse)(nil),                              // 5: playground_apps.AppSummaryListResponse
-	(*Application)(nil),                                         // 6: playground_apps.Application
+	(*ResumeApplicationRequest)(nil),                            // 4: playground_apps.ResumeApplicationRequest
+	(*grpc_playground_common_go.OpResponse)(nil),                // 5: playground_common.OpResponse
+	(*AppSummaryListResponse)(nil),                              // 6: playground_apps.AppSummaryListResponse
+	(*Application)(nil),                                         // 7: playground_apps.Application
 }
 var file_playground_apps_services_proto_depIdxs = []int32{
 	0, // 0: playground_apps.Apps.Deploy:input_type -> playground_apps.DeployApplicationRequest
 	1, // 1: playground_apps.Apps.Remove:input_type -> playground_apps.RemoveApplicationRequest
 	2, // 2: playground_apps.Apps.SummaryList:input_type -> playground_environments.EnvironmentSelector
 	3, // 3: playground_apps.Apps.Info:input_type -> playground_apps.AppInfoRequest
-	1, // 4: playground_apps.Apps.Resume:input_type -> playground_apps.RemoveApplicationRequest
-	4, // 5: playground_apps.Apps.Deploy:output_type -> playground_common.OpResponse
-	4, // 6: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
-	5, // 7: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
-	6, // 8: playground_apps.Apps.Info:output_type -> playground_apps.Application
-	4, // 9: playground_apps.Apps.Resume:output_type -> playground_common.OpResponse
+	4, // 4: playground_apps.Apps.Resume:input_type -> playground_apps.ResumeApplicationRequest
+	5, // 5: playground_apps.Apps.Deploy:output_type -> playground_common.OpResponse
+	5, // 6: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
+	6, // 7: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
+	7, // 8: playground_apps.Apps.Info:output_type -> playground_apps.Application
+	5, // 9: playground_apps.Apps.Resume:output_type -> playground_common.OpResponse
 	5, // [5:10] is the sub-list for method output_type
 	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -157,7 +158,7 @@ type AppsClient interface {
 	// Get returns an application
 	Info(ctx context.Context, in *AppInfoRequest, opts ...grpc.CallOption) (*Application, error)
 	// Resume a suspended workflow application.
-	Resume(ctx context.Context, in *RemoveApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
+	Resume(ctx context.Context, in *ResumeApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 }
 
 type appsClient struct {
@@ -204,7 +205,7 @@ func (c *appsClient) Info(ctx context.Context, in *AppInfoRequest, opts ...grpc.
 	return out, nil
 }
 
-func (c *appsClient) Resume(ctx context.Context, in *RemoveApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
+func (c *appsClient) Resume(ctx context.Context, in *ResumeApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
 	out := new(grpc_playground_common_go.OpResponse)
 	err := c.cc.Invoke(ctx, "/playground_apps.Apps/Resume", in, out, opts...)
 	if err != nil {
@@ -224,7 +225,7 @@ type AppsServer interface {
 	// Get returns an application
 	Info(context.Context, *AppInfoRequest) (*Application, error)
 	// Resume a suspended workflow application.
-	Resume(context.Context, *RemoveApplicationRequest) (*grpc_playground_common_go.OpResponse, error)
+	Resume(context.Context, *ResumeApplicationRequest) (*grpc_playground_common_go.OpResponse, error)
 }
 
 // UnimplementedAppsServer can be embedded to have forward compatible implementations.
@@ -243,7 +244,7 @@ func (*UnimplementedAppsServer) SummaryList(context.Context, *grpc_playground_en
 func (*UnimplementedAppsServer) Info(context.Context, *AppInfoRequest) (*Application, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
 }
-func (*UnimplementedAppsServer) Resume(context.Context, *RemoveApplicationRequest) (*grpc_playground_common_go.OpResponse, error) {
+func (*UnimplementedAppsServer) Resume(context.Context, *ResumeApplicationRequest) (*grpc_playground_common_go.OpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Resume not implemented")
 }
 
@@ -324,7 +325,7 @@ func _Apps_Info_Handler(srv interface{}, ctx context.Context, dec func(interface
 }
 
 func _Apps_Resume_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveApplicationRequest)
+	in := new(ResumeApplicationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -336,7 +337,7 @@ func _Apps_Resume_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: "/playground_apps.Apps/Resume",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppsServer).Resume(ctx, req.(*RemoveApplicationRequest))
+		return srv.(AppsServer).Resume(ctx, req.(*ResumeApplicationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

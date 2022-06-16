@@ -169,7 +169,7 @@ func local_request_Apps_Info_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func request_Apps_Resume_0(ctx context.Context, marshaler runtime.Marshaler, client AppsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RemoveApplicationRequest
+	var protoReq ResumeApplicationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_Apps_Resume_0(ctx context.Context, marshaler runtime.Marshaler, cli
 }
 
 func local_request_Apps_Resume_0(ctx context.Context, marshaler runtime.Marshaler, server AppsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RemoveApplicationRequest
+	var protoReq ResumeApplicationRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
