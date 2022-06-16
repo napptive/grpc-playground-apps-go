@@ -42,4 +42,13 @@ service Apps{
             body : "*"
         };        
     }
+
+    // Resume a suspended workflow application.
+    rpc Resume(RemoveApplicationRequest) returns (playground_common.OpResponse){
+        option (google.api.http) = {
+            post : "/v0/apps/resume"
+            body : "*"
+        };
+    }
+
 }

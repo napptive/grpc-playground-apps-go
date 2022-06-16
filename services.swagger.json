@@ -110,6 +110,39 @@
         ]
       }
     },
+    "/v0/apps/resume": {
+      "post": {
+        "summary": "Resume a suspended workflow application.",
+        "operationId": "Apps_Resume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsRemoveApplicationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
     "/v0/apps/summary/list": {
       "post": {
         "summary": "SummaryList returns a subset of application summaries found in the user cluster.",
