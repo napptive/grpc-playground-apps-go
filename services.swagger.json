@@ -381,6 +381,20 @@
       },
       "description": "Application top level entity."
     },
+    "playground_appsApplicationInstanceConfiguration": {
+      "type": "object",
+      "properties": {
+        "application_default_name": {
+          "type": "string",
+          "title": "ApplicationDefaultName with the application instance name by default"
+        },
+        "spec_components_raw": {
+          "type": "string",
+          "title": "SpecComponentsRaw with the component specification in yaml format (parameters, traits, etc.)"
+        }
+      },
+      "title": "ApplicationInstanceConfiguration  with the configuration with wich the application will be deployed"
+    },
     "playground_appsComponentStatus": {
       "type": "string",
       "enum": [
@@ -406,6 +420,10 @@
         "target_environment_qualified_name": {
           "type": "string",
           "description": "TargetEnvironmentQualifiedName specifying the target environment in the user\naccount as account_name/env_name."
+        },
+        "instance_configuration": {
+          "$ref": "#/definitions/playground_appsApplicationInstanceConfiguration",
+          "title": "InstanceConfiguration with the configuration which the application will be deployed"
         }
       },
       "description": "DeployApplicationRequest with the information required to send a\ndeploy request."

@@ -161,6 +161,8 @@ message DeployApplicationRequest{
     // TargetEnvironmentQualifiedName specifying the target environment in the user
     // account as account_name/env_name.
     string target_environment_qualified_name = 2 [(validate.rules).string.min_len = 1];
+    // InstanceConfiguration with the configuration which the application will be deployed
+    ApplicationInstanceConfiguration instance_configuration = 4;
 }
 
 // RemoveApplicationRequest to remove an application instance.
@@ -187,4 +189,12 @@ message ResumeApplicationRequest {
     string environment_id = 3;
     // ApplicationName to be removed.
     string application_name = 4 [(validate.rules).string.min_len = 1];
+}
+
+// ApplicationInstanceConfiguration  with the configuration with wich the application will be deployed
+message ApplicationInstanceConfiguration{
+    // ApplicationDefaultName with the application instance name by default
+    string application_default_name = 1;
+    // SpecComponentsRaw with the component specification in yaml format (parameters, traits, etc.)
+    string spec_components_raw = 2;
 }
