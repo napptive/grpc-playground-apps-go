@@ -384,20 +384,16 @@
     "playground_appsApplicationInstanceConfiguration": {
       "type": "object",
       "properties": {
-        "is_application": {
-          "type": "boolean",
-          "title": "IsApplication with a flag to indicate if the catalog application contains an oam application or not\nThe user the might want store component definitions in the catalog and deploy them. In this case, \nthe \"appliation\" in the catalog does no correspond to an oam application"
-        },
-        "application_default_name": {
+        "application_name": {
           "type": "string",
-          "title": "ApplicationDefaultName with the application instance name by default"
+          "description": "ApplicationName with the new name for the application instance. If empty, the default name will be used."
         },
         "spec_components_raw": {
           "type": "string",
-          "title": "SpecComponentsRaw with the component specification in yaml format (parameters, traits, etc.)"
+          "description": "SpecComponentsRaw with the component specification in yaml format (parameters, traits, etc.). This\nvalue will overwrite the spec.components one of the application if not empty. The default specification\nwill be used otherwise."
         }
       },
-      "title": "ApplicationInstanceConfiguration  with the configuration with wich the application will be deployed"
+      "title": "ApplicationInstanceConfiguration with the configuration with wich the application will be deployed"
     },
     "playground_appsComponentStatus": {
       "type": "string",

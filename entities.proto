@@ -191,14 +191,12 @@ message ResumeApplicationRequest {
     string application_name = 4 [(validate.rules).string.min_len = 1];
 }
 
-// ApplicationInstanceConfiguration  with the configuration with wich the application will be deployed
+// ApplicationInstanceConfiguration with the configuration with wich the application will be deployed
 message ApplicationInstanceConfiguration{
-    // IsApplication with a flag to indicate if the catalog application contains an oam application or not
-    // The user the might want store component definitions in the catalog and deploy them. In this case, 
-    // the "appliation" in the catalog does no correspond to an oam application
-    bool is_application = 1;
-    // ApplicationDefaultName with the application instance name by default
-    string application_default_name = 2;
-    // SpecComponentsRaw with the component specification in yaml format (parameters, traits, etc.)
-    string spec_components_raw = 3;
+    // ApplicationName with the new name for the application instance. If empty, the default name will be used.
+    string application_name = 1;
+    // SpecComponentsRaw with the component specification in yaml format (parameters, traits, etc.). This
+    // value will overwrite the spec.components one of the application if not empty. The default specification
+    // will be used otherwise.
+    string spec_components_raw = 2;
 }

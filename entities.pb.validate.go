@@ -1262,9 +1262,7 @@ func (m *ApplicationInstanceConfiguration) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for IsApplication
-
-	// no validation rules for ApplicationDefaultName
+	// no validation rules for ApplicationName
 
 	// no validation rules for SpecComponentsRaw
 
