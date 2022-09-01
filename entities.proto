@@ -162,7 +162,9 @@ message DeployApplicationRequest{
     // account as account_name/env_name.
     string target_environment_qualified_name = 2 [(validate.rules).string.min_len = 1];
     // InstanceConfiguration with the configuration which the application will be deployed
-    ApplicationInstanceConfiguration instance_configuration = 4;
+    // indexed by the original application name. This approach enables the catalog to support
+    // application packages that deploy more than one application.
+    map<string, ApplicationInstanceConfiguration> instance_configuration = 4;
 }
 
 // RemoveApplicationRequest to remove an application instance.

@@ -422,8 +422,11 @@
           "description": "TargetEnvironmentQualifiedName specifying the target environment in the user\naccount as account_name/env_name."
         },
         "instance_configuration": {
-          "$ref": "#/definitions/playground_appsApplicationInstanceConfiguration",
-          "title": "InstanceConfiguration with the configuration which the application will be deployed"
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/playground_appsApplicationInstanceConfiguration"
+          },
+          "description": "InstanceConfiguration with the configuration which the application will be deployed\nindexed by the original application name. This approach enables the catalog to support\napplication packages that deploy more than one application."
         }
       },
       "description": "DeployApplicationRequest with the information required to send a\ndeploy request."
