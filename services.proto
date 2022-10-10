@@ -51,4 +51,13 @@ service Apps{
         };
     }
 
+    // Logs returns the application logs (filtering by component if required)
+    rpc Logs(LogRequest) returns (ApplicationLogs){
+        option (google.api.http) = {
+            post : "/v0/apps/logs"
+            body : "*"
+        };
+    }
+
+
 }

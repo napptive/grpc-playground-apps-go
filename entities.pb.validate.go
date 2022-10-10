@@ -1353,3 +1353,632 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ApplicationInstanceConfigurationValidationError{}
+
+// Validate checks the field values on LogRequest with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *LogRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on LogRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in LogRequestMultiError, or
+// nil if none found.
+func (m *LogRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *LogRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for EnvironmentQualifiedName
+
+	// no validation rules for AccountId
+
+	// no validation rules for EnvironmentId
+
+	if utf8.RuneCountInString(m.GetApplicationName()) < 1 {
+		err := LogRequestValidationError{
+			field:  "ApplicationName",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	// no validation rules for ComponentName
+
+	// no validation rules for SinceNano
+
+	if len(errors) > 0 {
+		return LogRequestMultiError(errors)
+	}
+	return nil
+}
+
+// LogRequestMultiError is an error wrapping multiple validation errors
+// returned by LogRequest.ValidateAll() if the designated constraints aren't met.
+type LogRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m LogRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m LogRequestMultiError) AllErrors() []error { return m }
+
+// LogRequestValidationError is the validation error returned by
+// LogRequest.Validate if the designated constraints aren't met.
+type LogRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e LogRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e LogRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e LogRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e LogRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e LogRequestValidationError) ErrorName() string { return "LogRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e LogRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sLogRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = LogRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = LogRequestValidationError{}
+
+// Validate checks the field values on ApplicationLogs with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ApplicationLogs) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ApplicationLogs with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ApplicationLogsMultiError, or nil if none found.
+func (m *ApplicationLogs) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ApplicationLogs) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ApplicationName
+
+	// no validation rules for ComponentName
+
+	// no validation rules for LastEntryNano
+
+	for key, val := range m.GetComponentLogs() {
+		_ = val
+
+		// no validation rules for ComponentLogs[key]
+
+		if all {
+			switch v := interface{}(val).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ApplicationLogsValidationError{
+						field:  fmt.Sprintf("ComponentLogs[%v]", key),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ApplicationLogsValidationError{
+						field:  fmt.Sprintf("ComponentLogs[%v]", key),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(val).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ApplicationLogsValidationError{
+					field:  fmt.Sprintf("ComponentLogs[%v]", key),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return ApplicationLogsMultiError(errors)
+	}
+	return nil
+}
+
+// ApplicationLogsMultiError is an error wrapping multiple validation errors
+// returned by ApplicationLogs.ValidateAll() if the designated constraints
+// aren't met.
+type ApplicationLogsMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ApplicationLogsMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ApplicationLogsMultiError) AllErrors() []error { return m }
+
+// ApplicationLogsValidationError is the validation error returned by
+// ApplicationLogs.Validate if the designated constraints aren't met.
+type ApplicationLogsValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ApplicationLogsValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ApplicationLogsValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ApplicationLogsValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ApplicationLogsValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ApplicationLogsValidationError) ErrorName() string { return "ApplicationLogsValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ApplicationLogsValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sApplicationLogs.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ApplicationLogsValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ApplicationLogsValidationError{}
+
+// Validate checks the field values on ComponentLog with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *ComponentLog) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ComponentLog with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in ComponentLogMultiError, or
+// nil if none found.
+func (m *ComponentLog) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ComponentLog) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for key, val := range m.GetPodLogs() {
+		_ = val
+
+		// no validation rules for PodLogs[key]
+
+		if all {
+			switch v := interface{}(val).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ComponentLogValidationError{
+						field:  fmt.Sprintf("PodLogs[%v]", key),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ComponentLogValidationError{
+						field:  fmt.Sprintf("PodLogs[%v]", key),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(val).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ComponentLogValidationError{
+					field:  fmt.Sprintf("PodLogs[%v]", key),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return ComponentLogMultiError(errors)
+	}
+	return nil
+}
+
+// ComponentLogMultiError is an error wrapping multiple validation errors
+// returned by ComponentLog.ValidateAll() if the designated constraints aren't met.
+type ComponentLogMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ComponentLogMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ComponentLogMultiError) AllErrors() []error { return m }
+
+// ComponentLogValidationError is the validation error returned by
+// ComponentLog.Validate if the designated constraints aren't met.
+type ComponentLogValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ComponentLogValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ComponentLogValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ComponentLogValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ComponentLogValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ComponentLogValidationError) ErrorName() string { return "ComponentLogValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ComponentLogValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sComponentLog.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ComponentLogValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ComponentLogValidationError{}
+
+// Validate checks the field values on PodLog with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *PodLog) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on PodLog with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in PodLogMultiError, or nil if none found.
+func (m *PodLog) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *PodLog) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Pod
+
+	for idx, item := range m.GetLogEntry() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, PodLogValidationError{
+						field:  fmt.Sprintf("LogEntry[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, PodLogValidationError{
+						field:  fmt.Sprintf("LogEntry[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return PodLogValidationError{
+					field:  fmt.Sprintf("LogEntry[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return PodLogMultiError(errors)
+	}
+	return nil
+}
+
+// PodLogMultiError is an error wrapping multiple validation errors returned by
+// PodLog.ValidateAll() if the designated constraints aren't met.
+type PodLogMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m PodLogMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m PodLogMultiError) AllErrors() []error { return m }
+
+// PodLogValidationError is the validation error returned by PodLog.Validate if
+// the designated constraints aren't met.
+type PodLogValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e PodLogValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e PodLogValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e PodLogValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e PodLogValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e PodLogValidationError) ErrorName() string { return "PodLogValidationError" }
+
+// Error satisfies the builtin error interface
+func (e PodLogValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sPodLog.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = PodLogValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = PodLogValidationError{}
+
+// Validate checks the field values on LogEntry with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *LogEntry) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on LogEntry with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in LogEntryMultiError, or nil
+// if none found.
+func (m *LogEntry) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *LogEntry) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Timestamp
+
+	// no validation rules for Content
+
+	if len(errors) > 0 {
+		return LogEntryMultiError(errors)
+	}
+	return nil
+}
+
+// LogEntryMultiError is an error wrapping multiple validation errors returned
+// by LogEntry.ValidateAll() if the designated constraints aren't met.
+type LogEntryMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m LogEntryMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m LogEntryMultiError) AllErrors() []error { return m }
+
+// LogEntryValidationError is the validation error returned by
+// LogEntry.Validate if the designated constraints aren't met.
+type LogEntryValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e LogEntryValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e LogEntryValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e LogEntryValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e LogEntryValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e LogEntryValidationError) ErrorName() string { return "LogEntryValidationError" }
+
+// Error satisfies the builtin error interface
+func (e LogEntryValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sLogEntry.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = LogEntryValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = LogEntryValidationError{}

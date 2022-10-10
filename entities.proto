@@ -13,7 +13,7 @@ import "playground-oam3/entities.proto";
 
 // ComponentStatus defines the status of a component associated with an application configuration.
 enum ComponentStatus{
-    // Unknown with an undeterminate status
+    // Unknown with an undetermined status
     UNKNOWN = 0;
     // OK signals that all the replicas of the component are running. Notice that the number of replicas may be
     // specified in a trait.
@@ -34,7 +34,7 @@ enum ComponentStatus{
 
 // AppStatus defines the status of an application.
 enum AppStatus{
-    // Unknown with an undeterminate status
+    // Unknown with an undetermined status
     APP_UNKNOWN = 0;
     // AppOk signals that are elements of a given application are running.
     // We need OK status to be compatible with OAM2
@@ -43,11 +43,11 @@ enum AppStatus{
     APP_WARNING = 2;
     // AppRunning signals that are elements of a given application are running.
     APP_RUNNING = 3;
-    // Appterminated when an application without deployments neither statefulsets, only workflow and/or jobs terminated
+    // AppTerminated when an application without deployments neither statefulsets, only workflow and/or jobs terminated
     APP_TERMINATED = 4;
     // AppSuspended when the workflow is suspended waiting for a manual relaunch
     APP_SUSPENDED = 5; 
-    // AppSheduled when an application with cronJobs are waiting to execute the jobs
+    // AppScheduled when an application with cronJobs are waiting to execute the jobs
     APP_SCHEDULED = 6;
     // AppError signals that the application is on an error state.
     APP_ERROR = 7;
@@ -141,7 +141,7 @@ message AppSummary{
     string visual_id = 3;
     // Status with the name of the overall status of the application.
     AppStatus status = 4;
-    // Wiht the status as string
+    // With the status as string
     string status_name = 5;
     map<string, ComponentStatus> component_status = 6;
     // ComponentStatusName with the string representation of the component status.
@@ -180,7 +180,7 @@ message RemoveApplicationRequest {
     string application_name = 4 [(validate.rules).string.min_len = 1];
 }
 
-// ResumeApplicationRequest to resume a worklow application.
+// ResumeApplicationRequest to resume a workflow application.
 message ResumeApplicationRequest {
     // TargetEnvironmentQualifiedName specifying the target environment in the user
     // account as account_name/env_name.
@@ -193,7 +193,7 @@ message ResumeApplicationRequest {
     string application_name = 4 [(validate.rules).string.min_len = 1];
 }
 
-// ApplicationInstanceConfiguration with the configuration with wich the application will be deployed
+// ApplicationInstanceConfiguration with the configuration with which the application will be deployed
 message ApplicationInstanceConfiguration{
     // ApplicationName with the new name for the application instance. If empty, the default name will be used.
     string application_name = 1;
@@ -201,4 +201,60 @@ message ApplicationInstanceConfiguration{
     // value will overwrite the spec.components one of the application if not empty. The default specification
     // will be used otherwise.
     string spec_components_raw = 2;
+}
+
+
+//
+// Logs
+//
+
+// LogRequest with the information required to ask for application logs
+message LogRequest {
+    // EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as
+    // <account_name>/<env_name>.
+    string environment_qualified_name = 1;
+    // AccountId with the account identifier.
+    string account_id = 2;
+    // EnvironmentId with the environment identifier
+    string environment_id = 3;
+    // ApplicationName with the name of the application
+    string application_name = 4 [(validate.rules).string.min_len = 1];
+    //ComponentName with the name of the component to filter logs
+    string component_name = 5;
+    // SinceNano with the timestamp time in nanoseconds from which the logs are requested
+    int64 since_nano = 6;
+}
+
+// ApplicationLogs
+message ApplicationLogs {
+    // ApplicationName with the name of the application
+    string application_name = 1;
+    // ComponentName to filter for logs belonging to a particular component.
+    string component_name = 2;
+    // Timestamp of the last entry in the log
+    int64 last_entry_nano = 3;
+    // ComponentLogs with the application logs indexed by componentName
+    map<string, ComponentLog> component_logs = 4;
+}
+
+// ComponentLog
+message ComponentLog {
+    // PodLogs with the log of a component indexed by pod name
+    map<string, PodLog> pod_logs = 1;
+}
+
+// PodLog
+message PodLog{
+    // Pod with the name of the pod
+    string pod = 1;
+    // Log entry with the log
+    repeated LogEntry log_entry = 2;
+}
+
+// LogEntry
+message LogEntry{
+    // Timestamp with the log timestamp
+    int64 timestamp = 1;
+    // Content with the log content
+    string content = 2;
 }

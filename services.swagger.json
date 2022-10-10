@@ -77,6 +77,39 @@
         ]
       }
     },
+    "/v0/apps/logs": {
+      "post": {
+        "summary": "Logs returns the application logs (filtering by component if required)",
+        "operationId": "Apps_Logs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_appsApplicationLogs"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsLogRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
     "/v0/apps/remove": {
       "post": {
         "summary": "Remove an application instance.",
@@ -239,7 +272,7 @@
         "APP_ERROR"
       ],
       "default": "APP_UNKNOWN",
-      "description": "AppStatus defines the status of an application.\n\n - APP_UNKNOWN: Unknown with an undeterminate status\n - APP_OK: AppOk signals that are elements of a given application are running.\nWe need OK status to be compatible with OAM2\n - APP_WARNING: AppWarning signals that some of the elements of an application are not running.\n - APP_RUNNING: AppRunning signals that are elements of a given application are running.\n - APP_TERMINATED: Appterminated when an application without deployments neither statefulsets, only workflow and/or jobs terminated\n - APP_SUSPENDED: AppSuspended when the workflow is suspended waiting for a manual relaunch\n - APP_SCHEDULED: AppSheduled when an application with cronJobs are waiting to execute the jobs\n - APP_ERROR: AppError signals that the application is on an error state."
+      "description": "AppStatus defines the status of an application.\n\n - APP_UNKNOWN: Unknown with an undetermined status\n - APP_OK: AppOk signals that are elements of a given application are running.\nWe need OK status to be compatible with OAM2\n - APP_WARNING: AppWarning signals that some of the elements of an application are not running.\n - APP_RUNNING: AppRunning signals that are elements of a given application are running.\n - APP_TERMINATED: AppTerminated when an application without deployments neither statefulsets, only workflow and/or jobs terminated\n - APP_SUSPENDED: AppSuspended when the workflow is suspended waiting for a manual relaunch\n - APP_SCHEDULED: AppScheduled when an application with cronJobs are waiting to execute the jobs\n - APP_ERROR: AppError signals that the application is on an error state."
     },
     "playground_appsAppSummary": {
       "type": "object",
@@ -262,7 +295,7 @@
         },
         "status_name": {
           "type": "string",
-          "title": "Wiht the status as string"
+          "title": "With the status as string"
         },
         "component_status": {
           "type": "object",
@@ -393,7 +426,46 @@
           "description": "SpecComponentsRaw with the component specification in yaml format (parameters, traits, etc.). This\nvalue will overwrite the spec.components one of the application if not empty. The default specification\nwill be used otherwise."
         }
       },
-      "title": "ApplicationInstanceConfiguration with the configuration with wich the application will be deployed"
+      "title": "ApplicationInstanceConfiguration with the configuration with which the application will be deployed"
+    },
+    "playground_appsApplicationLogs": {
+      "type": "object",
+      "properties": {
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application"
+        },
+        "component_name": {
+          "type": "string",
+          "description": "ComponentName to filter for logs belonging to a particular component."
+        },
+        "last_entry_nano": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp of the last entry in the log"
+        },
+        "component_logs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/playground_appsComponentLog"
+          },
+          "title": "ComponentLogs with the application logs indexed by componentName"
+        }
+      },
+      "title": "ApplicationLogs"
+    },
+    "playground_appsComponentLog": {
+      "type": "object",
+      "properties": {
+        "pod_logs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/playground_appsPodLog"
+          },
+          "title": "PodLogs with the log of a component indexed by pod name"
+        }
+      },
+      "title": "ComponentLog"
     },
     "playground_appsComponentStatus": {
       "type": "string",
@@ -407,7 +479,7 @@
         "ERROR"
       ],
       "default": "UNKNOWN",
-      "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - UNKNOWN: Unknown with an undeterminate status\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - RUNNING: RUNNING signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - TERMINATED: TERMINATED All the task in a job are terminated\n - SCHEDULED: SCHEDULED a cronJob component is waiting to execute the jobs\n - ERROR: ERROR signals that there has been an error on a component."
+      "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - UNKNOWN: Unknown with an undetermined status\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - RUNNING: RUNNING signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - TERMINATED: TERMINATED All the task in a job are terminated\n - SCHEDULED: SCHEDULED a cronJob component is waiting to execute the jobs\n - ERROR: ERROR signals that there has been an error on a component."
     },
     "playground_appsDeployApplicationRequest": {
       "type": "object",
@@ -458,6 +530,69 @@
       },
       "description": "IngressList with a list of ingresses."
     },
+    "playground_appsLogEntry": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp with the log timestamp"
+        },
+        "content": {
+          "type": "string",
+          "title": "Content with the log content"
+        }
+      },
+      "title": "LogEntry"
+    },
+    "playground_appsLogRequest": {
+      "type": "object",
+      "properties": {
+        "environment_qualified_name": {
+          "type": "string",
+          "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application"
+        },
+        "component_name": {
+          "type": "string",
+          "title": "ComponentName with the name of the component to filter logs"
+        },
+        "since_nano": {
+          "type": "string",
+          "format": "int64",
+          "title": "SinceNano with the timestamp time in nanoseconds from which the logs are requested"
+        }
+      },
+      "title": "LogRequest with the information required to ask for application logs"
+    },
+    "playground_appsPodLog": {
+      "type": "object",
+      "properties": {
+        "pod": {
+          "type": "string",
+          "title": "Pod with the name of the pod"
+        },
+        "log_entry": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_appsLogEntry"
+          },
+          "title": "Log entry with the log"
+        }
+      },
+      "title": "PodLog"
+    },
     "playground_appsRemoveApplicationRequest": {
       "type": "object",
       "properties": {
@@ -500,7 +635,7 @@
           "description": "ApplicationName to be removed."
         }
       },
-      "description": "ResumeApplicationRequest to resume a worklow application."
+      "description": "ResumeApplicationRequest to resume a workflow application."
     },
     "playground_commonOpResponse": {
       "type": "object",
