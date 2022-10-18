@@ -435,37 +435,20 @@
           "type": "string",
           "title": "ApplicationName with the name of the application"
         },
-        "component_name": {
-          "type": "string",
-          "description": "ComponentName to filter for logs belonging to a particular component."
-        },
         "last_entry_nano": {
           "type": "string",
           "format": "int64",
           "title": "Timestamp of the last entry in the log"
         },
-        "component_logs": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/playground_appsComponentLog"
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_appsLogEntry"
           },
-          "title": "ComponentLogs with the application logs indexed by componentName"
+          "title": "Logs with the application logs"
         }
       },
       "title": "ApplicationLogs"
-    },
-    "playground_appsComponentLog": {
-      "type": "object",
-      "properties": {
-        "pod_logs": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/playground_appsPodLog"
-          },
-          "title": "PodLogs with the log of a component indexed by pod name"
-        }
-      },
-      "title": "ComponentLog"
     },
     "playground_appsComponentStatus": {
       "type": "string",
@@ -538,12 +521,20 @@
           "format": "int64",
           "title": "Timestamp with the log timestamp"
         },
-        "content": {
+        "component_name": {
           "type": "string",
-          "title": "Content with the log content"
+          "title": "ComponentName with the name of the component"
+        },
+        "pod_name": {
+          "type": "string",
+          "title": "PodName with the name of the pod"
+        },
+        "log": {
+          "type": "string",
+          "title": "Log with the log content"
         }
       },
-      "title": "LogEntry"
+      "title": "LogEntry with a log info"
     },
     "playground_appsLogRequest": {
       "type": "object",
@@ -575,23 +566,6 @@
         }
       },
       "title": "LogRequest with the information required to ask for application logs"
-    },
-    "playground_appsPodLog": {
-      "type": "object",
-      "properties": {
-        "pod": {
-          "type": "string",
-          "title": "Pod with the name of the pod"
-        },
-        "log_entry": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/playground_appsLogEntry"
-          },
-          "title": "Log entry with the log"
-        }
-      },
-      "title": "PodLog"
     },
     "playground_appsRemoveApplicationRequest": {
       "type": "object",

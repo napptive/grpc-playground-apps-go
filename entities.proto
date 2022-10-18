@@ -229,32 +229,20 @@ message LogRequest {
 message ApplicationLogs {
     // ApplicationName with the name of the application
     string application_name = 1;
-    // ComponentName to filter for logs belonging to a particular component.
-    string component_name = 2;
     // Timestamp of the last entry in the log
-    int64 last_entry_nano = 3;
-    // ComponentLogs with the application logs indexed by componentName
-    map<string, ComponentLog> component_logs = 4;
+    int64 last_entry_nano = 2;
+    // Logs with the application logs
+    repeated LogEntry logs = 3;
 }
 
-// ComponentLog
-message ComponentLog {
-    // PodLogs with the log of a component indexed by pod name
-    map<string, PodLog> pod_logs = 1;
-}
-
-// PodLog
-message PodLog{
-    // Pod with the name of the pod
-    string pod = 1;
-    // Log entry with the log
-    repeated LogEntry log_entry = 2;
-}
-
-// LogEntry
-message LogEntry{
+// LogEntry with a log info
+message LogEntry {
     // Timestamp with the log timestamp
     int64 timestamp = 1;
-    // Content with the log content
-    string content = 2;
+    // ComponentName with the name of the component
+    string component_name = 2;
+    // PodName with the name of the pod
+    string pod_name = 3;
+    // Log with the log content
+    string log = 4;
 }

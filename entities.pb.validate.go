@@ -1497,21 +1497,17 @@ func (m *ApplicationLogs) validate(all bool) error {
 
 	// no validation rules for ApplicationName
 
-	// no validation rules for ComponentName
-
 	// no validation rules for LastEntryNano
 
-	for key, val := range m.GetComponentLogs() {
-		_ = val
-
-		// no validation rules for ComponentLogs[key]
+	for idx, item := range m.GetLogs() {
+		_, _ = idx, item
 
 		if all {
-			switch v := interface{}(val).(type) {
+			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, ApplicationLogsValidationError{
-						field:  fmt.Sprintf("ComponentLogs[%v]", key),
+						field:  fmt.Sprintf("Logs[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -1519,16 +1515,16 @@ func (m *ApplicationLogs) validate(all bool) error {
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
 					errors = append(errors, ApplicationLogsValidationError{
-						field:  fmt.Sprintf("ComponentLogs[%v]", key),
+						field:  fmt.Sprintf("Logs[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
 				}
 			}
-		} else if v, ok := interface{}(val).(interface{ Validate() error }); ok {
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ApplicationLogsValidationError{
-					field:  fmt.Sprintf("ComponentLogs[%v]", key),
+					field:  fmt.Sprintf("Logs[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -1614,273 +1610,6 @@ var _ interface {
 	ErrorName() string
 } = ApplicationLogsValidationError{}
 
-// Validate checks the field values on ComponentLog with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *ComponentLog) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on ComponentLog with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in ComponentLogMultiError, or
-// nil if none found.
-func (m *ComponentLog) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *ComponentLog) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	for key, val := range m.GetPodLogs() {
-		_ = val
-
-		// no validation rules for PodLogs[key]
-
-		if all {
-			switch v := interface{}(val).(type) {
-			case interface{ ValidateAll() error }:
-				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, ComponentLogValidationError{
-						field:  fmt.Sprintf("PodLogs[%v]", key),
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			case interface{ Validate() error }:
-				if err := v.Validate(); err != nil {
-					errors = append(errors, ComponentLogValidationError{
-						field:  fmt.Sprintf("PodLogs[%v]", key),
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			}
-		} else if v, ok := interface{}(val).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return ComponentLogValidationError{
-					field:  fmt.Sprintf("PodLogs[%v]", key),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if len(errors) > 0 {
-		return ComponentLogMultiError(errors)
-	}
-	return nil
-}
-
-// ComponentLogMultiError is an error wrapping multiple validation errors
-// returned by ComponentLog.ValidateAll() if the designated constraints aren't met.
-type ComponentLogMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m ComponentLogMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m ComponentLogMultiError) AllErrors() []error { return m }
-
-// ComponentLogValidationError is the validation error returned by
-// ComponentLog.Validate if the designated constraints aren't met.
-type ComponentLogValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ComponentLogValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ComponentLogValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ComponentLogValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ComponentLogValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ComponentLogValidationError) ErrorName() string { return "ComponentLogValidationError" }
-
-// Error satisfies the builtin error interface
-func (e ComponentLogValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sComponentLog.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ComponentLogValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ComponentLogValidationError{}
-
-// Validate checks the field values on PodLog with the rules defined in the
-// proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *PodLog) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on PodLog with the rules defined in the
-// proto definition for this message. If any rules are violated, the result is
-// a list of violation errors wrapped in PodLogMultiError, or nil if none found.
-func (m *PodLog) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *PodLog) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for Pod
-
-	for idx, item := range m.GetLogEntry() {
-		_, _ = idx, item
-
-		if all {
-			switch v := interface{}(item).(type) {
-			case interface{ ValidateAll() error }:
-				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, PodLogValidationError{
-						field:  fmt.Sprintf("LogEntry[%v]", idx),
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			case interface{ Validate() error }:
-				if err := v.Validate(); err != nil {
-					errors = append(errors, PodLogValidationError{
-						field:  fmt.Sprintf("LogEntry[%v]", idx),
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			}
-		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return PodLogValidationError{
-					field:  fmt.Sprintf("LogEntry[%v]", idx),
-					reason: "embedded message failed validation",
-					cause:  err,
-				}
-			}
-		}
-
-	}
-
-	if len(errors) > 0 {
-		return PodLogMultiError(errors)
-	}
-	return nil
-}
-
-// PodLogMultiError is an error wrapping multiple validation errors returned by
-// PodLog.ValidateAll() if the designated constraints aren't met.
-type PodLogMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m PodLogMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m PodLogMultiError) AllErrors() []error { return m }
-
-// PodLogValidationError is the validation error returned by PodLog.Validate if
-// the designated constraints aren't met.
-type PodLogValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e PodLogValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e PodLogValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e PodLogValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e PodLogValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e PodLogValidationError) ErrorName() string { return "PodLogValidationError" }
-
-// Error satisfies the builtin error interface
-func (e PodLogValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sPodLog.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = PodLogValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = PodLogValidationError{}
-
 // Validate checks the field values on LogEntry with the rules defined in the
 // proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -1905,7 +1634,11 @@ func (m *LogEntry) validate(all bool) error {
 
 	// no validation rules for Timestamp
 
-	// no validation rules for Content
+	// no validation rules for ComponentName
+
+	// no validation rules for PodName
+
+	// no validation rules for Log
 
 	if len(errors) > 0 {
 		return LogEntryMultiError(errors)
