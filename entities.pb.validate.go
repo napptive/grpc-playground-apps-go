@@ -851,6 +851,135 @@ var _ interface {
 	ErrorName() string
 } = AppSummaryValidationError{}
 
+// Validate checks the field values on ApplicationFromRepoConfiguration with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *ApplicationFromRepoConfiguration) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ApplicationFromRepoConfiguration with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// ApplicationFromRepoConfigurationMultiError, or nil if none found.
+func (m *ApplicationFromRepoConfiguration) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ApplicationFromRepoConfiguration) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for RepoType
+
+	if utf8.RuneCountInString(m.GetRepoUrl()) < 1 {
+		err := ApplicationFromRepoConfigurationValidationError{
+			field:  "RepoUrl",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	// no validation rules for RepoUsername
+
+	// no validation rules for RepoPat
+
+	// no validation rules for ApplicationName
+
+	// no validation rules for MainPath
+
+	// no validation rules for Language
+
+	// no validation rules for Envs
+
+	if len(errors) > 0 {
+		return ApplicationFromRepoConfigurationMultiError(errors)
+	}
+	return nil
+}
+
+// ApplicationFromRepoConfigurationMultiError is an error wrapping multiple
+// validation errors returned by
+// ApplicationFromRepoConfiguration.ValidateAll() if the designated
+// constraints aren't met.
+type ApplicationFromRepoConfigurationMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ApplicationFromRepoConfigurationMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ApplicationFromRepoConfigurationMultiError) AllErrors() []error { return m }
+
+// ApplicationFromRepoConfigurationValidationError is the validation error
+// returned by ApplicationFromRepoConfiguration.Validate if the designated
+// constraints aren't met.
+type ApplicationFromRepoConfigurationValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ApplicationFromRepoConfigurationValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ApplicationFromRepoConfigurationValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ApplicationFromRepoConfigurationValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ApplicationFromRepoConfigurationValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ApplicationFromRepoConfigurationValidationError) ErrorName() string {
+	return "ApplicationFromRepoConfigurationValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ApplicationFromRepoConfigurationValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sApplicationFromRepoConfiguration.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ApplicationFromRepoConfigurationValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ApplicationFromRepoConfigurationValidationError{}
+
 // Validate checks the field values on DeployApplicationRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -872,6 +1001,10 @@ func (m *DeployApplicationRequest) validate(all bool) error {
 	}
 
 	var errors []error
+
+	// no validation rules for DeployFrom
+
+	// no validation rules for ApplicationDataType
 
 	if len(m.GetApplicationData()) < 1 {
 		err := DeployApplicationRequestValidationError{
@@ -929,6 +1062,35 @@ func (m *DeployApplicationRequest) validate(all bool) error {
 			}
 		}
 
+	}
+
+	if all {
+		switch v := interface{}(m.GetRepoConf()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, DeployApplicationRequestValidationError{
+					field:  "RepoConf",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, DeployApplicationRequestValidationError{
+					field:  "RepoConf",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetRepoConf()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return DeployApplicationRequestValidationError{
+				field:  "RepoConf",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
 	}
 
 	if len(errors) > 0 {

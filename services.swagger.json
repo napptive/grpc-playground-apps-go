@@ -229,6 +229,16 @@
         }
       }
     },
+    "playground_appsAppDataType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_FORMAT",
+        "TGZ",
+        "YAML"
+      ],
+      "default": "UNKNOWN_FORMAT",
+      "title": "AppDataType to indicate if the data is a tgz or a YAML"
+    },
     "playground_appsAppInfoRequest": {
       "type": "object",
       "properties": {
@@ -258,6 +268,18 @@
         }
       },
       "title": "AppInfoRequest with the information required to ask for an application"
+    },
+    "playground_appsAppLanguage": {
+      "type": "string",
+      "enum": [
+        "AUTO_DISCOVER",
+        "GOLANG",
+        "PYTHON",
+        "NODEJS",
+        "STATIC"
+      ],
+      "default": "AUTO_DISCOVER",
+      "title": "Language with the language with which the application is implemented"
     },
     "playground_appsAppStatus": {
       "type": "string",
@@ -414,6 +436,61 @@
       },
       "description": "Application top level entity."
     },
+    "playground_appsApplicationFromRepoConfiguration": {
+      "type": "object",
+      "properties": {
+        "repo_type": {
+          "$ref": "#/definitions/playground_appsRepoType"
+        },
+        "repo_url": {
+          "type": "string",
+          "title": "RepoConfig with the repo configuration\nRepoUrl with the url where the GitHubRepo is"
+        },
+        "repo_username": {
+          "type": "string",
+          "title": "RepoUsername with the repository username. Required if the repository is private"
+        },
+        "repo_pat": {
+          "type": "string",
+          "title": "RepoPat with a personal access token. Required if the repository is public"
+        },
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application"
+        },
+        "main_path": {
+          "type": "string",
+          "title": "MainPath with the path of the main file"
+        },
+        "language": {
+          "$ref": "#/definitions/playground_appsAppLanguage",
+          "title": "Language with the application language"
+        },
+        "envs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Envs with the application environment variables"
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "Ports with the ports to be exposed"
+        },
+        "ingress_ports": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": "IngressPorts with the port where an ingress is required"
+        }
+      }
+    },
     "playground_appsApplicationInstanceConfiguration": {
       "type": "object",
       "properties": {
@@ -467,6 +544,14 @@
     "playground_appsDeployApplicationRequest": {
       "type": "object",
       "properties": {
+        "deploy_from": {
+          "$ref": "#/definitions/playground_appsDeploySource",
+          "title": "DeployFrom to indicate the deploy source"
+        },
+        "application_data_type": {
+          "$ref": "#/definitions/playground_appsAppDataType",
+          "title": "ApplicationDataType with the type of the data received in application_data field"
+        },
         "application_data": {
           "type": "string",
           "format": "byte",
@@ -482,9 +567,23 @@
             "$ref": "#/definitions/playground_appsApplicationInstanceConfiguration"
           },
           "description": "InstanceConfiguration with the configuration which the application will be deployed\nindexed by the original application name. This approach enables the catalog to support\napplication packages that deploy more than one application."
+        },
+        "repo_conf": {
+          "$ref": "#/definitions/playground_appsApplicationFromRepoConfiguration",
+          "title": "RepoConfig with the configuration required to deploy an application from Repository"
         }
       },
       "description": "DeployApplicationRequest with the information required to send a\ndeploy request."
+    },
+    "playground_appsDeploySource": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_DEPLOY_SOURCE",
+        "FROM_DATA",
+        "FROM_REPO"
+      ],
+      "default": "UNKNOWN_DEPLOY_SOURCE",
+      "title": "- FROM_DATA: DeployFromType_FromData to indicate the deploy request contains the application files\n - FROM_REPO: DeployFromType_FromRepo to indicate the deploy request contains the repo url where the application is"
     },
     "playground_appsIngressInfo": {
       "type": "object",
@@ -588,6 +687,16 @@
         }
       },
       "description": "RemoveApplicationRequest to remove an application instance."
+    },
+    "playground_appsRepoType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_REPO",
+        "GITHUB"
+      ],
+      "default": "UNKNOWN_REPO",
+      "description": "- GITHUB: GITHUB repository",
+      "title": "RepoType with the repository (GITHUB for now)"
     },
     "playground_appsResumeApplicationRequest": {
       "type": "object",

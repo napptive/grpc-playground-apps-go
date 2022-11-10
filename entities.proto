@@ -152,20 +152,81 @@ message AppSummary{
 // Applications
 //
 
+// RepoType with the repository (GITHUB for now)
+enum RepoType{
+    UNKNOWN_REPO = 0;
+    // GITHUB repository
+    GITHUB = 1;
+}
+
+// Language with the language with which the application is implemented
+enum AppLanguage{
+    AUTO_DISCOVER = 0;
+    GOLANG = 1;
+    PYTHON = 2;
+    NODEJS = 3;
+    STATIC = 4;
+}
+
+message ApplicationFromRepoConfiguration {
+    RepoType repo_type = 1;
+    // RepoConfig with the repo configuration
+    // RepoUrl with the url where the GitHubRepo is
+    string repo_url = 2 [(validate.rules).string.min_len = 1];
+    // RepoUsername with the repository username. Required if the repository is private
+    string repo_username = 3;
+    // RepoPat with a personal access token. Required if the repository is public
+    string repo_pat = 4;
+    // ApplicationName with the name of the application
+    string application_name = 5;
+    // MainPath with the path of the main file
+    string main_path = 6;
+    // Language with the application language
+    AppLanguage language = 7;
+    // Envs with the application environment variables
+    map<string, string> envs = 8;
+    // Ports with the ports to be exposed
+    repeated int32 ports = 9;
+    // IngressPorts with the port where an ingress is required
+    repeated int32 ingress_ports = 10;
+}
+
+enum DeploySource{
+    UNKNOWN_DEPLOY_SOURCE = 0;
+    // DeployFromType_FromData to indicate the deploy request contains the application files
+    FROM_DATA = 1;
+    // DeployFromType_FromRepo to indicate the deploy request contains the repo url where the application is
+    FROM_REPO = 2;
+}
+
+// AppDataType to indicate if the data is a tgz or a YAML
+enum AppDataType {
+    UNKNOWN_FORMAT= 0;
+    TGZ = 1;
+    YAML = 2;
+}
+
 // DeployApplicationRequest with the information required to send a
 // deploy request.
-message DeployApplicationRequest{
+message DeployApplicationRequest {
+    // DeployFrom to indicate the deploy source
+    DeploySource deploy_from  = 1;
+    // ApplicationDataType with the type of the data received in application_data field
+    AppDataType application_data_type = 2;
     // ApplicationData with the compressed application descriptors. The data must
     // be compressed as tgz.
-    bytes application_data = 1 [(validate.rules).bytes.min_len = 1];
+    bytes application_data = 3 [(validate.rules).bytes.min_len = 1];
     // TargetEnvironmentQualifiedName specifying the target environment in the user
     // account as account_name/env_name.
-    string target_environment_qualified_name = 2 [(validate.rules).string.min_len = 1];
+    string target_environment_qualified_name = 4 [(validate.rules).string.min_len = 1];
     // InstanceConfiguration with the configuration which the application will be deployed
     // indexed by the original application name. This approach enables the catalog to support
     // application packages that deploy more than one application.
-    map<string, ApplicationInstanceConfiguration> instance_configuration = 4;
+    map<string, ApplicationInstanceConfiguration> instance_configuration = 5;
+    // RepoConfig with the configuration required to deploy an application from Repository
+    ApplicationFromRepoConfiguration repo_conf = 6;
 }
+
 
 // RemoveApplicationRequest to remove an application instance.
 message RemoveApplicationRequest {
