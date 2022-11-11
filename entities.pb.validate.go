@@ -1006,27 +1006,9 @@ func (m *DeployApplicationRequest) validate(all bool) error {
 
 	// no validation rules for ApplicationDataType
 
-	if len(m.GetApplicationData()) < 1 {
-		err := DeployApplicationRequestValidationError{
-			field:  "ApplicationData",
-			reason: "value length must be at least 1 bytes",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for ApplicationData
 
-	if utf8.RuneCountInString(m.GetTargetEnvironmentQualifiedName()) < 1 {
-		err := DeployApplicationRequestValidationError{
-			field:  "TargetEnvironmentQualifiedName",
-			reason: "value length must be at least 1 runes",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for TargetEnvironmentQualifiedName
 
 	for key, val := range m.GetInstanceConfiguration() {
 		_ = val

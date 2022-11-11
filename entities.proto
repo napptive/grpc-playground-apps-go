@@ -215,10 +215,10 @@ message DeployApplicationRequest {
     AppDataType application_data_type = 2;
     // ApplicationData with the compressed application descriptors. The data must
     // be compressed as tgz.
-    bytes application_data = 3 [(validate.rules).bytes.min_len = 1];
+    bytes application_data = 3;
     // TargetEnvironmentQualifiedName specifying the target environment in the user
     // account as account_name/env_name.
-    string target_environment_qualified_name = 4 [(validate.rules).string.min_len = 1];
+    string target_environment_qualified_name = 4;
     // InstanceConfiguration with the configuration which the application will be deployed
     // indexed by the original application name. This approach enables the catalog to support
     // application packages that deploy more than one application.
