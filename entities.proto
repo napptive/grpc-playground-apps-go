@@ -189,6 +189,8 @@ message ApplicationFromRepoConfiguration {
     repeated int32 ports = 9;
     // IngressPorts with the port where an ingress is required
     repeated int32 ingress_ports = 10;
+    // ExecArgs with a array with arguments required to run the application
+    repeated string exec_args = 11;
 }
 
 enum DeploySource{

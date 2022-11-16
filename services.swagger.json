@@ -488,6 +488,13 @@
             "format": "int32"
           },
           "title": "IngressPorts with the port where an ingress is required"
+        },
+        "exec_args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "ExecArgs with a array with arguments required to run the application"
         }
       }
     },
