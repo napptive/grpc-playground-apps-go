@@ -19,7 +19,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/playground_commonOpResponse"
+              "$ref": "#/definitions/playground_appsDeployApplicationResponse"
             }
           },
           "default": {
@@ -581,6 +581,28 @@
         }
       },
       "description": "DeployApplicationRequest with the information required to send a\ndeploy request."
+    },
+    "playground_appsDeployApplicationResponse": {
+      "type": "object",
+      "properties": {
+        "environment_name": {
+          "type": "string",
+          "title": "EnvironmentName with the name of the environment"
+        },
+        "account_name": {
+          "type": "string",
+          "title": "AccountName with the name of the account"
+        },
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application deployed"
+        },
+        "message": {
+          "type": "string",
+          "title": "Message with the operation message"
+        }
+      },
+      "title": "DeployApplicationResponse with the response of a deploy operation"
     },
     "playground_appsDeploySource": {
       "type": "string",

@@ -980,6 +980,115 @@ var _ interface {
 	ErrorName() string
 } = ApplicationFromRepoConfigurationValidationError{}
 
+// Validate checks the field values on DeployApplicationResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *DeployApplicationResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on DeployApplicationResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// DeployApplicationResponseMultiError, or nil if none found.
+func (m *DeployApplicationResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeployApplicationResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for EnvironmentName
+
+	// no validation rules for AccountName
+
+	// no validation rules for ApplicationName
+
+	// no validation rules for Message
+
+	if len(errors) > 0 {
+		return DeployApplicationResponseMultiError(errors)
+	}
+	return nil
+}
+
+// DeployApplicationResponseMultiError is an error wrapping multiple validation
+// errors returned by DeployApplicationResponse.ValidateAll() if the
+// designated constraints aren't met.
+type DeployApplicationResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeployApplicationResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeployApplicationResponseMultiError) AllErrors() []error { return m }
+
+// DeployApplicationResponseValidationError is the validation error returned by
+// DeployApplicationResponse.Validate if the designated constraints aren't met.
+type DeployApplicationResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeployApplicationResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeployApplicationResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeployApplicationResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeployApplicationResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeployApplicationResponseValidationError) ErrorName() string {
+	return "DeployApplicationResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeployApplicationResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeployApplicationResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeployApplicationResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeployApplicationResponseValidationError{}
+
 // Validate checks the field values on DeployApplicationRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.

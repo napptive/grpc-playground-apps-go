@@ -12,7 +12,7 @@ import "google/api/annotations.proto";
 service Apps{
 
     // Deploy an application.
-    rpc Deploy(DeployApplicationRequest) returns (playground_common.OpResponse){
+    rpc Deploy(DeployApplicationRequest) returns (DeployApplicationResponse){
         option (google.api.http) = {
             post : "/v0/apps/deploy"
             body : "*"

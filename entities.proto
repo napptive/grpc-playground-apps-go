@@ -208,6 +208,18 @@ enum AppDataType {
     YAML = 2;
 }
 
+// DeployApplicationResponse with the response of a deploy operation
+message DeployApplicationResponse {
+    // EnvironmentName with the name of the environment
+    string environment_name = 1;
+    // AccountName with the name of the account
+    string account_name = 2;
+    // ApplicationName with the name of the application deployed
+    string application_name = 3;
+    // Message with the operation message
+    string message = 4;
+}
+
 // DeployApplicationRequest with the information required to send a
 // deploy request.
 message DeployApplicationRequest {
