@@ -321,3 +321,16 @@ message LogEntry {
     // Log with the log content
     string log = 4;
 }
+
+// ValidateRepoAccessRequest with the information required to validate if repo is accessible
+message ValidateRepoAccessRequest {
+    // RepoType with the repository type (GitHub for now)
+    RepoType repo_type = 1;
+    // RepoConfig with the repo configuration
+    // RepoUrl with the url where the GitHubRepo is
+    string repo_url = 2 [(validate.rules).string.min_len = 1];
+    // RepoUsername with the repository username. Required if the repository is private
+    string repo_username = 3;
+    // RepoPat with a personal access token. Required if the repository is private
+    string repo_pat = 4;
+}

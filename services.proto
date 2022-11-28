@@ -59,5 +59,11 @@ service Apps{
         };
     }
 
-
+    // ValidateRepoAccess to validate if a repository is accessible with the credentials received
+    rpc ValidateRepoAccess(ValidateRepoAccessRequest) returns (playground_common.OpResponse){
+        option (google.api.http) = {
+            post : "/v0/apps/repo/validate"
+            body : "*"
+        };
+    }
 }

@@ -1968,3 +1968,121 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = LogEntryValidationError{}
+
+// Validate checks the field values on ValidateRepoAccessRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ValidateRepoAccessRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ValidateRepoAccessRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ValidateRepoAccessRequestMultiError, or nil if none found.
+func (m *ValidateRepoAccessRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ValidateRepoAccessRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for RepoType
+
+	if utf8.RuneCountInString(m.GetRepoUrl()) < 1 {
+		err := ValidateRepoAccessRequestValidationError{
+			field:  "RepoUrl",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	// no validation rules for RepoUsername
+
+	// no validation rules for RepoPat
+
+	if len(errors) > 0 {
+		return ValidateRepoAccessRequestMultiError(errors)
+	}
+	return nil
+}
+
+// ValidateRepoAccessRequestMultiError is an error wrapping multiple validation
+// errors returned by ValidateRepoAccessRequest.ValidateAll() if the
+// designated constraints aren't met.
+type ValidateRepoAccessRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ValidateRepoAccessRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ValidateRepoAccessRequestMultiError) AllErrors() []error { return m }
+
+// ValidateRepoAccessRequestValidationError is the validation error returned by
+// ValidateRepoAccessRequest.Validate if the designated constraints aren't met.
+type ValidateRepoAccessRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ValidateRepoAccessRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ValidateRepoAccessRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ValidateRepoAccessRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ValidateRepoAccessRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ValidateRepoAccessRequestValidationError) ErrorName() string {
+	return "ValidateRepoAccessRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ValidateRepoAccessRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sValidateRepoAccessRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ValidateRepoAccessRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ValidateRepoAccessRequestValidationError{}

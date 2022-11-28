@@ -143,6 +143,39 @@
         ]
       }
     },
+    "/v0/apps/repo/validate": {
+      "post": {
+        "summary": "ValidateRepoAccess to validate if a repository is accessible with the credentials received",
+        "operationId": "Apps_ValidateRepoAccess",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsValidateRepoAccessRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
     "/v0/apps/resume": {
       "post": {
         "summary": "Resume a suspended workflow application.",
@@ -748,6 +781,28 @@
         }
       },
       "description": "ResumeApplicationRequest to resume a workflow application."
+    },
+    "playground_appsValidateRepoAccessRequest": {
+      "type": "object",
+      "properties": {
+        "repo_type": {
+          "$ref": "#/definitions/playground_appsRepoType",
+          "title": "RepoType with the repository type (GitHub for now)"
+        },
+        "repo_url": {
+          "type": "string",
+          "title": "RepoConfig with the repo configuration\nRepoUrl with the url where the GitHubRepo is"
+        },
+        "repo_username": {
+          "type": "string",
+          "title": "RepoUsername with the repository username. Required if the repository is private"
+        },
+        "repo_pat": {
+          "type": "string",
+          "title": "RepoPat with a personal access token. Required if the repository is private"
+        }
+      },
+      "title": "ValidateRepoAccessRequest with the information required to validate if repo is accessible"
     },
     "playground_commonOpResponse": {
       "type": "object",
