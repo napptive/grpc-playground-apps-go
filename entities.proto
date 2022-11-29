@@ -152,11 +152,11 @@ message AppSummary{
 // Applications
 //
 
-// RepoType with the repository (GITHUB for now)
+// RepoType with the repository (GITHUB and GitLab for now)
 enum RepoType{
     UNKNOWN_REPO = 0;
-    // GITHUB repository
-    GITHUB = 1;
+    // GIT repository
+    GIT = 1;
 }
 
 // Language with the language with which the application is implemented
@@ -329,8 +329,6 @@ message ValidateRepoAccessRequest {
     // RepoConfig with the repo configuration
     // RepoUrl with the url where the GitHubRepo is
     string repo_url = 2 [(validate.rules).string.min_len = 1];
-    // RepoUsername with the repository username. Required if the repository is private
-    string repo_username = 3;
     // RepoPat with a personal access token. Required if the repository is private
-    string repo_pat = 4;
+    string repo_pat = 3;
 }

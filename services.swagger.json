@@ -754,11 +754,11 @@
       "type": "string",
       "enum": [
         "UNKNOWN_REPO",
-        "GITHUB"
+        "GIT"
       ],
       "default": "UNKNOWN_REPO",
-      "description": "- GITHUB: GITHUB repository",
-      "title": "RepoType with the repository (GITHUB for now)"
+      "description": "- GIT: GIT repository",
+      "title": "RepoType with the repository (GITHUB and GitLab for now)"
     },
     "playground_appsResumeApplicationRequest": {
       "type": "object",
@@ -792,10 +792,6 @@
         "repo_url": {
           "type": "string",
           "title": "RepoConfig with the repo configuration\nRepoUrl with the url where the GitHubRepo is"
-        },
-        "repo_username": {
-          "type": "string",
-          "title": "RepoUsername with the repository username. Required if the repository is private"
         },
         "repo_pat": {
           "type": "string",

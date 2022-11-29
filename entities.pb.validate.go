@@ -2004,8 +2004,6 @@ func (m *ValidateRepoAccessRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	// no validation rules for RepoUsername
-
 	// no validation rules for RepoPat
 
 	if len(errors) > 0 {
