@@ -4,7 +4,6 @@ package playground_apps;
 option go_package = "github.com/napptive/grpc-playground-apps-go;grpc_playground_apps_go";
 
 import "validate/validate.proto";
-import "playground-oam/entities.proto";
 import "playground-oam3/entities.proto";
 
 //
@@ -71,8 +70,6 @@ message Application{
     map<string, ComponentStatus> component_status = 7;
     // Instance of the linked application configuration (v2 or v3 instance)
     oneof instance {
-        // V2 with an OAM2 application
-        playground_oam.ApplicationConfiguration v2 = 8;
         // V3 with an OAM3 application
         playground_oam3.Application v3 = 9;
     }
