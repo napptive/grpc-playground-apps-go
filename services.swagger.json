@@ -241,6 +241,39 @@
           "Apps"
         ]
       }
+    },
+    "/v0/apps/update": {
+      "post": {
+        "summary": "Update an application.",
+        "operationId": "Apps_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsUpdateApplicationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
     }
   },
   "definitions": {
@@ -777,6 +810,32 @@
         }
       },
       "description": "ResumeApplicationRequest to resume a workflow application."
+    },
+    "playground_appsUpdateApplicationRequest": {
+      "type": "object",
+      "properties": {
+        "target_environment_qualified_name": {
+          "type": "string",
+          "description": "TargetEnvironmentQualifiedName specifying the target environment in the user\naccount as account_name/env_name."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
+        "application_name": {
+          "type": "string",
+          "description": "ApplicationName to be removed."
+        },
+        "raw_yaml": {
+          "type": "string",
+          "title": "RawYaml with a YAML with the new application (base64 decoded)"
+        }
+      },
+      "title": "UpdateApplicationRequest with the information required to update a deployed application"
     },
     "playground_appsValidateRepoAccessRequest": {
       "type": "object",

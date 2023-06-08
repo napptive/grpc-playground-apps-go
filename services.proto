@@ -66,4 +66,12 @@ service Apps{
             body : "*"
         };
     }
+
+    // Update an application.
+    rpc Update(UpdateApplicationRequest) returns (playground_common.OpResponse){
+        option (google.api.http) = {
+            post : "/v0/apps/update"
+            body : "*"
+        };
+    }
 }

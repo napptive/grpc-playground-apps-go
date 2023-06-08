@@ -40,7 +40,7 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x65, 0x6e, 0x74,
 	0x69, 0x74, 0x69, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xb2, 0x06, 0x0a, 0x04, 0x41, 0x70,
+	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xa2, 0x07, 0x0a, 0x04, 0x41, 0x70,
 	0x70, 0x73, 0x12, 0x7b, 0x0a, 0x06, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x12, 0x29, 0x2e, 0x70,
 	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x44,
 	0x65, 0x70, 0x6c, 0x6f, 0x79, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
@@ -91,7 +91,14 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
 	0x2e, 0x4f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x21, 0x82, 0xd3, 0xe4,
 	0x93, 0x02, 0x1b, 0x22, 0x16, 0x2f, 0x76, 0x30, 0x2f, 0x61, 0x70, 0x70, 0x73, 0x2f, 0x72, 0x65,
-	0x70, 0x6f, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x3a, 0x01, 0x2a, 0x42, 0x45,
+	0x70, 0x6f, 0x2f, 0x76, 0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x3a, 0x01, 0x2a, 0x12, 0x6e,
+	0x0a, 0x06, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x12, 0x29, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67,
+	0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64,
+	0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14, 0x22, 0x0f, 0x2f, 0x76, 0x30, 0x2f,
+	0x61, 0x70, 0x70, 0x73, 0x2f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x3a, 0x01, 0x2a, 0x42, 0x45,
 	0x5a, 0x43, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6e, 0x61, 0x70,
 	0x70, 0x74, 0x69, 0x76, 0x65, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x2d, 0x70, 0x6c, 0x61, 0x79, 0x67,
 	0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2d, 0x61, 0x70, 0x70, 0x73, 0x2d, 0x67, 0x6f, 0x3b, 0x67, 0x72,
@@ -107,11 +114,12 @@ var file_playground_apps_services_proto_goTypes = []interface{}{
 	(*ResumeApplicationRequest)(nil),                            // 4: playground_apps.ResumeApplicationRequest
 	(*LogRequest)(nil),                                          // 5: playground_apps.LogRequest
 	(*ValidateRepoAccessRequest)(nil),                           // 6: playground_apps.ValidateRepoAccessRequest
-	(*DeployApplicationResponse)(nil),                           // 7: playground_apps.DeployApplicationResponse
-	(*grpc_playground_common_go.OpResponse)(nil),                // 8: playground_common.OpResponse
-	(*AppSummaryListResponse)(nil),                              // 9: playground_apps.AppSummaryListResponse
-	(*Application)(nil),                                         // 10: playground_apps.Application
-	(*ApplicationLogs)(nil),                                     // 11: playground_apps.ApplicationLogs
+	(*UpdateApplicationRequest)(nil),                            // 7: playground_apps.UpdateApplicationRequest
+	(*DeployApplicationResponse)(nil),                           // 8: playground_apps.DeployApplicationResponse
+	(*grpc_playground_common_go.OpResponse)(nil),                // 9: playground_common.OpResponse
+	(*AppSummaryListResponse)(nil),                              // 10: playground_apps.AppSummaryListResponse
+	(*Application)(nil),                                         // 11: playground_apps.Application
+	(*ApplicationLogs)(nil),                                     // 12: playground_apps.ApplicationLogs
 }
 var file_playground_apps_services_proto_depIdxs = []int32{
 	0,  // 0: playground_apps.Apps.Deploy:input_type -> playground_apps.DeployApplicationRequest
@@ -121,15 +129,17 @@ var file_playground_apps_services_proto_depIdxs = []int32{
 	4,  // 4: playground_apps.Apps.Resume:input_type -> playground_apps.ResumeApplicationRequest
 	5,  // 5: playground_apps.Apps.Logs:input_type -> playground_apps.LogRequest
 	6,  // 6: playground_apps.Apps.ValidateRepoAccess:input_type -> playground_apps.ValidateRepoAccessRequest
-	7,  // 7: playground_apps.Apps.Deploy:output_type -> playground_apps.DeployApplicationResponse
-	8,  // 8: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
-	9,  // 9: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
-	10, // 10: playground_apps.Apps.Info:output_type -> playground_apps.Application
-	8,  // 11: playground_apps.Apps.Resume:output_type -> playground_common.OpResponse
-	11, // 12: playground_apps.Apps.Logs:output_type -> playground_apps.ApplicationLogs
-	8,  // 13: playground_apps.Apps.ValidateRepoAccess:output_type -> playground_common.OpResponse
-	7,  // [7:14] is the sub-list for method output_type
-	0,  // [0:7] is the sub-list for method input_type
+	7,  // 7: playground_apps.Apps.Update:input_type -> playground_apps.UpdateApplicationRequest
+	8,  // 8: playground_apps.Apps.Deploy:output_type -> playground_apps.DeployApplicationResponse
+	9,  // 9: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
+	10, // 10: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
+	11, // 11: playground_apps.Apps.Info:output_type -> playground_apps.Application
+	9,  // 12: playground_apps.Apps.Resume:output_type -> playground_common.OpResponse
+	12, // 13: playground_apps.Apps.Logs:output_type -> playground_apps.ApplicationLogs
+	9,  // 14: playground_apps.Apps.ValidateRepoAccess:output_type -> playground_common.OpResponse
+	9,  // 15: playground_apps.Apps.Update:output_type -> playground_common.OpResponse
+	8,  // [8:16] is the sub-list for method output_type
+	0,  // [0:8] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -186,6 +196,8 @@ type AppsClient interface {
 	Logs(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*ApplicationLogs, error)
 	// ValidateRepoAccess to validate if a repository is accessible with the credentials received
 	ValidateRepoAccess(ctx context.Context, in *ValidateRepoAccessRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
+	// Update an application.
+	Update(ctx context.Context, in *UpdateApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 }
 
 type appsClient struct {
@@ -259,6 +271,15 @@ func (c *appsClient) ValidateRepoAccess(ctx context.Context, in *ValidateRepoAcc
 	return out, nil
 }
 
+func (c *appsClient) Update(ctx context.Context, in *UpdateApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
+	out := new(grpc_playground_common_go.OpResponse)
+	err := c.cc.Invoke(ctx, "/playground_apps.Apps/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AppsServer is the server API for Apps service.
 type AppsServer interface {
 	// Deploy an application.
@@ -275,6 +296,8 @@ type AppsServer interface {
 	Logs(context.Context, *LogRequest) (*ApplicationLogs, error)
 	// ValidateRepoAccess to validate if a repository is accessible with the credentials received
 	ValidateRepoAccess(context.Context, *ValidateRepoAccessRequest) (*grpc_playground_common_go.OpResponse, error)
+	// Update an application.
+	Update(context.Context, *UpdateApplicationRequest) (*grpc_playground_common_go.OpResponse, error)
 }
 
 // UnimplementedAppsServer can be embedded to have forward compatible implementations.
@@ -301,6 +324,9 @@ func (*UnimplementedAppsServer) Logs(context.Context, *LogRequest) (*Application
 }
 func (*UnimplementedAppsServer) ValidateRepoAccess(context.Context, *ValidateRepoAccessRequest) (*grpc_playground_common_go.OpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateRepoAccess not implemented")
+}
+func (*UnimplementedAppsServer) Update(context.Context, *UpdateApplicationRequest) (*grpc_playground_common_go.OpResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 
 func RegisterAppsServer(s *grpc.Server, srv AppsServer) {
@@ -433,6 +459,24 @@ func _Apps_ValidateRepoAccess_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Apps_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateApplicationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppsServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/playground_apps.Apps/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppsServer).Update(ctx, req.(*UpdateApplicationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Apps_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "playground_apps.Apps",
 	HandlerType: (*AppsServer)(nil),
@@ -464,6 +508,10 @@ var _Apps_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ValidateRepoAccess",
 			Handler:    _Apps_ValidateRepoAccess_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Apps_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
