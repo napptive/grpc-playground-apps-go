@@ -753,6 +753,10 @@
           "type": "string",
           "format": "int64",
           "title": "SinceNano with the timestamp time in nanoseconds from which the logs are requested"
+        },
+        "clean_logs": {
+          "type": "boolean",
+          "title": "CleanLogs with a flag to remove color ANSI codes in the logs"
         }
       },
       "title": "LogRequest with the information required to ask for application logs"

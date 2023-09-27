@@ -295,6 +295,8 @@ message LogRequest {
     string component_name = 5;
     // SinceNano with the timestamp time in nanoseconds from which the logs are requested
     int64 since_nano = 6;
+    // CleanLogs with a flag to remove color ANSI codes in the logs
+    bool clean_logs = 7;
 }
 
 // ApplicationLogs

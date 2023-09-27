@@ -1619,6 +1619,8 @@ func (m *LogRequest) validate(all bool) error {
 
 	// no validation rules for SinceNano
 
+	// no validation rules for CleanLogs
+
 	if len(errors) > 0 {
 		return LogRequestMultiError(errors)
 	}
