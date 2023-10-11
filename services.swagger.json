@@ -209,6 +209,39 @@
         ]
       }
     },
+    "/v0/apps/scale": {
+      "post": {
+        "summary": "Scale scales the application components",
+        "operationId": "Apps_Scale",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsScaleRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
     "/v0/apps/summary/list": {
       "post": {
         "summary": "SummaryList returns a subset of application summaries found in the user cluster.",
@@ -596,6 +629,21 @@
       },
       "title": "ApplicationLogs"
     },
+    "playground_appsComponentReplicas": {
+      "type": "object",
+      "properties": {
+        "component_name": {
+          "type": "string",
+          "title": "ComponentName with the name of the component to replicate"
+        },
+        "replicas": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Replicas with the number of replicas to scale"
+        }
+      },
+      "title": "ComponentReplicas with the number of replicas of a component"
+    },
     "playground_appsComponentStatus": {
       "type": "string",
       "enum": [
@@ -814,6 +862,35 @@
         }
       },
       "description": "ResumeApplicationRequest to resume a workflow application."
+    },
+    "playground_appsScaleRequest": {
+      "type": "object",
+      "properties": {
+        "environment_qualified_name": {
+          "type": "string",
+          "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/playground_appsComponentReplicas"
+          },
+          "title": "Components with a list of components to scale"
+        }
+      },
+      "title": "ScaleRequest with the information required to scale an application"
     },
     "playground_appsUpdateApplicationRequest": {
       "type": "object",

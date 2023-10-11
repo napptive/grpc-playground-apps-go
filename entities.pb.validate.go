@@ -1940,6 +1940,271 @@ var _ interface {
 	ErrorName() string
 } = LogEntryValidationError{}
 
+// Validate checks the field values on ComponentReplicas with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ComponentReplicas) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ComponentReplicas with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ComponentReplicasMultiError, or nil if none found.
+func (m *ComponentReplicas) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ComponentReplicas) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ComponentName
+
+	// no validation rules for Replicas
+
+	if len(errors) > 0 {
+		return ComponentReplicasMultiError(errors)
+	}
+	return nil
+}
+
+// ComponentReplicasMultiError is an error wrapping multiple validation errors
+// returned by ComponentReplicas.ValidateAll() if the designated constraints
+// aren't met.
+type ComponentReplicasMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ComponentReplicasMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ComponentReplicasMultiError) AllErrors() []error { return m }
+
+// ComponentReplicasValidationError is the validation error returned by
+// ComponentReplicas.Validate if the designated constraints aren't met.
+type ComponentReplicasValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ComponentReplicasValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ComponentReplicasValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ComponentReplicasValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ComponentReplicasValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ComponentReplicasValidationError) ErrorName() string {
+	return "ComponentReplicasValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ComponentReplicasValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sComponentReplicas.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ComponentReplicasValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ComponentReplicasValidationError{}
+
+// Validate checks the field values on ScaleRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *ScaleRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ScaleRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in ScaleRequestMultiError, or
+// nil if none found.
+func (m *ScaleRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ScaleRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for EnvironmentQualifiedName
+
+	// no validation rules for AccountId
+
+	// no validation rules for EnvironmentId
+
+	if utf8.RuneCountInString(m.GetApplicationName()) < 1 {
+		err := ScaleRequestValidationError{
+			field:  "ApplicationName",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(m.GetComponents()) < 1 {
+		err := ScaleRequestValidationError{
+			field:  "Components",
+			reason: "value must contain at least 1 item(s)",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	for idx, item := range m.GetComponents() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ScaleRequestValidationError{
+						field:  fmt.Sprintf("Components[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ScaleRequestValidationError{
+						field:  fmt.Sprintf("Components[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ScaleRequestValidationError{
+					field:  fmt.Sprintf("Components[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return ScaleRequestMultiError(errors)
+	}
+	return nil
+}
+
+// ScaleRequestMultiError is an error wrapping multiple validation errors
+// returned by ScaleRequest.ValidateAll() if the designated constraints aren't met.
+type ScaleRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ScaleRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ScaleRequestMultiError) AllErrors() []error { return m }
+
+// ScaleRequestValidationError is the validation error returned by
+// ScaleRequest.Validate if the designated constraints aren't met.
+type ScaleRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ScaleRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ScaleRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ScaleRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ScaleRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ScaleRequestValidationError) ErrorName() string { return "ScaleRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ScaleRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sScaleRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ScaleRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ScaleRequestValidationError{}
+
 // Validate checks the field values on ValidateRepoAccessRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
