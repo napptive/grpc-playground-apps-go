@@ -431,12 +431,12 @@
           },
           "description": "ComponentStatusName with the string representation of the component status."
         },
-        "components": {
+        "component_replicas": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/playground_appsComponentReplicas"
           },
-          "title": "Components with a list of components and the replicas of each one"
+          "title": "ComponentReplicas with a components and their replicas"
         }
       },
       "description": "AppSummary with a summary of an application."
@@ -535,12 +535,12 @@
           "type": "string",
           "description": "InstanceJSON with the JSON representation of the referenced instance."
         },
-        "components": {
+        "component_replicas": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/playground_appsComponentReplicas"
           },
-          "title": "Components with a list of components and the replicas of each one"
+          "title": "ComponentReplicas with a components and their replicas"
         }
       },
       "description": "Application top level entity."

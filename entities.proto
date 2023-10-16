@@ -85,8 +85,8 @@ message Application{
     string instance_yaml = 14;
     // InstanceJSON with the JSON representation of the referenced instance.
     string instance_json = 15;
-    // Components with a list of components and the replicas of each one
-    repeated ComponentReplicas components = 16;
+    // ComponentReplicas with a components and their replicas
+    repeated ComponentReplicas component_replicas = 16;
 }
 
 // IngressInfo with the relevant information about an ingress.
@@ -145,8 +145,8 @@ message AppSummary{
     map<string, ComponentStatus> component_status = 6;
     // ComponentStatusName with the string representation of the component status.
     map<string, string> component_status_name = 7;
-    // Components with a list of components and the replicas of each one
-    repeated ComponentReplicas components = 8;
+    // ComponentReplicas with a components and their replicas
+    repeated ComponentReplicas component_replicas = 8;
 }
 
 //
