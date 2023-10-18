@@ -242,6 +242,39 @@
         ]
       }
     },
+    "/v0/apps/sleep": {
+      "post": {
+        "summary": "Sleep scales all the application components to zero",
+        "operationId": "Apps_Sleep",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsSleepApplicationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
     "/v0/apps/summary/list": {
       "post": {
         "summary": "SummaryList returns a subset of application summaries found in the user cluster.",
@@ -905,6 +938,28 @@
         }
       },
       "title": "ScaleRequest with the information required to scale an application"
+    },
+    "playground_appsSleepApplicationRequest": {
+      "type": "object",
+      "properties": {
+        "environment_qualified_name": {
+          "type": "string",
+          "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application"
+        }
+      },
+      "title": "SleepApplicationRequest with the information required to sleep an application"
     },
     "playground_appsUpdateApplicationRequest": {
       "type": "object",
