@@ -113,7 +113,7 @@ func (m *Application) validate(all bool) error {
 
 	// no validation rules for InstanceJson
 
-	for idx, item := range m.GetComponentReplicas() {
+	for idx, item := range m.GetComponentSummary() {
 		_, _ = idx, item
 
 		if all {
@@ -121,7 +121,7 @@ func (m *Application) validate(all bool) error {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, ApplicationValidationError{
-						field:  fmt.Sprintf("ComponentReplicas[%v]", idx),
+						field:  fmt.Sprintf("ComponentSummary[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -129,7 +129,7 @@ func (m *Application) validate(all bool) error {
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
 					errors = append(errors, ApplicationValidationError{
-						field:  fmt.Sprintf("ComponentReplicas[%v]", idx),
+						field:  fmt.Sprintf("ComponentSummary[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -138,7 +138,7 @@ func (m *Application) validate(all bool) error {
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return ApplicationValidationError{
-					field:  fmt.Sprintf("ComponentReplicas[%v]", idx),
+					field:  fmt.Sprintf("ComponentSummary[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -257,6 +257,111 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ApplicationValidationError{}
+
+// Validate checks the field values on ComponentSummary with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ComponentSummary) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ComponentSummary with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ComponentSummaryMultiError, or nil if none found.
+func (m *ComponentSummary) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ComponentSummary) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ComponentName
+
+	// no validation rules for Replicas
+
+	// no validation rules for SupportsOpStop
+
+	if len(errors) > 0 {
+		return ComponentSummaryMultiError(errors)
+	}
+	return nil
+}
+
+// ComponentSummaryMultiError is an error wrapping multiple validation errors
+// returned by ComponentSummary.ValidateAll() if the designated constraints
+// aren't met.
+type ComponentSummaryMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ComponentSummaryMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ComponentSummaryMultiError) AllErrors() []error { return m }
+
+// ComponentSummaryValidationError is the validation error returned by
+// ComponentSummary.Validate if the designated constraints aren't met.
+type ComponentSummaryValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ComponentSummaryValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ComponentSummaryValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ComponentSummaryValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ComponentSummaryValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ComponentSummaryValidationError) ErrorName() string { return "ComponentSummaryValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ComponentSummaryValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sComponentSummary.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ComponentSummaryValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ComponentSummaryValidationError{}
 
 // Validate checks the field values on IngressInfo with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
@@ -778,7 +883,7 @@ func (m *AppSummary) validate(all bool) error {
 
 	// no validation rules for ComponentStatusName
 
-	for idx, item := range m.GetComponentReplicas() {
+	for idx, item := range m.GetComponentSummary() {
 		_, _ = idx, item
 
 		if all {
@@ -786,7 +891,7 @@ func (m *AppSummary) validate(all bool) error {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
 					errors = append(errors, AppSummaryValidationError{
-						field:  fmt.Sprintf("ComponentReplicas[%v]", idx),
+						field:  fmt.Sprintf("ComponentSummary[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -794,7 +899,7 @@ func (m *AppSummary) validate(all bool) error {
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
 					errors = append(errors, AppSummaryValidationError{
-						field:  fmt.Sprintf("ComponentReplicas[%v]", idx),
+						field:  fmt.Sprintf("ComponentSummary[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
 					})
@@ -803,7 +908,7 @@ func (m *AppSummary) validate(all bool) error {
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
 				return AppSummaryValidationError{
-					field:  fmt.Sprintf("ComponentReplicas[%v]", idx),
+					field:  fmt.Sprintf("ComponentSummary[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}

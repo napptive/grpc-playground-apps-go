@@ -464,12 +464,12 @@
           },
           "description": "ComponentStatusName with the string representation of the component status."
         },
-        "component_replicas": {
+        "component_summary": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/playground_appsComponentReplicas"
+            "$ref": "#/definitions/playground_appsComponentSummary"
           },
-          "title": "ComponentReplicas with a components and their replicas"
+          "title": "ComponentSummary with a components and their replicas"
         }
       },
       "description": "AppSummary with a summary of an application."
@@ -568,12 +568,12 @@
           "type": "string",
           "description": "InstanceJSON with the JSON representation of the referenced instance."
         },
-        "component_replicas": {
+        "component_summary": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/playground_appsComponentReplicas"
+            "$ref": "#/definitions/playground_appsComponentSummary"
           },
-          "title": "ComponentReplicas with a components and their replicas"
+          "title": "ComponentSummary with a components and their replicas"
         }
       },
       "description": "Application top level entity."
@@ -704,6 +704,25 @@
       ],
       "default": "UNKNOWN",
       "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - UNKNOWN: Unknown with an undetermined status\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - RUNNING: RUNNING signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - TERMINATED: TERMINATED All the task in a job are terminated\n - SCHEDULED: SCHEDULED a cronJob component is waiting to execute the jobs\n - ERROR: ERROR signals that there has been an error on a component."
+    },
+    "playground_appsComponentSummary": {
+      "type": "object",
+      "properties": {
+        "component_name": {
+          "type": "string",
+          "title": "ComponentName with the name of the components"
+        },
+        "replicas": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Replicas with the number of the replicas (-1 if the replicate operation is not available for the component)"
+        },
+        "supports_op_stop": {
+          "type": "boolean",
+          "title": "SupportsOpStop with a flag to indicate if the stop operation is available for the component"
+        }
+      },
+      "title": "ComponentSummary with the information a component\nfor now only replicas and AvailableStop info\nTODO: Add Status, ingress and images"
     },
     "playground_appsDeployApplicationRequest": {
       "type": "object",
