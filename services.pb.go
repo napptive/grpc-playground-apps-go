@@ -40,7 +40,7 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x65, 0x6e, 0x74,
 	0x69, 0x74, 0x69, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xf1, 0x08, 0x0a, 0x04, 0x41, 0x70,
+	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x84, 0x08, 0x0a, 0x04, 0x41, 0x70,
 	0x70, 0x73, 0x12, 0x7b, 0x0a, 0x06, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x12, 0x29, 0x2e, 0x70,
 	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x44,
 	0x65, 0x70, 0x6c, 0x6f, 0x79, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
@@ -105,18 +105,11 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4f, 0x70, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14, 0x22, 0x0f, 0x2f, 0x76,
 	0x30, 0x2f, 0x61, 0x70, 0x70, 0x73, 0x2f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x3a, 0x01, 0x2a,
-	0x12, 0x6b, 0x0a, 0x05, 0x53, 0x6c, 0x65, 0x65, 0x70, 0x12, 0x28, 0x2e, 0x70, 0x6c, 0x61, 0x79,
-	0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x53, 0x6c, 0x65, 0x65,
-	0x70, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64,
-	0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x19, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x13, 0x22, 0x0e, 0x2f, 0x76, 0x30, 0x2f,
-	0x61, 0x70, 0x70, 0x73, 0x2f, 0x73, 0x6c, 0x65, 0x65, 0x70, 0x3a, 0x01, 0x2a, 0x42, 0x45, 0x5a,
-	0x43, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6e, 0x61, 0x70, 0x70,
-	0x74, 0x69, 0x76, 0x65, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x2d, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72,
-	0x6f, 0x75, 0x6e, 0x64, 0x2d, 0x61, 0x70, 0x70, 0x73, 0x2d, 0x67, 0x6f, 0x3b, 0x67, 0x72, 0x70,
-	0x63, 0x5f, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70,
-	0x73, 0x5f, 0x67, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x42, 0x45, 0x5a, 0x43, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6e,
+	0x61, 0x70, 0x70, 0x74, 0x69, 0x76, 0x65, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x2d, 0x70, 0x6c, 0x61,
+	0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2d, 0x61, 0x70, 0x70, 0x73, 0x2d, 0x67, 0x6f, 0x3b,
+	0x67, 0x72, 0x70, 0x63, 0x5f, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f,
+	0x61, 0x70, 0x70, 0x73, 0x5f, 0x67, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_playground_apps_services_proto_goTypes = []interface{}{
@@ -129,12 +122,11 @@ var file_playground_apps_services_proto_goTypes = []interface{}{
 	(*ScaleRequest)(nil),                                        // 6: playground_apps.ScaleRequest
 	(*ValidateRepoAccessRequest)(nil),                           // 7: playground_apps.ValidateRepoAccessRequest
 	(*UpdateApplicationRequest)(nil),                            // 8: playground_apps.UpdateApplicationRequest
-	(*SleepApplicationRequest)(nil),                             // 9: playground_apps.SleepApplicationRequest
-	(*DeployApplicationResponse)(nil),                           // 10: playground_apps.DeployApplicationResponse
-	(*grpc_playground_common_go.OpResponse)(nil),                // 11: playground_common.OpResponse
-	(*AppSummaryListResponse)(nil),                              // 12: playground_apps.AppSummaryListResponse
-	(*Application)(nil),                                         // 13: playground_apps.Application
-	(*ApplicationLogs)(nil),                                     // 14: playground_apps.ApplicationLogs
+	(*DeployApplicationResponse)(nil),                           // 9: playground_apps.DeployApplicationResponse
+	(*grpc_playground_common_go.OpResponse)(nil),                // 10: playground_common.OpResponse
+	(*AppSummaryListResponse)(nil),                              // 11: playground_apps.AppSummaryListResponse
+	(*Application)(nil),                                         // 12: playground_apps.Application
+	(*ApplicationLogs)(nil),                                     // 13: playground_apps.ApplicationLogs
 }
 var file_playground_apps_services_proto_depIdxs = []int32{
 	0,  // 0: playground_apps.Apps.Deploy:input_type -> playground_apps.DeployApplicationRequest
@@ -146,19 +138,17 @@ var file_playground_apps_services_proto_depIdxs = []int32{
 	6,  // 6: playground_apps.Apps.Scale:input_type -> playground_apps.ScaleRequest
 	7,  // 7: playground_apps.Apps.ValidateRepoAccess:input_type -> playground_apps.ValidateRepoAccessRequest
 	8,  // 8: playground_apps.Apps.Update:input_type -> playground_apps.UpdateApplicationRequest
-	9,  // 9: playground_apps.Apps.Sleep:input_type -> playground_apps.SleepApplicationRequest
-	10, // 10: playground_apps.Apps.Deploy:output_type -> playground_apps.DeployApplicationResponse
-	11, // 11: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
-	12, // 12: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
-	13, // 13: playground_apps.Apps.Info:output_type -> playground_apps.Application
-	11, // 14: playground_apps.Apps.Resume:output_type -> playground_common.OpResponse
-	14, // 15: playground_apps.Apps.Logs:output_type -> playground_apps.ApplicationLogs
-	11, // 16: playground_apps.Apps.Scale:output_type -> playground_common.OpResponse
-	11, // 17: playground_apps.Apps.ValidateRepoAccess:output_type -> playground_common.OpResponse
-	11, // 18: playground_apps.Apps.Update:output_type -> playground_common.OpResponse
-	11, // 19: playground_apps.Apps.Sleep:output_type -> playground_common.OpResponse
-	10, // [10:20] is the sub-list for method output_type
-	0,  // [0:10] is the sub-list for method input_type
+	9,  // 9: playground_apps.Apps.Deploy:output_type -> playground_apps.DeployApplicationResponse
+	10, // 10: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
+	11, // 11: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
+	12, // 12: playground_apps.Apps.Info:output_type -> playground_apps.Application
+	10, // 13: playground_apps.Apps.Resume:output_type -> playground_common.OpResponse
+	13, // 14: playground_apps.Apps.Logs:output_type -> playground_apps.ApplicationLogs
+	10, // 15: playground_apps.Apps.Scale:output_type -> playground_common.OpResponse
+	10, // 16: playground_apps.Apps.ValidateRepoAccess:output_type -> playground_common.OpResponse
+	10, // 17: playground_apps.Apps.Update:output_type -> playground_common.OpResponse
+	9,  // [9:18] is the sub-list for method output_type
+	0,  // [0:9] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -219,8 +209,6 @@ type AppsClient interface {
 	ValidateRepoAccess(ctx context.Context, in *ValidateRepoAccessRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 	// Update an application.
 	Update(ctx context.Context, in *UpdateApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
-	// Sleep scales all the application components to zero
-	Sleep(ctx context.Context, in *SleepApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 }
 
 type appsClient struct {
@@ -312,15 +300,6 @@ func (c *appsClient) Update(ctx context.Context, in *UpdateApplicationRequest, o
 	return out, nil
 }
 
-func (c *appsClient) Sleep(ctx context.Context, in *SleepApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
-	out := new(grpc_playground_common_go.OpResponse)
-	err := c.cc.Invoke(ctx, "/playground_apps.Apps/Sleep", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AppsServer is the server API for Apps service.
 type AppsServer interface {
 	// Deploy an application.
@@ -341,8 +320,6 @@ type AppsServer interface {
 	ValidateRepoAccess(context.Context, *ValidateRepoAccessRequest) (*grpc_playground_common_go.OpResponse, error)
 	// Update an application.
 	Update(context.Context, *UpdateApplicationRequest) (*grpc_playground_common_go.OpResponse, error)
-	// Sleep scales all the application components to zero
-	Sleep(context.Context, *SleepApplicationRequest) (*grpc_playground_common_go.OpResponse, error)
 }
 
 // UnimplementedAppsServer can be embedded to have forward compatible implementations.
@@ -375,9 +352,6 @@ func (*UnimplementedAppsServer) ValidateRepoAccess(context.Context, *ValidateRep
 }
 func (*UnimplementedAppsServer) Update(context.Context, *UpdateApplicationRequest) (*grpc_playground_common_go.OpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
-}
-func (*UnimplementedAppsServer) Sleep(context.Context, *SleepApplicationRequest) (*grpc_playground_common_go.OpResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Sleep not implemented")
 }
 
 func RegisterAppsServer(s *grpc.Server, srv AppsServer) {
@@ -546,24 +520,6 @@ func _Apps_Update_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Apps_Sleep_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SleepApplicationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppsServer).Sleep(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/playground_apps.Apps/Sleep",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppsServer).Sleep(ctx, req.(*SleepApplicationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Apps_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "playground_apps.Apps",
 	HandlerType: (*AppsServer)(nil),
@@ -603,10 +559,6 @@ var _Apps_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Update",
 			Handler:    _Apps_Update_Handler,
-		},
-		{
-			MethodName: "Sleep",
-			Handler:    _Apps_Sleep_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
