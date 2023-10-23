@@ -98,8 +98,10 @@ message ComponentSummary {
     string component_name = 1;
     // Replicas with the number of the replicas (-1 if the replicate operation is not available for the component)
     int32 replicas = 2;
+    // SupportsOpScale with a flag to indicate if the scale operation is available for the component
+    bool supports_op_scale = 3;
     // SupportsOpStop with a flag to indicate if the stop operation is available for the component
-    bool supports_op_stop = 3;
+    bool supports_op_stop = 4;
 }
 
 // IngressInfo with the relevant information about an ingress.

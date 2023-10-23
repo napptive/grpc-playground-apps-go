@@ -684,6 +684,10 @@
           "format": "int32",
           "title": "Replicas with the number of the replicas (-1 if the replicate operation is not available for the component)"
         },
+        "supports_op_scale": {
+          "type": "boolean",
+          "title": "SupportsOpScale with a flag to indicate if the scale operation is available for the component"
+        },
         "supports_op_stop": {
           "type": "boolean",
           "title": "SupportsOpStop with a flag to indicate if the stop operation is available for the component"

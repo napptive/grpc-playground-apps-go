@@ -284,6 +284,8 @@ func (m *ComponentSummary) validate(all bool) error {
 
 	// no validation rules for Replicas
 
+	// no validation rules for SupportsOpScale
+
 	// no validation rules for SupportsOpStop
 
 	if len(errors) > 0 {
