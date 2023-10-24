@@ -2380,6 +2380,138 @@ var _ interface {
 	ErrorName() string
 } = ScaleRequestValidationError{}
 
+// Validate checks the field values on StopApplicationComponentsRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *StopApplicationComponentsRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on StopApplicationComponentsRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// StopApplicationComponentsRequestMultiError, or nil if none found.
+func (m *StopApplicationComponentsRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *StopApplicationComponentsRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for EnvironmentQualifiedName
+
+	// no validation rules for AccountId
+
+	// no validation rules for EnvironmentId
+
+	if utf8.RuneCountInString(m.GetApplicationName()) < 1 {
+		err := StopApplicationComponentsRequestValidationError{
+			field:  "ApplicationName",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(m.GetComponents()) < 1 {
+		err := StopApplicationComponentsRequestValidationError{
+			field:  "Components",
+			reason: "value must contain at least 1 item(s)",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return StopApplicationComponentsRequestMultiError(errors)
+	}
+	return nil
+}
+
+// StopApplicationComponentsRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// StopApplicationComponentsRequest.ValidateAll() if the designated
+// constraints aren't met.
+type StopApplicationComponentsRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m StopApplicationComponentsRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m StopApplicationComponentsRequestMultiError) AllErrors() []error { return m }
+
+// StopApplicationComponentsRequestValidationError is the validation error
+// returned by StopApplicationComponentsRequest.Validate if the designated
+// constraints aren't met.
+type StopApplicationComponentsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e StopApplicationComponentsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e StopApplicationComponentsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e StopApplicationComponentsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e StopApplicationComponentsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e StopApplicationComponentsRequestValidationError) ErrorName() string {
+	return "StopApplicationComponentsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e StopApplicationComponentsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sStopApplicationComponentsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = StopApplicationComponentsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = StopApplicationComponentsRequestValidationError{}
+
 // Validate checks the field values on ValidateRepoAccessRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.

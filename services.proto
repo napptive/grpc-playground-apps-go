@@ -67,6 +67,14 @@ service Apps{
         };
     }
 
+    // StopApplicationComponents stops application components adding the stop trait
+    rpc StopApplicationComponents(StopApplicationComponentsRequest) returns (playground_common.OpResponse) {
+        option (google.api.http) = {
+            post : "/v0/apps/stop"
+            body : "*"
+        };
+    }
+
     // ValidateRepoAccess to validate if a repository is accessible with the credentials received
     rpc ValidateRepoAccess(ValidateRepoAccessRequest) returns (playground_common.OpResponse){
         option (google.api.http) = {

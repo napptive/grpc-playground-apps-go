@@ -242,6 +242,39 @@
         ]
       }
     },
+    "/v0/apps/stop": {
+      "post": {
+        "summary": "StopApplicationComponents stops application components adding the stop trait",
+        "operationId": "Apps_StopApplicationComponents",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsStopApplicationComponentsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      }
+    },
     "/v0/apps/summary/list": {
       "post": {
         "summary": "SummaryList returns a subset of application summaries found in the user cluster.",
@@ -928,6 +961,35 @@
         }
       },
       "title": "ScaleRequest with the information required to scale an application"
+    },
+    "playground_appsStopApplicationComponentsRequest": {
+      "type": "object",
+      "properties": {
+        "environment_qualified_name": {
+          "type": "string",
+          "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components with a list of components to scale"
+        }
+      },
+      "title": "StopApplicationComponents with the information required to stop application components"
     },
     "playground_appsUpdateApplicationRequest": {
       "type": "object",

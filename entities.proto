@@ -363,6 +363,21 @@ message ScaleRequest {
     repeated ComponentReplicas components = 5 [(validate.rules).repeated= {min_items: 1}];
 }
 
+// StopApplicationComponents with the information required to stop application components
+message StopApplicationComponentsRequest {
+    // EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as
+    // <account_name>/<env_name>.
+    string environment_qualified_name = 1;
+    // AccountId with the account identifier.
+    string account_id = 2;
+    // EnvironmentId with the environment identifier
+    string environment_id = 3;
+    // ApplicationName with the name of the application
+    string application_name = 4 [(validate.rules).string.min_len = 1];
+    // Components with a list of components to scale
+    repeated string components = 5 [(validate.rules).repeated= {min_items: 1}];
+}
+
 // ValidateRepoAccessRequest with the information required to validate if repo is accessible
 message ValidateRepoAccessRequest {
     // RepoType with the repository type (GitHub for now)
