@@ -423,10 +423,11 @@
         "APP_TERMINATED",
         "APP_SUSPENDED",
         "APP_SCHEDULED",
-        "APP_ERROR"
+        "APP_ERROR",
+        "APP_STOPPED"
       ],
       "default": "APP_UNKNOWN",
-      "description": "AppStatus defines the status of an application.\n\n - APP_UNKNOWN: Unknown with an undetermined status\n - APP_OK: AppOk signals that are elements of a given application are running.\nWe need OK status to be compatible with OAM2\n - APP_WARNING: AppWarning signals that some of the elements of an application are not running.\n - APP_RUNNING: AppRunning signals that are elements of a given application are running.\n - APP_TERMINATED: AppTerminated when an application without deployments neither statefulsets, only workflow and/or jobs terminated\n - APP_SUSPENDED: AppSuspended when the workflow is suspended waiting for a manual relaunch\n - APP_SCHEDULED: AppScheduled when an application with cronJobs are waiting to execute the jobs\n - APP_ERROR: AppError signals that the application is on an error state."
+      "description": "AppStatus defines the status of an application.\n\n - APP_UNKNOWN: Unknown with an undetermined status\n - APP_OK: AppOk signals that are elements of a given application are running.\nWe need OK status to be compatible with OAM2\n - APP_WARNING: AppWarning signals that some of the elements of an application are not running.\n - APP_RUNNING: AppRunning signals that are elements of a given application are running.\n - APP_TERMINATED: AppTerminated when an application without deployments neither statefulsets, only workflow and/or jobs terminated\n - APP_SUSPENDED: AppSuspended when the workflow is suspended waiting for a manual relaunch\n - APP_SCHEDULED: AppScheduled when an application with cronJobs are waiting to execute the jobs\n - APP_ERROR: AppError signals that the application is on an error state.\n - APP_STOPPED: AppStopped signals that all the application components are stopped"
     },
     "playground_appsAppSummary": {
       "type": "object",
@@ -700,10 +701,11 @@
         "RUNNING",
         "TERMINATED",
         "SCHEDULED",
-        "ERROR"
+        "ERROR",
+        "STOPPED"
       ],
       "default": "UNKNOWN",
-      "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - UNKNOWN: Unknown with an undetermined status\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - RUNNING: RUNNING signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - TERMINATED: TERMINATED All the task in a job are terminated\n - SCHEDULED: SCHEDULED a cronJob component is waiting to execute the jobs\n - ERROR: ERROR signals that there has been an error on a component."
+      "description": "ComponentStatus defines the status of a component associated with an application configuration.\n\n - UNKNOWN: Unknown with an undetermined status\n - OK: OK signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - WARNING: WARNING signals that some of the replicas of the component are running but some remain. This could mean that either\nthe replicas are being launched, or an error prevents the creation of the required replicas.\n - RUNNING: RUNNING signals that all the replicas of the component are running. Notice that the number of replicas may be\nspecified in a trait.\n - TERMINATED: TERMINATED All the task in a job are terminated\n - SCHEDULED: SCHEDULED a cronJob component is waiting to execute the jobs\n - ERROR: ERROR signals that there has been an error on a component.\n - STOPPED: STOPPED when the component is stopped"
     },
     "playground_appsComponentSummary": {
       "type": "object",

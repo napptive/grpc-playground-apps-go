@@ -29,6 +29,8 @@ enum ComponentStatus{
     SCHEDULED = 5;
     // ERROR signals that there has been an error on a component.
     ERROR = 6;
+    // STOPPED when the component is stopped
+    STOPPED = 7;
 }
 
 // AppStatus defines the status of an application.
@@ -50,6 +52,8 @@ enum AppStatus{
     APP_SCHEDULED = 6;
     // AppError signals that the application is on an error state.
     APP_ERROR = 7;
+    // AppStopped signals that all the application components are stopped
+    APP_STOPPED = 8;
 }
 
 
