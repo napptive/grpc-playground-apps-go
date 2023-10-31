@@ -178,8 +178,8 @@
     },
     "/v0/apps/resume": {
       "post": {
-        "summary": "Resume a suspended workflow application.",
-        "operationId": "Apps_Resume",
+        "summary": "ResumeApplicationComponents resumes application components",
+        "operationId": "Apps_ResumeApplicationComponents",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -200,7 +200,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/playground_appsResumeApplicationRequest"
+              "$ref": "#/definitions/playground_appsResumeApplicationComponentsRequest"
             }
           }
         ],
@@ -338,6 +338,39 @@
         ],
         "tags": [
           "Apps"
+        ]
+      }
+    },
+    "/v0/workflows/resume": {
+      "post": {
+        "summary": "Resume a suspended workflow application.",
+        "operationId": "Workflows_Resume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/playground_commonOpResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/playground_appsResumeWorkflowRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Workflows"
         ]
       }
     }
@@ -913,7 +946,35 @@
       "description": "- GIT: GIT repository",
       "title": "RepoType with the repository (GITHUB and GitLab for now)"
     },
-    "playground_appsResumeApplicationRequest": {
+    "playground_appsResumeApplicationComponentsRequest": {
+      "type": "object",
+      "properties": {
+        "environment_qualified_name": {
+          "type": "string",
+          "description": "EnvironmentQualifiedName (EnvQN) contains both the account name and the environment name as\n\u003caccount_name\u003e/\u003cenv_name\u003e."
+        },
+        "account_id": {
+          "type": "string",
+          "description": "AccountId with the account identifier."
+        },
+        "environment_id": {
+          "type": "string",
+          "title": "EnvironmentId with the environment identifier"
+        },
+        "application_name": {
+          "type": "string",
+          "title": "ApplicationName with the name of the application"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components with a list of components to scale"
+        }
+      }
+    },
+    "playground_appsResumeWorkflowRequest": {
       "type": "object",
       "properties": {
         "target_environment_qualified_name": {
@@ -933,7 +994,7 @@
           "description": "ApplicationName to be removed."
         }
       },
-      "description": "ResumeApplicationRequest to resume a workflow application."
+      "description": "ResumeWorkflowRequest to resume a workflow application."
     },
     "playground_appsScaleRequest": {
       "type": "object",

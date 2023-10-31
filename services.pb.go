@@ -40,7 +40,7 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x2f, 0x65, 0x6e, 0x74,
 	0x69, 0x74, 0x69, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x8e, 0x09, 0x0a, 0x04, 0x41, 0x70,
+	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xae, 0x09, 0x0a, 0x04, 0x41, 0x70,
 	0x70, 0x73, 0x12, 0x7b, 0x0a, 0x06, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x12, 0x29, 0x2e, 0x70,
 	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x44,
 	0x65, 0x70, 0x6c, 0x6f, 0x79, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e,
@@ -70,14 +70,7 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x74, 0x1a, 0x1c, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61,
 	0x70, 0x70, 0x73, 0x2e, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22,
 	0x17, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x11, 0x22, 0x0c, 0x2f, 0x76, 0x30, 0x2f, 0x61, 0x70, 0x70,
-	0x73, 0x2f, 0x67, 0x65, 0x74, 0x3a, 0x01, 0x2a, 0x12, 0x6e, 0x0a, 0x06, 0x52, 0x65, 0x73, 0x75,
-	0x6d, 0x65, 0x12, 0x29, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f,
-	0x61, 0x70, 0x70, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6d, 0x65, 0x41, 0x70, 0x70, 0x6c, 0x69,
-	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e,
-	0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f,
-	0x6e, 0x2e, 0x4f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a, 0x82, 0xd3,
-	0xe4, 0x93, 0x02, 0x14, 0x22, 0x0f, 0x2f, 0x76, 0x30, 0x2f, 0x61, 0x70, 0x70, 0x73, 0x2f, 0x72,
-	0x65, 0x73, 0x75, 0x6d, 0x65, 0x3a, 0x01, 0x2a, 0x12, 0x5f, 0x0a, 0x04, 0x4c, 0x6f, 0x67, 0x73,
+	0x73, 0x2f, 0x67, 0x65, 0x74, 0x3a, 0x01, 0x2a, 0x12, 0x5f, 0x0a, 0x04, 0x4c, 0x6f, 0x67, 0x73,
 	0x12, 0x1b, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70,
 	0x70, 0x73, 0x2e, 0x4c, 0x6f, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e,
 	0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e,
@@ -98,7 +91,16 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e,
 	0x2e, 0x4f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x18, 0x82, 0xd3, 0xe4,
 	0x93, 0x02, 0x12, 0x22, 0x0d, 0x2f, 0x76, 0x30, 0x2f, 0x61, 0x70, 0x70, 0x73, 0x2f, 0x73, 0x74,
-	0x6f, 0x70, 0x3a, 0x01, 0x2a, 0x12, 0x82, 0x01, 0x0a, 0x12, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61,
+	0x6f, 0x70, 0x3a, 0x01, 0x2a, 0x12, 0x8d, 0x01, 0x0a, 0x1b, 0x52, 0x65, 0x73, 0x75, 0x6d, 0x65,
+	0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6d, 0x70, 0x6f,
+	0x6e, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x33, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75,
+	0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6d, 0x65, 0x41, 0x70,
+	0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6d, 0x70, 0x6f, 0x6e, 0x65,
+	0x6e, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x6c, 0x61,
+	0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4f,
+	0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x14, 0x22, 0x0f, 0x2f, 0x76, 0x30, 0x2f, 0x61, 0x70, 0x70, 0x73, 0x2f, 0x72, 0x65, 0x73, 0x75,
+	0x6d, 0x65, 0x3a, 0x01, 0x2a, 0x12, 0x82, 0x01, 0x0a, 0x12, 0x56, 0x61, 0x6c, 0x69, 0x64, 0x61,
 	0x74, 0x65, 0x52, 0x65, 0x70, 0x6f, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x12, 0x2a, 0x2e, 0x70,
 	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x2e, 0x56,
 	0x61, 0x6c, 0x69, 0x64, 0x61, 0x74, 0x65, 0x52, 0x65, 0x70, 0x6f, 0x41, 0x63, 0x63, 0x65, 0x73,
@@ -113,12 +115,20 @@ var file_playground_apps_services_proto_rawDesc = []byte{
 	0x1d, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d,
 	0x6d, 0x6f, 0x6e, 0x2e, 0x4f, 0x70, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1a,
 	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x14, 0x22, 0x0f, 0x2f, 0x76, 0x30, 0x2f, 0x61, 0x70, 0x70, 0x73,
-	0x2f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x3a, 0x01, 0x2a, 0x42, 0x45, 0x5a, 0x43, 0x67, 0x69,
-	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6e, 0x61, 0x70, 0x70, 0x74, 0x69, 0x76,
-	0x65, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x2d, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e,
-	0x64, 0x2d, 0x61, 0x70, 0x70, 0x73, 0x2d, 0x67, 0x6f, 0x3b, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x70,
-	0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x5f, 0x67,
-	0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x2f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x3a, 0x01, 0x2a, 0x32, 0x7d, 0x0a, 0x09, 0x57, 0x6f,
+	0x72, 0x6b, 0x66, 0x6c, 0x6f, 0x77, 0x73, 0x12, 0x70, 0x0a, 0x06, 0x52, 0x65, 0x73, 0x75, 0x6d,
+	0x65, 0x12, 0x26, 0x2e, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61,
+	0x70, 0x70, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x75, 0x6d, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x66, 0x6c,
+	0x6f, 0x77, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x70, 0x6c, 0x61, 0x79,
+	0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x4f, 0x70,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x19,
+	0x22, 0x14, 0x2f, 0x76, 0x30, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x66, 0x6c, 0x6f, 0x77, 0x73, 0x2f,
+	0x72, 0x65, 0x73, 0x75, 0x6d, 0x65, 0x3a, 0x01, 0x2a, 0x42, 0x45, 0x5a, 0x43, 0x67, 0x69, 0x74,
+	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6e, 0x61, 0x70, 0x70, 0x74, 0x69, 0x76, 0x65,
+	0x2f, 0x67, 0x72, 0x70, 0x63, 0x2d, 0x70, 0x6c, 0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64,
+	0x2d, 0x61, 0x70, 0x70, 0x73, 0x2d, 0x67, 0x6f, 0x3b, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x70, 0x6c,
+	0x61, 0x79, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x5f, 0x61, 0x70, 0x70, 0x73, 0x5f, 0x67, 0x6f,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_playground_apps_services_proto_goTypes = []interface{}{
@@ -126,41 +136,44 @@ var file_playground_apps_services_proto_goTypes = []interface{}{
 	(*RemoveApplicationRequest)(nil),                            // 1: playground_apps.RemoveApplicationRequest
 	(*grpc_playground_environments_go.EnvironmentSelector)(nil), // 2: playground_environments.EnvironmentSelector
 	(*AppInfoRequest)(nil),                                      // 3: playground_apps.AppInfoRequest
-	(*ResumeApplicationRequest)(nil),                            // 4: playground_apps.ResumeApplicationRequest
-	(*LogRequest)(nil),                                          // 5: playground_apps.LogRequest
-	(*ScaleRequest)(nil),                                        // 6: playground_apps.ScaleRequest
-	(*StopApplicationComponentsRequest)(nil),                    // 7: playground_apps.StopApplicationComponentsRequest
+	(*LogRequest)(nil),                                          // 4: playground_apps.LogRequest
+	(*ScaleRequest)(nil),                                        // 5: playground_apps.ScaleRequest
+	(*StopApplicationComponentsRequest)(nil),                    // 6: playground_apps.StopApplicationComponentsRequest
+	(*ResumeApplicationComponentsRequest)(nil),                  // 7: playground_apps.ResumeApplicationComponentsRequest
 	(*ValidateRepoAccessRequest)(nil),                           // 8: playground_apps.ValidateRepoAccessRequest
 	(*UpdateApplicationRequest)(nil),                            // 9: playground_apps.UpdateApplicationRequest
-	(*DeployApplicationResponse)(nil),                           // 10: playground_apps.DeployApplicationResponse
-	(*grpc_playground_common_go.OpResponse)(nil),                // 11: playground_common.OpResponse
-	(*AppSummaryListResponse)(nil),                              // 12: playground_apps.AppSummaryListResponse
-	(*Application)(nil),                                         // 13: playground_apps.Application
-	(*ApplicationLogs)(nil),                                     // 14: playground_apps.ApplicationLogs
+	(*ResumeWorkflowRequest)(nil),                               // 10: playground_apps.ResumeWorkflowRequest
+	(*DeployApplicationResponse)(nil),                           // 11: playground_apps.DeployApplicationResponse
+	(*grpc_playground_common_go.OpResponse)(nil),                // 12: playground_common.OpResponse
+	(*AppSummaryListResponse)(nil),                              // 13: playground_apps.AppSummaryListResponse
+	(*Application)(nil),                                         // 14: playground_apps.Application
+	(*ApplicationLogs)(nil),                                     // 15: playground_apps.ApplicationLogs
 }
 var file_playground_apps_services_proto_depIdxs = []int32{
 	0,  // 0: playground_apps.Apps.Deploy:input_type -> playground_apps.DeployApplicationRequest
 	1,  // 1: playground_apps.Apps.Remove:input_type -> playground_apps.RemoveApplicationRequest
 	2,  // 2: playground_apps.Apps.SummaryList:input_type -> playground_environments.EnvironmentSelector
 	3,  // 3: playground_apps.Apps.Info:input_type -> playground_apps.AppInfoRequest
-	4,  // 4: playground_apps.Apps.Resume:input_type -> playground_apps.ResumeApplicationRequest
-	5,  // 5: playground_apps.Apps.Logs:input_type -> playground_apps.LogRequest
-	6,  // 6: playground_apps.Apps.Scale:input_type -> playground_apps.ScaleRequest
-	7,  // 7: playground_apps.Apps.StopApplicationComponents:input_type -> playground_apps.StopApplicationComponentsRequest
+	4,  // 4: playground_apps.Apps.Logs:input_type -> playground_apps.LogRequest
+	5,  // 5: playground_apps.Apps.Scale:input_type -> playground_apps.ScaleRequest
+	6,  // 6: playground_apps.Apps.StopApplicationComponents:input_type -> playground_apps.StopApplicationComponentsRequest
+	7,  // 7: playground_apps.Apps.ResumeApplicationComponents:input_type -> playground_apps.ResumeApplicationComponentsRequest
 	8,  // 8: playground_apps.Apps.ValidateRepoAccess:input_type -> playground_apps.ValidateRepoAccessRequest
 	9,  // 9: playground_apps.Apps.Update:input_type -> playground_apps.UpdateApplicationRequest
-	10, // 10: playground_apps.Apps.Deploy:output_type -> playground_apps.DeployApplicationResponse
-	11, // 11: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
-	12, // 12: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
-	13, // 13: playground_apps.Apps.Info:output_type -> playground_apps.Application
-	11, // 14: playground_apps.Apps.Resume:output_type -> playground_common.OpResponse
-	14, // 15: playground_apps.Apps.Logs:output_type -> playground_apps.ApplicationLogs
-	11, // 16: playground_apps.Apps.Scale:output_type -> playground_common.OpResponse
-	11, // 17: playground_apps.Apps.StopApplicationComponents:output_type -> playground_common.OpResponse
-	11, // 18: playground_apps.Apps.ValidateRepoAccess:output_type -> playground_common.OpResponse
-	11, // 19: playground_apps.Apps.Update:output_type -> playground_common.OpResponse
-	10, // [10:20] is the sub-list for method output_type
-	0,  // [0:10] is the sub-list for method input_type
+	10, // 10: playground_apps.Workflows.Resume:input_type -> playground_apps.ResumeWorkflowRequest
+	11, // 11: playground_apps.Apps.Deploy:output_type -> playground_apps.DeployApplicationResponse
+	12, // 12: playground_apps.Apps.Remove:output_type -> playground_common.OpResponse
+	13, // 13: playground_apps.Apps.SummaryList:output_type -> playground_apps.AppSummaryListResponse
+	14, // 14: playground_apps.Apps.Info:output_type -> playground_apps.Application
+	15, // 15: playground_apps.Apps.Logs:output_type -> playground_apps.ApplicationLogs
+	12, // 16: playground_apps.Apps.Scale:output_type -> playground_common.OpResponse
+	12, // 17: playground_apps.Apps.StopApplicationComponents:output_type -> playground_common.OpResponse
+	12, // 18: playground_apps.Apps.ResumeApplicationComponents:output_type -> playground_common.OpResponse
+	12, // 19: playground_apps.Apps.ValidateRepoAccess:output_type -> playground_common.OpResponse
+	12, // 20: playground_apps.Apps.Update:output_type -> playground_common.OpResponse
+	12, // 21: playground_apps.Workflows.Resume:output_type -> playground_common.OpResponse
+	11, // [11:22] is the sub-list for method output_type
+	0,  // [0:11] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -180,7 +193,7 @@ func file_playground_apps_services_proto_init() {
 			NumEnums:      0,
 			NumMessages:   0,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_playground_apps_services_proto_goTypes,
 		DependencyIndexes: file_playground_apps_services_proto_depIdxs,
@@ -211,14 +224,14 @@ type AppsClient interface {
 	SummaryList(ctx context.Context, in *grpc_playground_environments_go.EnvironmentSelector, opts ...grpc.CallOption) (*AppSummaryListResponse, error)
 	// Get returns an application
 	Info(ctx context.Context, in *AppInfoRequest, opts ...grpc.CallOption) (*Application, error)
-	// Resume a suspended workflow application.
-	Resume(ctx context.Context, in *ResumeApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 	// Logs returns the application logs (filtering by component if required)
 	Logs(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*ApplicationLogs, error)
 	// Scale scales the application components
 	Scale(ctx context.Context, in *ScaleRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 	// StopApplicationComponents stops application components adding the stop trait
 	StopApplicationComponents(ctx context.Context, in *StopApplicationComponentsRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
+	// ResumeApplicationComponents resumes application components
+	ResumeApplicationComponents(ctx context.Context, in *ResumeApplicationComponentsRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 	// ValidateRepoAccess to validate if a repository is accessible with the credentials received
 	ValidateRepoAccess(ctx context.Context, in *ValidateRepoAccessRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
 	// Update an application.
@@ -269,15 +282,6 @@ func (c *appsClient) Info(ctx context.Context, in *AppInfoRequest, opts ...grpc.
 	return out, nil
 }
 
-func (c *appsClient) Resume(ctx context.Context, in *ResumeApplicationRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
-	out := new(grpc_playground_common_go.OpResponse)
-	err := c.cc.Invoke(ctx, "/playground_apps.Apps/Resume", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *appsClient) Logs(ctx context.Context, in *LogRequest, opts ...grpc.CallOption) (*ApplicationLogs, error) {
 	out := new(ApplicationLogs)
 	err := c.cc.Invoke(ctx, "/playground_apps.Apps/Logs", in, out, opts...)
@@ -299,6 +303,15 @@ func (c *appsClient) Scale(ctx context.Context, in *ScaleRequest, opts ...grpc.C
 func (c *appsClient) StopApplicationComponents(ctx context.Context, in *StopApplicationComponentsRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
 	out := new(grpc_playground_common_go.OpResponse)
 	err := c.cc.Invoke(ctx, "/playground_apps.Apps/StopApplicationComponents", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *appsClient) ResumeApplicationComponents(ctx context.Context, in *ResumeApplicationComponentsRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
+	out := new(grpc_playground_common_go.OpResponse)
+	err := c.cc.Invoke(ctx, "/playground_apps.Apps/ResumeApplicationComponents", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -333,14 +346,14 @@ type AppsServer interface {
 	SummaryList(context.Context, *grpc_playground_environments_go.EnvironmentSelector) (*AppSummaryListResponse, error)
 	// Get returns an application
 	Info(context.Context, *AppInfoRequest) (*Application, error)
-	// Resume a suspended workflow application.
-	Resume(context.Context, *ResumeApplicationRequest) (*grpc_playground_common_go.OpResponse, error)
 	// Logs returns the application logs (filtering by component if required)
 	Logs(context.Context, *LogRequest) (*ApplicationLogs, error)
 	// Scale scales the application components
 	Scale(context.Context, *ScaleRequest) (*grpc_playground_common_go.OpResponse, error)
 	// StopApplicationComponents stops application components adding the stop trait
 	StopApplicationComponents(context.Context, *StopApplicationComponentsRequest) (*grpc_playground_common_go.OpResponse, error)
+	// ResumeApplicationComponents resumes application components
+	ResumeApplicationComponents(context.Context, *ResumeApplicationComponentsRequest) (*grpc_playground_common_go.OpResponse, error)
 	// ValidateRepoAccess to validate if a repository is accessible with the credentials received
 	ValidateRepoAccess(context.Context, *ValidateRepoAccessRequest) (*grpc_playground_common_go.OpResponse, error)
 	// Update an application.
@@ -363,9 +376,6 @@ func (*UnimplementedAppsServer) SummaryList(context.Context, *grpc_playground_en
 func (*UnimplementedAppsServer) Info(context.Context, *AppInfoRequest) (*Application, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
 }
-func (*UnimplementedAppsServer) Resume(context.Context, *ResumeApplicationRequest) (*grpc_playground_common_go.OpResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Resume not implemented")
-}
 func (*UnimplementedAppsServer) Logs(context.Context, *LogRequest) (*ApplicationLogs, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logs not implemented")
 }
@@ -374,6 +384,9 @@ func (*UnimplementedAppsServer) Scale(context.Context, *ScaleRequest) (*grpc_pla
 }
 func (*UnimplementedAppsServer) StopApplicationComponents(context.Context, *StopApplicationComponentsRequest) (*grpc_playground_common_go.OpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopApplicationComponents not implemented")
+}
+func (*UnimplementedAppsServer) ResumeApplicationComponents(context.Context, *ResumeApplicationComponentsRequest) (*grpc_playground_common_go.OpResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResumeApplicationComponents not implemented")
 }
 func (*UnimplementedAppsServer) ValidateRepoAccess(context.Context, *ValidateRepoAccessRequest) (*grpc_playground_common_go.OpResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateRepoAccess not implemented")
@@ -458,24 +471,6 @@ func _Apps_Info_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Apps_Resume_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ResumeApplicationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AppsServer).Resume(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/playground_apps.Apps/Resume",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AppsServer).Resume(ctx, req.(*ResumeApplicationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Apps_Logs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(LogRequest)
 	if err := dec(in); err != nil {
@@ -526,6 +521,24 @@ func _Apps_StopApplicationComponents_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AppsServer).StopApplicationComponents(ctx, req.(*StopApplicationComponentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Apps_ResumeApplicationComponents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResumeApplicationComponentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AppsServer).ResumeApplicationComponents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/playground_apps.Apps/ResumeApplicationComponents",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AppsServer).ResumeApplicationComponents(ctx, req.(*ResumeApplicationComponentsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -587,10 +600,6 @@ var _Apps_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Apps_Info_Handler,
 		},
 		{
-			MethodName: "Resume",
-			Handler:    _Apps_Resume_Handler,
-		},
-		{
 			MethodName: "Logs",
 			Handler:    _Apps_Logs_Handler,
 		},
@@ -603,12 +612,90 @@ var _Apps_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Apps_StopApplicationComponents_Handler,
 		},
 		{
+			MethodName: "ResumeApplicationComponents",
+			Handler:    _Apps_ResumeApplicationComponents_Handler,
+		},
+		{
 			MethodName: "ValidateRepoAccess",
 			Handler:    _Apps_ValidateRepoAccess_Handler,
 		},
 		{
 			MethodName: "Update",
 			Handler:    _Apps_Update_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "playground-apps/services.proto",
+}
+
+// WorkflowsClient is the client API for Workflows service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type WorkflowsClient interface {
+	// Resume a suspended workflow application.
+	Resume(ctx context.Context, in *ResumeWorkflowRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error)
+}
+
+type workflowsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewWorkflowsClient(cc grpc.ClientConnInterface) WorkflowsClient {
+	return &workflowsClient{cc}
+}
+
+func (c *workflowsClient) Resume(ctx context.Context, in *ResumeWorkflowRequest, opts ...grpc.CallOption) (*grpc_playground_common_go.OpResponse, error) {
+	out := new(grpc_playground_common_go.OpResponse)
+	err := c.cc.Invoke(ctx, "/playground_apps.Workflows/Resume", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// WorkflowsServer is the server API for Workflows service.
+type WorkflowsServer interface {
+	// Resume a suspended workflow application.
+	Resume(context.Context, *ResumeWorkflowRequest) (*grpc_playground_common_go.OpResponse, error)
+}
+
+// UnimplementedWorkflowsServer can be embedded to have forward compatible implementations.
+type UnimplementedWorkflowsServer struct {
+}
+
+func (*UnimplementedWorkflowsServer) Resume(context.Context, *ResumeWorkflowRequest) (*grpc_playground_common_go.OpResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Resume not implemented")
+}
+
+func RegisterWorkflowsServer(s *grpc.Server, srv WorkflowsServer) {
+	s.RegisterService(&_Workflows_serviceDesc, srv)
+}
+
+func _Workflows_Resume_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResumeWorkflowRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkflowsServer).Resume(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/playground_apps.Workflows/Resume",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkflowsServer).Resume(ctx, req.(*ResumeWorkflowRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Workflows_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "playground_apps.Workflows",
+	HandlerType: (*WorkflowsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Resume",
+			Handler:    _Workflows_Resume_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

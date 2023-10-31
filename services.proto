@@ -43,14 +43,6 @@ service Apps{
         };        
     }
 
-    // Resume a suspended workflow application.
-    rpc Resume(ResumeApplicationRequest) returns (playground_common.OpResponse){
-        option (google.api.http) = {
-            post : "/v0/apps/resume"
-            body : "*"
-        };
-    }
-
     // Logs returns the application logs (filtering by component if required)
     rpc Logs(LogRequest) returns (ApplicationLogs){
         option (google.api.http) = {
@@ -75,6 +67,14 @@ service Apps{
         };
     }
 
+    // ResumeApplicationComponents resumes application components
+    rpc ResumeApplicationComponents(ResumeApplicationComponentsRequest) returns (playground_common.OpResponse){
+        option (google.api.http) = {
+            post : "/v0/apps/resume"
+            body : "*"
+        };
+    }
+
     // ValidateRepoAccess to validate if a repository is accessible with the credentials received
     rpc ValidateRepoAccess(ValidateRepoAccessRequest) returns (playground_common.OpResponse){
         option (google.api.http) = {
@@ -91,4 +91,14 @@ service Apps{
         };
     }
     
+}
+
+service Workflows {
+    // Resume a suspended workflow application.
+    rpc Resume(ResumeWorkflowRequest) returns (playground_common.OpResponse){
+        option (google.api.http) = {
+            post : "/v0/workflows/resume"
+            body : "*"
+        };
+    }
 }

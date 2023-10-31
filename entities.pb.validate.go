@@ -1525,124 +1525,6 @@ var _ interface {
 	ErrorName() string
 } = RemoveApplicationRequestValidationError{}
 
-// Validate checks the field values on ResumeApplicationRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *ResumeApplicationRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on ResumeApplicationRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ResumeApplicationRequestMultiError, or nil if none found.
-func (m *ResumeApplicationRequest) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *ResumeApplicationRequest) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for TargetEnvironmentQualifiedName
-
-	// no validation rules for AccountId
-
-	// no validation rules for EnvironmentId
-
-	if utf8.RuneCountInString(m.GetApplicationName()) < 1 {
-		err := ResumeApplicationRequestValidationError{
-			field:  "ApplicationName",
-			reason: "value length must be at least 1 runes",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
-
-	if len(errors) > 0 {
-		return ResumeApplicationRequestMultiError(errors)
-	}
-	return nil
-}
-
-// ResumeApplicationRequestMultiError is an error wrapping multiple validation
-// errors returned by ResumeApplicationRequest.ValidateAll() if the designated
-// constraints aren't met.
-type ResumeApplicationRequestMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m ResumeApplicationRequestMultiError) Error() string {
-	var msgs []string
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m ResumeApplicationRequestMultiError) AllErrors() []error { return m }
-
-// ResumeApplicationRequestValidationError is the validation error returned by
-// ResumeApplicationRequest.Validate if the designated constraints aren't met.
-type ResumeApplicationRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ResumeApplicationRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ResumeApplicationRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ResumeApplicationRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ResumeApplicationRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ResumeApplicationRequestValidationError) ErrorName() string {
-	return "ResumeApplicationRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e ResumeApplicationRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sResumeApplicationRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ResumeApplicationRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ResumeApplicationRequestValidationError{}
-
 // Validate checks the field values on ApplicationInstanceConfiguration with
 // the rules defined in the proto definition for this message. If any rules
 // are violated, the first error encountered is returned, or nil if there are
@@ -2512,6 +2394,138 @@ var _ interface {
 	ErrorName() string
 } = StopApplicationComponentsRequestValidationError{}
 
+// Validate checks the field values on ResumeApplicationComponentsRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *ResumeApplicationComponentsRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ResumeApplicationComponentsRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// ResumeApplicationComponentsRequestMultiError, or nil if none found.
+func (m *ResumeApplicationComponentsRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ResumeApplicationComponentsRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for EnvironmentQualifiedName
+
+	// no validation rules for AccountId
+
+	// no validation rules for EnvironmentId
+
+	if utf8.RuneCountInString(m.GetApplicationName()) < 1 {
+		err := ResumeApplicationComponentsRequestValidationError{
+			field:  "ApplicationName",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(m.GetComponents()) < 1 {
+		err := ResumeApplicationComponentsRequestValidationError{
+			field:  "Components",
+			reason: "value must contain at least 1 item(s)",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return ResumeApplicationComponentsRequestMultiError(errors)
+	}
+	return nil
+}
+
+// ResumeApplicationComponentsRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// ResumeApplicationComponentsRequest.ValidateAll() if the designated
+// constraints aren't met.
+type ResumeApplicationComponentsRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ResumeApplicationComponentsRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ResumeApplicationComponentsRequestMultiError) AllErrors() []error { return m }
+
+// ResumeApplicationComponentsRequestValidationError is the validation error
+// returned by ResumeApplicationComponentsRequest.Validate if the designated
+// constraints aren't met.
+type ResumeApplicationComponentsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ResumeApplicationComponentsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ResumeApplicationComponentsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ResumeApplicationComponentsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ResumeApplicationComponentsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ResumeApplicationComponentsRequestValidationError) ErrorName() string {
+	return "ResumeApplicationComponentsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ResumeApplicationComponentsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sResumeApplicationComponentsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ResumeApplicationComponentsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ResumeApplicationComponentsRequestValidationError{}
+
 // Validate checks the field values on ValidateRepoAccessRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -2756,3 +2770,121 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = UpdateApplicationRequestValidationError{}
+
+// Validate checks the field values on ResumeWorkflowRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ResumeWorkflowRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ResumeWorkflowRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// ResumeWorkflowRequestMultiError, or nil if none found.
+func (m *ResumeWorkflowRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ResumeWorkflowRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for TargetEnvironmentQualifiedName
+
+	// no validation rules for AccountId
+
+	// no validation rules for EnvironmentId
+
+	if utf8.RuneCountInString(m.GetApplicationName()) < 1 {
+		err := ResumeWorkflowRequestValidationError{
+			field:  "ApplicationName",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return ResumeWorkflowRequestMultiError(errors)
+	}
+	return nil
+}
+
+// ResumeWorkflowRequestMultiError is an error wrapping multiple validation
+// errors returned by ResumeWorkflowRequest.ValidateAll() if the designated
+// constraints aren't met.
+type ResumeWorkflowRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ResumeWorkflowRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ResumeWorkflowRequestMultiError) AllErrors() []error { return m }
+
+// ResumeWorkflowRequestValidationError is the validation error returned by
+// ResumeWorkflowRequest.Validate if the designated constraints aren't met.
+type ResumeWorkflowRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ResumeWorkflowRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ResumeWorkflowRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ResumeWorkflowRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ResumeWorkflowRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ResumeWorkflowRequestValidationError) ErrorName() string {
+	return "ResumeWorkflowRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ResumeWorkflowRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sResumeWorkflowRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ResumeWorkflowRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ResumeWorkflowRequestValidationError{}
